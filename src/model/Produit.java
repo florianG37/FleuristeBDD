@@ -17,8 +17,7 @@ public class Produit {
 		this.stock = 0;
 		
 	}
-	public Produit(String nom, Categorie categorie,
-			String espece, double prix, int stock) {
+	public Produit(String nom, Categorie categorie,String espece, double prix, int stock) {
 		this.idProduit = -1;
 		this.nom = nom;
 		this.categorie = categorie;
@@ -63,4 +62,6 @@ public class Produit {
 		this.stock = stock;
 	}
 
+	
+    
 }

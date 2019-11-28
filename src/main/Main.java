@@ -1,17 +1,23 @@
 package main;
 
-import java.sql.Connection;
-
-import model.Categorie;
-import model.Produit;
-import controller.queries.ConnexionController;
+import controller.queries.ClientController;
+import controller.queries.FournirController;
+import controller.queries.FournisseurController;
 import controller.queries.ProduitController;
+import model.Categorie;
+import model.Client;
+import model.Fournisseur;
+import model.Produit;
+
+
 
 public class Main {
 
 	public static void main(String[] args) {
-		Produit p = new Produit("nom", Categorie.Fleur, "espece", 30, 50);
-		ProduitController.modifierProduit(p, 1);
+		Fournisseur f = new Fournisseur("nom2","prenom","Adresse", "Ville");
+		Client c = new Client("nom","prenom","Adresse", "Ville", 50);
+		Produit p = new Produit("nom", Categorie.Plante,"espece", 14.2, 12);
+		FournirController.desassocierFournisseurAProduit(3, 4);
 	}
 
 }
