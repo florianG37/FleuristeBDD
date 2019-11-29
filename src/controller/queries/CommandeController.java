@@ -23,7 +23,7 @@ public class CommandeController {
 	}
 	public static void supprimerCommande(int idCommande){
 		Connection con=ConnexionController.connexion();
-		String sql= "DELETE FROM commande WHERE commande.IdCommande";
+		String sql= "DELETE FROM commande WHERE commande.IdCommande=?";
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setInt(1, idCommande);
