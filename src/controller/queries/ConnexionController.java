@@ -18,7 +18,6 @@ public class ConnexionController {
 			Connection con=DriverManager.getConnection(
 			"jdbc:mysql://localhost:3306/fleuriste?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC",
 			"root","");
-			System.out.println("connecter");
 			return con;
 			
 		} catch (SQLException ex2) {
@@ -31,7 +30,6 @@ public class ConnexionController {
 	public static void Deconnexion(Connection con){
 		try {
 			con.close();
-			System.out.println("deconnecter");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
