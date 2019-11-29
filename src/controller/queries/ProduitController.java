@@ -84,10 +84,5 @@ public class ProduitController {
 		}
 		ConnexionController.Deconnexion(con);
 		return listeProduit;
-		
-		
-		
-		
 	}
-		
 }

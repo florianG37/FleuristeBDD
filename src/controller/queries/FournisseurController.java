@@ -2,8 +2,12 @@ package controller.queries;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
+import model.Client;
 import model.Fournisseur;
 
 
@@ -54,6 +58,29 @@ public class FournisseurController {
 				
 		ConnexionController.Deconnexion(con);	
 	}
-
+	
+	public static ArrayList<Fournisseur> voirFournisseur(){
+		Connection con=ConnexionController.connexion();
+		ArrayList<Fournisseur> listeFournisseurs = new ArrayList<Fournisseur>();
+		String sql = "SELECT * FROM fournisseur";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			while (resultats.next()) {
+				Fournisseur fournisseur = new Fournisseur();
+				fournisseur.setIdPersonne(resultats.getInt("IdFournisseur"));	
+				fournisseur.setNom(resultats.getString("Nom"));
+				fournisseur.setPrenom(resultats.getString("Prenom"));
+				fournisseur.setAdresse(resultats.getString("Adresse"));
+				fournisseur.setVille(resultats.getString("Ville"));
+				listeFournisseurs.add(fournisseur);
+				}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return listeFournisseurs;
+	}
 
 }

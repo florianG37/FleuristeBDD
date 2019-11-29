@@ -2,9 +2,14 @@ package controller.queries;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
+import model.Categorie;
 import model.Client;
+import model.Produit;
 
 public class ClientController {
 	public static void ajouterClient(Client client){
@@ -53,5 +58,30 @@ public class ClientController {
 		}
 				
 		ConnexionController.Deconnexion(con);	
+	}
+	
+	public static ArrayList<Client> voirClient(){
+		Connection con=ConnexionController.connexion();
+		ArrayList<Client> listeClients = new ArrayList<Client>();
+		String sql = "SELECT * FROM client";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			while (resultats.next()) {
+				Client client = new Client();
+				client.setIdPersonne(resultats.getInt("IdClient"));	
+				client.setNom(resultats.getString("Nom"));
+				client.setPrenom(resultats.getString("Prenom"));
+				client.setAdresse(resultats.getString("Adresse"));
+				client.setVille(resultats.getString("Ville"));
+				client.setBonAchat(resultats.getInt("BonAchat"));
+				listeClients.add(client);
+				}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return listeClients;
 	}
 }

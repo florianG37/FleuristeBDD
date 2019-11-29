@@ -1,4 +1,4 @@
-package controller.view;
+package controller.view.table;
 
 import java.time.Duration;
 import java.util.ArrayList;

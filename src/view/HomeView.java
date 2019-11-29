@@ -19,7 +19,7 @@ import javax.swing.table.TableRowSorter;
 public class HomeView extends JFrame{
 	
 	private static JTabbedPane tabbedPane;
-	private JPanel produitPanel;
+	private JPanel produitPanel, clientPanel, commandePanel, fourniturePanel, fournisseurPanel;
 	
 	public HomeView() {
 		
@@ -38,9 +38,17 @@ public class HomeView extends JFrame{
 		tabbedPane.setBackground(new Color(20, 159, 152));
 		tabbedPane.setForeground(Color.BLACK);
 		
-		//Ajout du panel departement dans le tabbedPane
+		//Ajout du panel produit dans le tabbedPane
 		produitPanel = new ProduitView();
 		tabbedPane.addTab("Produit", null, produitPanel, null);
+		
+		//Ajout du panel client dans le tabbedPane
+		clientPanel = new ClientView();
+		tabbedPane.addTab("Client", null, clientPanel, null);
+		
+		//Ajout du panel client dans le tabbedPane
+		fournisseurPanel = new FournisseurView();
+		tabbedPane.addTab("Fournisseur", null, fournisseurPanel, null);
 		
 		//Centrer la fenetre
 		this.setLocationRelativeTo(null);

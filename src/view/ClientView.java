@@ -12,16 +12,16 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
-import controller.view.ProduitControllerView;
-import controller.view.table.ProduitTableTemplate;
+import controller.view.ClientControllerView;
+import controller.view.table.ClientTableTemplate;
 
-public class ProduitView extends JPanel 
+public class ClientView extends JPanel
 {
-	private static JButton ajouterProduit, supprimerProduit, modifierProduit;
+	private static JButton ajouterClient, supprimerClient, modifierClient;
 	private static JTable table;
-	private static ProduitTableTemplate modele = new ProduitTableTemplate();
+	private static ClientTableTemplate modele = new ClientTableTemplate();
 	
-	public ProduitView()
+	public ClientView()
 	{
 		//Creation du panel principale
 		this.setLayout(new BorderLayout(0, 0));
@@ -35,16 +35,16 @@ public class ProduitView extends JPanel
 		panel.add(verticalBox);
 		
 		//Creation bouton ajouter 
-		ajouterProduit = new JButton ("Ajouter");
-		verticalBox.add(ajouterProduit);
+		ajouterClient = new JButton ("Ajouter");
+		verticalBox.add(ajouterClient);
 		
 		//Creation bouton supprimer 
-		supprimerProduit = new JButton ("Supprimer");
-		verticalBox.add(supprimerProduit);
+		supprimerClient = new JButton ("Supprimer");
+		verticalBox.add(supprimerClient);
 		
 		//Creation bouton modifier 
-		modifierProduit = new JButton ("Modifier");
-		verticalBox.add(modifierProduit);
+		modifierClient = new JButton ("Modifier");
+		verticalBox.add(modifierClient);
 		
 	    JPanel depPanel = new JPanel();
 		depPanel.setLayout(new BorderLayout(0, 0));
@@ -69,23 +69,23 @@ public class ProduitView extends JPanel
 		table.setBackground(new Color(197, 230, 229 ));
 		
 		//APPEL ACTION LISTENER
-		new ProduitControllerView(); 
+		new ClientControllerView(); 
 	}
 	
 	////////////////////ACTION LISTENER///////////////////////////////
-	public static void ajouterProduitListener(ActionListener listenAjouterProduit)
+	public static void ajouterClientListener(ActionListener listenAjouterClient)
 	{
-		ajouterProduit.addActionListener(listenAjouterProduit);
+		ajouterClient.addActionListener(listenAjouterClient);
 	}
 	
-	public static void supprimerProduitListener(ActionListener listenSupprimerProduit)
+	public static void supprimerClientListener(ActionListener listenSupprimerClient)
 	{
-		supprimerProduit.addActionListener(listenSupprimerProduit);
+		supprimerClient.addActionListener(listenSupprimerClient);
 	}
 	
-	public static void modifierProduitListener(ActionListener listenModifierProduit)
+	public static void modifierClientListener(ActionListener listenModifierClient)
 	{
-		modifierProduit.addActionListener(listenModifierProduit);
+		modifierClient.addActionListener(listenModifierClient);
 	}
 
 	//GETTERS ET SETTERS
@@ -94,14 +94,14 @@ public class ProduitView extends JPanel
 	}
 
 	public static void setTable(JTable table) {
-		ProduitView.table = table;
+		ClientView.table = table;
 	}
 
-	public static ProduitTableTemplate getModele() {
+	public static ClientTableTemplate getModele() {
 		return modele;
 	}
 
-	public static void setModele(ProduitTableTemplate modele) {
-		ProduitView.modele = modele;
+	public static void setModele(ClientTableTemplate modele) {
+		ClientView.modele = modele;
 	}
 }

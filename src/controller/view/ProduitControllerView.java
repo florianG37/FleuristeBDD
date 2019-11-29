@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JTable;
 
 import controller.queries.ProduitController;
+import controller.view.table.ProduitTableTemplate;
 import model.Produit;
 import view.ProduitView;
 
