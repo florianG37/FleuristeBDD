@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import model.Client;
-import model.Fournisseur;
 
 public class ClientController {
 	public static void ajouterClient(Client client){
