@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 28 nov. 2019 à 18:00
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Hôte : localhost
+-- Généré le :  ven. 29 nov. 2019 à 15:46
+-- Version du serveur :  10.4.8-MariaDB
+-- Version de PHP :  7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,16 +28,14 @@ SET time_zone = "+00:00";
 -- Structure de la table `client`
 --
 
-DROP TABLE IF EXISTS `client`;
-CREATE TABLE IF NOT EXISTS `client` (
-  `IdClient` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `client` (
+  `IdClient` int(11) NOT NULL,
   `Nom` varchar(254) NOT NULL,
   `Prenom` varchar(254) NOT NULL,
   `Adresse` varchar(254) NOT NULL,
   `Ville` varchar(254) NOT NULL,
-  `BonAchat` int(11) NOT NULL,
-  PRIMARY KEY (`IdClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `BonAchat` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
@@ -52,14 +50,11 @@ INSERT INTO `client` (`IdClient`, `Nom`, `Prenom`, `Adresse`, `Ville`, `BonAchat
 -- Structure de la table `commande`
 --
 
-DROP TABLE IF EXISTS `commande`;
-CREATE TABLE IF NOT EXISTS `commande` (
-  `IdCommande` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `commande` (
+  `IdCommande` int(11) NOT NULL,
   `Date` date NOT NULL,
-  `IdClient` int(11) NOT NULL,
-  PRIMARY KEY (`IdCommande`),
-  KEY `commande_ibfk_1` (`IdClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `IdClient` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `commande`
@@ -76,13 +71,10 @@ INSERT INTO `commande` (`IdCommande`, `Date`, `IdClient`) VALUES
 -- Structure de la table `commander`
 --
 
-DROP TABLE IF EXISTS `commander`;
-CREATE TABLE IF NOT EXISTS `commander` (
+CREATE TABLE `commander` (
   `IdCommande` int(11) NOT NULL,
   `IdProduit` int(11) NOT NULL,
-  `Quantite` int(11) NOT NULL,
-  PRIMARY KEY (`IdCommande`,`IdProduit`),
-  KEY `IdProduit` (`IdProduit`)
+  `Quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -91,12 +83,9 @@ CREATE TABLE IF NOT EXISTS `commander` (
 -- Structure de la table `fournir`
 --
 
-DROP TABLE IF EXISTS `fournir`;
-CREATE TABLE IF NOT EXISTS `fournir` (
+CREATE TABLE `fournir` (
   `IdFournisseur` int(11) NOT NULL,
-  `IdProduit` int(11) NOT NULL,
-  PRIMARY KEY (`IdFournisseur`,`IdProduit`),
-  KEY `IdProduit` (`IdProduit`)
+  `IdProduit` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -105,15 +94,13 @@ CREATE TABLE IF NOT EXISTS `fournir` (
 -- Structure de la table `fournisseur`
 --
 
-DROP TABLE IF EXISTS `fournisseur`;
-CREATE TABLE IF NOT EXISTS `fournisseur` (
-  `IdFournisseur` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `fournisseur` (
+  `IdFournisseur` int(11) NOT NULL,
   `Nom` varchar(254) NOT NULL,
   `Prenom` varchar(254) NOT NULL,
   `Adresse` varchar(254) NOT NULL,
-  `Ville` varchar(254) NOT NULL,
-  PRIMARY KEY (`IdFournisseur`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `Ville` varchar(254) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `fournisseur`
@@ -129,13 +116,10 @@ INSERT INTO `fournisseur` (`IdFournisseur`, `Nom`, `Prenom`, `Adresse`, `Ville`)
 -- Structure de la table `fourniture`
 --
 
-DROP TABLE IF EXISTS `fourniture`;
-CREATE TABLE IF NOT EXISTS `fourniture` (
-  `IdFourniture` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `fourniture` (
+  `IdFourniture` int(11) NOT NULL,
   `Date` date NOT NULL,
-  `IdFournisseur` int(11) NOT NULL,
-  PRIMARY KEY (`IdFourniture`),
-  KEY `IdFournisseur` (`IdFournisseur`)
+  `IdFournisseur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -144,13 +128,10 @@ CREATE TABLE IF NOT EXISTS `fourniture` (
 -- Structure de la table `livrer`
 --
 
-DROP TABLE IF EXISTS `livrer`;
-CREATE TABLE IF NOT EXISTS `livrer` (
+CREATE TABLE `livrer` (
   `IdFournisseur` int(11) NOT NULL,
   `IdProduit` int(11) NOT NULL,
-  `Quantite` int(11) NOT NULL,
-  PRIMARY KEY (`IdFournisseur`,`IdProduit`),
-  KEY `IdProduit` (`IdProduit`)
+  `Quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -159,24 +140,113 @@ CREATE TABLE IF NOT EXISTS `livrer` (
 -- Structure de la table `produit`
 --
 
-DROP TABLE IF EXISTS `produit`;
-CREATE TABLE IF NOT EXISTS `produit` (
-  `IdProduit` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `produit` (
+  `IdProduit` int(11) NOT NULL,
   `Nom` varchar(254) NOT NULL,
   `Categorie` varchar(254) NOT NULL,
   `Espece` varchar(254) NOT NULL,
-  `Prix` float NOT NULL,
-  `Quantite` int(11) NOT NULL,
-  PRIMARY KEY (`IdProduit`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `Prix` double NOT NULL,
+  `Quantite` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `produit`
 --
 
 INSERT INTO `produit` (`IdProduit`, `Nom`, `Categorie`, `Espece`, `Prix`, `Quantite`) VALUES
-(4, 'nom', 'Plante', 'espece', 14.2, 12),
-(5, 'nom', 'Plante', 'espece', 14.2, 12);
+(4, 'nom', 'Plante', 'espece', 14.199999809265137, 12),
+(5, 'nom', 'Plante', 'espece', 14.199999809265137, 12);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`IdClient`);
+
+--
+-- Index pour la table `commande`
+--
+ALTER TABLE `commande`
+  ADD PRIMARY KEY (`IdCommande`),
+  ADD KEY `commande_ibfk_1` (`IdClient`);
+
+--
+-- Index pour la table `commander`
+--
+ALTER TABLE `commander`
+  ADD PRIMARY KEY (`IdCommande`,`IdProduit`),
+  ADD KEY `IdProduit` (`IdProduit`);
+
+--
+-- Index pour la table `fournir`
+--
+ALTER TABLE `fournir`
+  ADD PRIMARY KEY (`IdFournisseur`,`IdProduit`),
+  ADD KEY `IdProduit` (`IdProduit`);
+
+--
+-- Index pour la table `fournisseur`
+--
+ALTER TABLE `fournisseur`
+  ADD PRIMARY KEY (`IdFournisseur`);
+
+--
+-- Index pour la table `fourniture`
+--
+ALTER TABLE `fourniture`
+  ADD PRIMARY KEY (`IdFourniture`),
+  ADD KEY `IdFournisseur` (`IdFournisseur`);
+
+--
+-- Index pour la table `livrer`
+--
+ALTER TABLE `livrer`
+  ADD PRIMARY KEY (`IdFournisseur`,`IdProduit`),
+  ADD KEY `IdProduit` (`IdProduit`);
+
+--
+-- Index pour la table `produit`
+--
+ALTER TABLE `produit`
+  ADD PRIMARY KEY (`IdProduit`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `client`
+--
+ALTER TABLE `client`
+  MODIFY `IdClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `commande`
+--
+ALTER TABLE `commande`
+  MODIFY `IdCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `fournisseur`
+--
+ALTER TABLE `fournisseur`
+  MODIFY `IdFournisseur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `fourniture`
+--
+ALTER TABLE `fourniture`
+  MODIFY `IdFourniture` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `produit`
+--
+ALTER TABLE `produit`
+  MODIFY `IdProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Contraintes pour les tables déchargées
