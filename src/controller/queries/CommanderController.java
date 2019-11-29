@@ -35,13 +35,13 @@ public class CommanderController {
 		}		
 		ConnexionController.Deconnexion(con);
 	}
-	public static void modifierCommander(int idFournisseur, int idProduit, int quantite){
+	public static void modifierCommander(int idCommande, int idProduit, int quantite){
 		Connection con=ConnexionController.connexion();
-		String sql= "UPDATE commander SET Quantite= ? WHERE commander.IdFournisseur = ? AND livrer.IdProduit =?";
+		String sql= "UPDATE commander SET Quantite= ? WHERE commander.IdCommande = ? AND livrer.IdProduit =?";
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setInt(1, quantite);
-			pst.setInt(2, idFournisseur);
+			pst.setInt(2, idCommande);
 			pst.setInt(3, idProduit);
 			pst.executeUpdate();
 		} catch (SQLException e) {

@@ -2,8 +2,12 @@ package controller.queries;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
+import model.Categorie;
 import model.Produit;
 
 public class ProduitController {
@@ -55,6 +59,34 @@ public class ProduitController {
 		}
 				
 		ConnexionController.Deconnexion(con);
+	}
+	public static ArrayList<Produit> voirProduit(){
+		Connection con=ConnexionController.connexion();
+		ArrayList<Produit> listeProduit = new ArrayList<Produit>();
+		String sql = "SELECT * FROM produit";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			while (resultats.next()) {
+				Produit prod = new Produit();
+				prod.setIdProduit(resultats.getInt("IdProduit"));	
+				prod.setNom(resultats.getString("Nom"));
+				prod.setCategorie(Categorie.valueOf(resultats.getString("Categorie")));
+				prod.setEspece(resultats.getString("Espece"));
+				prod.setPrix(resultats.getFloat("Prix"));
+				prod.setStock(resultats.getInt("Quantite"));
+				listeProduit.add(prod);
+				}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return listeProduit;
+		
+		
+		
+		
 	}
 		
 }
