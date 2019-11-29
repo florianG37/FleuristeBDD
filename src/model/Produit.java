@@ -1,6 +1,7 @@
 package model;
 
 public class Produit {
+	
 	private int idProduit;
 	private String nom;
 	private Categorie categorie;
@@ -25,6 +26,13 @@ public class Produit {
 		this.prix = prix;
 		this.stock = stock;
 	}
+	
+	@Override
+	public String toString() {
+		return "Produit : "+nom+" Prix : "+prix;
+	}
+	
+	//GETTERS ET SETTERS
 	public int getIdProduit() {
 		return idProduit;
 	}

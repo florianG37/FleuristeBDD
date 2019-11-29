@@ -20,7 +20,7 @@ public class ProduitController {
 			pst.setString(1, produit.getNom());
 			pst.setString(2,produit.getCategorie().name());
 			pst.setString(3, produit.getEspece());
-			pst.setFloat(4, (float) produit.getPrix());
+			pst.setDouble(4, produit.getPrix());
 			pst.setInt(5, produit.getStock());
 			pst.executeUpdate();
 		} catch (SQLException e) {
@@ -50,7 +50,7 @@ public class ProduitController {
 			pst.setString(1, produit.getNom());
 			pst.setString(2,produit.getCategorie().name());
 			pst.setString(3, produit.getEspece());
-			pst.setFloat(4, (float) produit.getPrix());
+			pst.setDouble(4, produit.getPrix());
 			pst.setInt(5, produit.getStock());
 			pst.setInt(6, IdProduitAModifier);
 			pst.executeUpdate();
@@ -60,6 +60,7 @@ public class ProduitController {
 				
 		ConnexionController.Deconnexion(con);
 	}
+	
 	public static ArrayList<Produit> voirProduit(){
 		Connection con=ConnexionController.connexion();
 		ArrayList<Produit> listeProduit = new ArrayList<Produit>();
@@ -73,7 +74,7 @@ public class ProduitController {
 				prod.setNom(resultats.getString("Nom"));
 				prod.setCategorie(Categorie.valueOf(resultats.getString("Categorie")));
 				prod.setEspece(resultats.getString("Espece"));
-				prod.setPrix(resultats.getFloat("Prix"));
+				prod.setPrix(resultats.getDouble("Prix"));
 				prod.setStock(resultats.getInt("Quantite"));
 				listeProduit.add(prod);
 				}
