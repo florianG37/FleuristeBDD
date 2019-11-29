@@ -22,9 +22,9 @@ public class Main {
 	public static void main(String[] args) {
 		/*Fournisseur f = new Fournisseur("nom2","prenom","Adresse", "Ville");
 		Client c = new Client("nom","prenom","Adresse", "Ville", 50);
-		Commande cmd= new Commande(1,LocalDateTime.now(),4,10);
-		Produit p = new Produit("nom", Categorie.Plante,"espece", 14.2, 12);
-		CommandeController.ajouterCommande(cmd);*/
+		Commande cmd= new Commande(1,LocalDateTime.now(),4,10);*/
+		/*Produit p = new Produit("ddd", Categorie.Plante,"espece", 14.2, 12);
+		ProduitController.ajouterProduit(p);*/
 		
 		new HomeView();
 		

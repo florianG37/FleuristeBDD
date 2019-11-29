@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -10,13 +11,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
+
+import controller.view.ProduitControllerView;
 import controller.view.ProduitTableTemplate;
 
 public class ProduitView extends JPanel 
 {
-	private JButton ajouterProduit, supprimerProduit, modifierProduit;
-	private JTable table;
-	private ProduitTableTemplate modele = new ProduitTableTemplate();
+	private static JButton ajouterProduit, supprimerProduit, modifierProduit;
+	private static JTable table;
+	private static ProduitTableTemplate modele = new ProduitTableTemplate();
 	
 	public ProduitView()
 	{
@@ -64,5 +67,41 @@ public class ProduitView extends JPanel
 		
 		scrollPane.getViewport().setBackground(new Color(213, 213, 213));
 		table.setBackground(new Color(197, 230, 229 ));
+		
+		//APPEL ACTION LISTENER
+		new ProduitControllerView(); 
+	}
+	
+	////////////////////ACTION LISTENER///////////////////////////////
+	public static void ajouterProduitListener(ActionListener listenAjouterProduit)
+	{
+		ajouterProduit.addActionListener(listenAjouterProduit);
+	}
+	
+	public static void supprimerProduitListener(ActionListener listenSupprimerProduit)
+	{
+		supprimerProduit.addActionListener(listenSupprimerProduit);
+	}
+	
+	public static void modifierProduitListener(ActionListener listenModifierProduit)
+	{
+		modifierProduit.addActionListener(listenModifierProduit);
+	}
+
+	//GETTERS ET SETTERS
+	public static JTable getTable() {
+		return table;
+	}
+
+	public static void setTable(JTable table) {
+		ProduitView.table = table;
+	}
+
+	public static ProduitTableTemplate getModele() {
+		return modele;
+	}
+
+	public static void setModele(ProduitTableTemplate modele) {
+		ProduitView.modele = modele;
 	}
 }
