@@ -3,12 +3,14 @@ package controller.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controller.queries.ProduitController;
 import controller.view.table.ProduitTableTemplate;
+import model.Categorie;
 import model.Produit;
 import view.ProduitView;
 
@@ -27,10 +29,12 @@ public class ProduitControllerView
 		private JTextField espece = new JTextField();
 		private JTextField prix = new JTextField();
 		private JTextField quantite = new JTextField();
+		private JComboBox categorie= new  JComboBox(Categorie.values());
 		
 		public void actionPerformed(ActionEvent e)
 		{
 			Object[] fieldsAdd = {" Nom :", nom, 
+					  "Categorie :", categorie,
 					  "Espece :",	espece,
 					  "Prix unitaire :", prix, 
 					  "Quantite :", quantite,
