@@ -74,4 +74,93 @@ public class CommandeController {
 		ConnexionController.Deconnexion(con);
 		return listeCommandes;
 	}
+	
+	/**
+	 * Permet de trouver le client qui a passe la commande
+	 * @param commande 
+	 * @return le client
+	 */
+	public static Client trouverLeClientDeLaCommande(Commande commande)
+	{
+		Connection con=ConnexionController.connexion();
+		String sql = "SELECT * FROM client WHERE IdClient = "+commande.getIdClient()+"";
+		Client client = new Client();
+		try 
+		{
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			
+			//Sauter l'entete
+			resultats.next(); 
+			
+			client.setIdPersonne(resultats.getInt("IdClient"));	
+			client.setNom(resultats.getString("Nom"));
+			client.setPrenom(resultats.getString("Prenom"));
+			client.setAdresse(resultats.getString("Adresse"));
+			client.setVille(resultats.getString("Ville"));
+			client.setBonAchat(resultats.getInt("BonAchat"));
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return client;
+	}
+	
+	/**
+	 * Calculer le nombre de produits appartenant a une commande
+	 * @param commande
+	 * @return le nombre de produits
+	 */
+	public static double calculterNombreProduitsCommande(Commande commande)
+	{
+		Connection con=ConnexionController.connexion();
+		String sql = "SELECT SUM(Quantite) FROM commander WHERE IdCommande = "+commande.getId()+"";
+		double quantite = 0;
+		
+		try 
+		{
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			
+			//Sauter l'entete
+			resultats.next(); 
+			//Affecter le resultat de la requete dans quantite
+			quantite = resultats.getDouble(1);
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return quantite;
+	}
+	
+	/**
+	 * Calculer le montant d'une commande
+	 * @param commande
+	 * @return le montant 
+	 */
+	public static double calculerMontantCommande(Commande commande)
+	{
+		Connection con=ConnexionController.connexion();
+		String sql = "SELECT * FROM commander INNER JOIN produit ON commander.IdProduit = produit.IdProduit WHERE commander.IdCommande ="+commande.getId()+"";
+		double montant = 0;
+		int quantite = 0;
+		double prix = 0;
+		
+		try {
+				Statement stmt = con.createStatement();
+				ResultSet resultats = stmt.executeQuery(sql);
+				while (resultats.next()) 
+				{
+					quantite = resultats.getInt("commander.Quantite");
+					prix = resultats.getDouble("Prix");	
+				
+					montant = montant + quantite*prix;
+				}
+			}catch (SQLException e){
+			e.printStackTrace();
+			}
+		ConnexionController.Deconnexion(con);
+		return montant;
+	}
 }

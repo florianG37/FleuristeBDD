@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import controller.queries.CommandeController;
+import model.Client;
 import model.Commande;
 
 public class CommandeTableTemplate extends AbstractTableModel
@@ -37,17 +38,20 @@ public class CommandeTableTemplate extends AbstractTableModel
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) 
 	{
+		Commande commande = returnCommande(rowIndex);
+		Client client =  CommandeController.trouverLeClientDeLaCommande(commande);
+		
 		switch(columnIndex)
 		{
 	        case 0:
-	            //return commandes.get(rowIndex);
+	            return client.getPrenom();
 	        case 1:
-	            //return commandes.get(rowIndex);
+	            return client.getNom();
 	        case 2:
-	        	//return commandes.get(rowIndex);
+	        	return CommandeController.calculterNombreProduitsCommande(commande);
 	        
 	        case 3:
-	        	//return commandes.get(rowIndex);
+	        	return CommandeController.calculerMontantCommande(commande);
 	        
 	        case 4:
 	        	return commandes.get(rowIndex).getDate();
@@ -65,7 +69,7 @@ public class CommandeTableTemplate extends AbstractTableModel
 	 * Permet d'actualiser la 
 	 * @param rowIndex
 	 */
-	public void actualiserCommandes(int rowIndex) {
+	public void actualiserCommandes() {
 		this.commandes = CommandeController.voirCommande();
 		fireTableDataChanged();
 	}

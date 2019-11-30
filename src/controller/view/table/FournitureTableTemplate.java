@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import controller.queries.CommandeController;
 import controller.queries.FournitureController;
-import model.Client;
+import model.Fournisseur;
 import model.Fourniture;
 
 public class FournitureTableTemplate extends AbstractTableModel
@@ -38,17 +39,20 @@ public class FournitureTableTemplate extends AbstractTableModel
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) 
 	{
+		Fourniture fourniture = returnFourniture(rowIndex);
+		Fournisseur fournisseur =  FournitureController.trouverLeFournisseurDeLaFourniture(fourniture);
+		
 		switch(columnIndex)
 		{
 	        case 0:
-	            return fournitures.get(rowIndex);
+	            return fournisseur.getPrenom();
 	        case 1:
-	            return fournitures.get(rowIndex);
+	            return fournisseur.getNom();
 	        case 2:
-	        	return fournitures.get(rowIndex);
+	        	return FournitureController.calculterNombreProduitsFourniture(fourniture);
 	        
 	        case 3:
-	        	return fournitures.get(rowIndex);
+	        	return FournitureController.calculerMontantFourniture(fourniture);
 	        
 	        case 4:
 	        	return fournitures.get(rowIndex).getDate();
@@ -66,7 +70,7 @@ public class FournitureTableTemplate extends AbstractTableModel
 	 * Permet d'actualiser la 
 	 * @param rowIndex
 	 */
-	public void actualiserFournitures(int rowIndex) {
+	public void actualiserFournitures() {
 		this.fournitures = FournitureController.voirFourniture();
 		fireTableDataChanged();
 	}

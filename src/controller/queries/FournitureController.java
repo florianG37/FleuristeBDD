@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import model.Commande;
+import model.Fournisseur;
 import model.Fourniture;
 
 public class FournitureController {
@@ -72,5 +73,93 @@ public class FournitureController {
 		}
 		ConnexionController.Deconnexion(con);
 		return listeFournitures;
+	}
+	
+	/**
+	 * Permet de trouver le fournisseur qui a fournit la fourniture
+	 * @param fourniture
+	 * @return le fournisseur
+	 */
+	public static Fournisseur trouverLeFournisseurDeLaFourniture(Fourniture fourniture)
+	{
+		Connection con=ConnexionController.connexion();
+		String sql = "SELECT * FROM fournisseur WHERE IdFournisseur = "+fourniture.getIdFournisseur()+"";
+		Fournisseur fournisseur = new Fournisseur();
+		try 
+		{
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			
+			//Sauter l'entete
+			resultats.next(); 
+			
+			fournisseur.setIdPersonne(resultats.getInt("IdFournisseur"));	
+			fournisseur.setNom(resultats.getString("Nom"));
+			fournisseur.setPrenom(resultats.getString("Prenom"));
+			fournisseur.setAdresse(resultats.getString("Adresse"));
+			fournisseur.setVille(resultats.getString("Ville"));
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return fournisseur;
+	}
+	
+	/**
+	 * Calculer le nombre de produits appartenant a la fourniture
+	 * @param fourniture
+	 * @return le nombre de produits
+	 */
+	public static double calculterNombreProduitsFourniture(Fourniture fourniture)
+	{
+		Connection con=ConnexionController.connexion();
+		String sql = "SELECT SUM(Quantite) FROM livrer WHERE IdFourniture = "+fourniture.getId()+"";
+		double quantite = 0;
+		
+		try 
+		{
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			
+			//Sauter l'entete
+			resultats.next(); 
+			//Affecter le resultat de la requete dans quantite
+			quantite = resultats.getDouble(1);
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return quantite;
+	}
+	
+	/**
+	 * Calculer le montant de la fourniture 
+	 * @param fourniture
+	 * @return le montant 
+	 */
+	public static double calculerMontantFourniture(Fourniture fourniture)
+	{
+		Connection con=ConnexionController.connexion();
+		String sql = "SELECT * FROM livrer INNER JOIN produit ON livrer.IdProduit = produit.IdProduit WHERE livrer.IdFourniture ="+fourniture.getId()+"";
+		double montant = 0;
+		int quantite = 0;
+		double prix = 0;
+		
+		try {
+				Statement stmt = con.createStatement();
+				ResultSet resultats = stmt.executeQuery(sql);
+				while (resultats.next()) 
+				{
+					quantite = resultats.getInt("livrer.Quantite");
+					prix = resultats.getDouble("Prix");	
+				
+					montant = montant + quantite*prix;
+				}
+			}catch (SQLException e){
+			e.printStackTrace();
+			}
+		ConnexionController.Deconnexion(con);
+		return montant;
 	}
 }

@@ -51,7 +51,7 @@ public class FournitureControllerView
 				
 				FournitureController.supprimerFourniture(fourniture.getId());
 				
-				modele.actualiserFournitures(ligneSelectionee);
+				modele.actualiserFournitures();
 			}
 		}
 	}
