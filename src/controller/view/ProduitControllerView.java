@@ -3,7 +3,9 @@ package controller.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import controller.queries.ProduitController;
 import controller.view.table.ProduitTableTemplate;
@@ -21,10 +23,31 @@ public class ProduitControllerView
 	
 	class AjouterProduitListener implements ActionListener
 	{
+		private JTextField nom = new JTextField();
+		private JTextField espece = new JTextField();
+		private JTextField prix = new JTextField();
+		private JTextField quantite = new JTextField();
+		
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("J'ai cliqué sur ajouter produit");
-		}
+			Object[] fieldsAdd = {" Nom :", nom, 
+					  "Espece :",	espece,
+					  "Prix unitaire :", prix, 
+					  "Quantite :", quantite,
+					  };
+			
+			int option = JOptionPane.showConfirmDialog(null, fieldsAdd, "Nouveau produit", JOptionPane.OK_CANCEL_OPTION);
+			if (option == JOptionPane.OK_OPTION) 
+			{
+						//Produit produit = new Produit(nom.getText(),);
+						
+						nom.setText(null);
+						espece.setText(null);
+						prix.setText(null);
+						quantite.setText(null);
+						
+				}
+			}
 	}
 	
 	class ModifierProduitListener implements ActionListener
