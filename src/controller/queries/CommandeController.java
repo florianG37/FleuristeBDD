@@ -2,9 +2,13 @@ package controller.queries;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-
+import model.Client;
 import model.Commande;
 
 public class CommandeController {
@@ -47,5 +51,27 @@ public class CommandeController {
 		}		
 		ConnexionController.Deconnexion(con);
 		
+	}
+	
+	public static ArrayList<Commande> voirCommande(){
+		Connection con=ConnexionController.connexion();
+		ArrayList<Commande> listeCommandes = new ArrayList<Commande>();
+		String sql = "SELECT * FROM commande";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			while (resultats.next()) {
+				Commande commande = new Commande();
+				commande.setId(resultats.getInt("IdCommande"));	
+				commande.setIdClient(resultats.getInt("IdClient"));	
+				commande.setDate(LocalDate.parse(resultats.getString("Date")));
+				listeCommandes.add(commande);
+				}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return listeCommandes;
 	}
 }

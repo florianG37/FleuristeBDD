@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import controller.queries.FournitureController;
 import model.Client;
 import model.Fourniture;
 
 public class FournitureTableTemplate extends AbstractTableModel
 {
 	private String[] entetes = {"Nom", "Prenom", "Nombre de produits", "Montant", "Date"};
-	private ArrayList<Fourniture> fournitures;
+	private ArrayList<Fourniture> fournitures = FournitureController.voirFourniture();
 	
 	/**
 	 * Obtenir une fourniture selon l'index d'une ligne
@@ -65,8 +66,8 @@ public class FournitureTableTemplate extends AbstractTableModel
 	 * Permet d'actualiser la 
 	 * @param rowIndex
 	 */
-	public void actualiserProduits(int rowIndex) {
-		//this.clients = ProduitController.voirProduit();
+	public void actualiserFournitures(int rowIndex) {
+		this.fournitures = FournitureController.voirFourniture();
 		fireTableDataChanged();
 	}
 }

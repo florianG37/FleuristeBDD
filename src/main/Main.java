@@ -25,7 +25,7 @@ public class Main {
 		Commande cmd= new Commande(1,LocalDateTime.now(),4,10);*/
 		/*Produit p = new Produit("ddd", Categorie.Plante,"espece", 14.2, 12);
 		ProduitController.ajouterProduit(p);*/
-		
+		//System.out.println(CommandeController.voirCommande());
 		new HomeView();
 		
 	}

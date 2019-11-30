@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import model.Client;
+import controller.queries.CommandeController;
 import model.Commande;
 
 public class CommandeTableTemplate extends AbstractTableModel
 {
 	private String[] entetes = {"Nom", "Prenom", "Nombre de produits", "Montant", "Date"};
-	private ArrayList<Commande> commandes;
+	private ArrayList<Commande> commandes = CommandeController.voirCommande();
 	
 	/**
 	 * Obtenir une commande selon l'index d'une ligne
@@ -40,14 +40,14 @@ public class CommandeTableTemplate extends AbstractTableModel
 		switch(columnIndex)
 		{
 	        case 0:
-	            return commandes.get(rowIndex);
+	            //return commandes.get(rowIndex);
 	        case 1:
-	            return commandes.get(rowIndex);
+	            //return commandes.get(rowIndex);
 	        case 2:
-	        	return commandes.get(rowIndex);
+	        	//return commandes.get(rowIndex);
 	        
 	        case 3:
-	        	return commandes.get(rowIndex);
+	        	//return commandes.get(rowIndex);
 	        
 	        case 4:
 	        	return commandes.get(rowIndex).getDate();
@@ -65,8 +65,8 @@ public class CommandeTableTemplate extends AbstractTableModel
 	 * Permet d'actualiser la 
 	 * @param rowIndex
 	 */
-	public void actualiserProduits(int rowIndex) {
-		//this.clients = ProduitController.voirProduit();
+	public void actualiserCommandes(int rowIndex) {
+		this.commandes = CommandeController.voirCommande();
 		fireTableDataChanged();
 	}
 }

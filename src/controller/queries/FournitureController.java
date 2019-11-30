@@ -2,8 +2,13 @@ package controller.queries;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
+import model.Commande;
 import model.Fourniture;
 
 public class FournitureController {
@@ -45,5 +50,27 @@ public class FournitureController {
 			e.printStackTrace();
 		}
 		ConnexionController.Deconnexion(con);
+	}
+	
+	public static ArrayList<Fourniture> voirFourniture(){
+		Connection con=ConnexionController.connexion();
+		ArrayList<Fourniture> listeFournitures = new ArrayList<Fourniture>();
+		String sql = "SELECT * FROM fourniture";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			while (resultats.next()) {
+				Fourniture fourniture = new Fourniture();
+				fourniture.setId(resultats.getInt("IdFourniture"));	
+				fourniture.setIdFournisseur(resultats.getInt("IdFournisseur"));	
+				fourniture.setDate(LocalDate.parse(resultats.getString("Date")));
+				listeFournitures.add(fourniture);
+				}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return listeFournitures;
 	}
 }

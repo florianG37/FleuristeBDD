@@ -46,9 +46,17 @@ public class HomeView extends JFrame{
 		clientPanel = new ClientView();
 		tabbedPane.addTab("Client", null, clientPanel, null);
 		
-		//Ajout du panel client dans le tabbedPane
+		//Ajout du panel fournisseur dans le tabbedPane
 		fournisseurPanel = new FournisseurView();
 		tabbedPane.addTab("Fournisseur", null, fournisseurPanel, null);
+		
+		//Ajout du panel commande dans le tabbedPane
+		commandePanel = new CommandeView();
+		tabbedPane.addTab("Commande", null, commandePanel, null);
+		
+		//Ajout du panel fourniture dans le tabbedPane
+		fourniturePanel = new FournitureView();
+		tabbedPane.addTab("Fourniture", null, fourniturePanel, null);
 		
 		//Centrer la fenetre
 		this.setLocationRelativeTo(null);

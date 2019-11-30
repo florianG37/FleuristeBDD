@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -7,16 +8,16 @@ public class Fourniture {
 
 	private int id;
 	private int idFournisseur;
-	private LocalDateTime date;
+	private LocalDate date;
 	
 	/**
-	 * Constructeur par défaut
+	 * Constructeur par dï¿½faut
 	 */
 	public Fourniture() 
 	{
 		this.id = -1;
 		this.idFournisseur = -1;
-		this.date = LocalDateTime.now();
+		this.date = LocalDate.now();
 	}
 	/**
 	 * Construteur de confort
@@ -25,7 +26,7 @@ public class Fourniture {
 	 * @param prixTotal
 	 */
 	public Fourniture(int idFournisseur,
-			ArrayList<Produit> listeProduits, double prixTotal,LocalDateTime date) {
+			ArrayList<Produit> listeProduits, double prixTotal,LocalDate date) {
 		this.id = id;
 		this.idFournisseur = idFournisseur;
 		this.date = date;
@@ -43,10 +44,10 @@ public class Fourniture {
 	public void setIdFournisseur(int idFournisseur) {
 		this.idFournisseur = idFournisseur;
 	}
-	public LocalDateTime getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(LocalDateTime date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	

@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +9,7 @@ public class Commande
 {
 	private int id; 
 	private int idClient;
-	private LocalDateTime date;
+	private LocalDate date;
 
 	
 	/**
@@ -18,19 +19,24 @@ public class Commande
 	 * @param prixTotal
 	 * @param date
 	 */
-	public Commande(int idClient, LocalDateTime date,int idProduit,int quantite) {
+	public Commande(int idClient, LocalDate date,int idProduit,int quantite) {
 		this.idClient = idClient;
 		this.date = date;
 
 	}
 	/**
-	 * Construteur par défaut
+	 * Construteur par dï¿½faut
 	 */
 	public Commande() {
 		this.id = -1;
 		this.idClient = -1;
-		this.date = LocalDateTime.now();
+		this.date = LocalDate.now();
 	
+	}
+	
+	@Override
+	public String toString() {
+		return "Commande [idClient=" + idClient + ", date=" + date + "]";
 	}
 	
 	//GETTERS ET SETTERS
@@ -46,12 +52,10 @@ public class Commande
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
-	public LocalDateTime getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(LocalDateTime date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-
-	
 }
