@@ -65,9 +65,8 @@ public class ClientTableTemplate extends AbstractTableModel
 
 	/**
 	 * Permet d'actualiser la table lors d'un changement
-	 * @param rowIndex
 	 */
-	public void actualiserClients(int rowIndex) {
+	public void actualiserClients() {
 		this.clients = ClientController.voirClient();
 		fireTableDataChanged();
 	}

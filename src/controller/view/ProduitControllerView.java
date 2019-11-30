@@ -29,7 +29,8 @@ public class ProduitControllerView
 		private JTextField espece = new JTextField();
 		private JTextField prix = new JTextField();
 		private JTextField quantite = new JTextField();
-		private JComboBox categorie= new  JComboBox(Categorie.values());
+		private JComboBox<Categorie> categorie= new  JComboBox<Categorie>(Categorie.values());
+		private ProduitTableTemplate modele = ProduitView.getModele();
 		
 		public void actionPerformed(ActionEvent e)
 		{
@@ -41,9 +42,26 @@ public class ProduitControllerView
 					  };
 			
 			int option = JOptionPane.showConfirmDialog(null, fieldsAdd, "Nouveau produit", JOptionPane.OK_CANCEL_OPTION);
-			if (option == JOptionPane.OK_OPTION) 
-			{
-						//Produit produit = new Produit(nom.getText(),);
+			try {
+				if (option == JOptionPane.OK_OPTION) 
+				{
+						String nomP = nom.getText();
+						Categorie catP =categorie.getItemAt(categorie.getSelectedIndex());
+						String espP = espece.getText();
+						Double prixP = Double.valueOf(prix.getText().replace(",", "."));
+						int quantiteP = Integer.parseInt(quantite.getText());
+					
+							if(prixP < 0 || quantiteP < 0){
+							
+								throw new Exception();
+							} 
+						
+						
+						Produit prod = new Produit(nomP,catP,espP,prixP,quantiteP);
+						
+						ProduitController.ajouterProduit(prod);
+						
+						modele.actualiserProduits();
 						
 						nom.setText(null);
 						espece.setText(null);
@@ -51,16 +69,79 @@ public class ProduitControllerView
 						quantite.setText(null);
 						
 				}
+			}catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Nombre Negatif Interdit", "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
 			}
+			
 	}
 	
 	class ModifierProduitListener implements ActionListener
 	{
+		private JTextField nom = new JTextField();
+		private JTextField espece = new JTextField();
+		private JTextField prix = new JTextField();
+		private JTextField quantite = new JTextField();
+		private JComboBox<Categorie> categorie= new  JComboBox<Categorie>(Categorie.values());
+		private JTable table = ProduitView.getTable();
+		private ProduitTableTemplate modele = ProduitView.getModele();
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("J'ai cliqué sur modifier produit");
+			
+			int ligneSelectionee = table.getSelectedRow();
+			//Si il y a une ligne selectionnee
+			if(ligneSelectionee != -1)
+			{
+				Produit produit = modele.returnProduit(ligneSelectionee);
+				int idProduitAModifier= produit.getIdProduit();
+				Object[] fieldsAdd = {" Nom :", nom, 
+						  "Categorie :", categorie,
+						  "Espece :",	espece,
+						  "Prix unitaire :", prix, 
+						  "Quantite :", quantite,
+						  };
+				nom.setText(produit.getNom());
+				espece.setText(produit.getEspece());
+				categorie.setSelectedItem(produit.getCategorie());
+				prix.setText(produit.getPrix()+"");
+				quantite.setText(produit.getStock()+"");
+				int option = JOptionPane.showConfirmDialog(null, fieldsAdd, "Modifier produit", JOptionPane.OK_CANCEL_OPTION);
+				try {
+					if (option == JOptionPane.OK_OPTION) 
+					{
+							String nomP = nom.getText();
+							Categorie catP =categorie.getItemAt(categorie.getSelectedIndex());
+							System.out.println(catP);
+							String espP = espece.getText();
+							Double prixP = Double.valueOf(prix.getText().replace(",", "."));
+							int quantiteP = Integer.parseInt(quantite.getText());
+						
+								if(prixP < 0 || quantiteP < 0){
+								
+									throw new Exception();
+								} 
+							
+							nom.setText(null);
+							espece.setText(null);
+							prix.setText(null);
+							quantite.setText(null);
+							Produit prod = new Produit(nomP,catP,espP,prixP,quantiteP);
+							ProduitController.modifierProduit(prod, idProduitAModifier);
+							modele.actualiserProduits();
+							
+					}
+				}catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, "Nombre Negatif Interdit", "Erreur", JOptionPane.ERROR_MESSAGE);
+					}
+								
+				
+			}else{
+				JOptionPane.showMessageDialog(null, "Selectionner une ligne", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
+
+	
+			}
 		}
-	}
 	
 	class SupprimerProduitListener implements ActionListener
 	{
@@ -77,7 +158,7 @@ public class ProduitControllerView
 				
 				ProduitController.supprimerProduit(produit.getIdProduit());
 				
-				modele.actualiserProduits(ligneSelectionee);
+				modele.actualiserProduits();
 			}
 		}
 	}

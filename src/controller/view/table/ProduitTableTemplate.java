@@ -81,12 +81,8 @@ public class ProduitTableTemplate extends AbstractTableModel
 		public String getColumnName(int columnIndex) {
 	        return entetes[columnIndex];
 	    }
-
-		/**
-		 * Permet d'actualiser la 
-		 * @param rowIndex
-		 */
-		public void actualiserProduits(int rowIndex) {
+		
+		public void actualiserProduits(){
 			this.produits = ProduitController.voirProduit();
 			fireTableDataChanged();
 		}

@@ -59,11 +59,7 @@ public class FournisseurTableTemplate extends AbstractTableModel
         return entetes[columnIndex];
     }
 
-	/**
-	 * Permet d'actualiser la table lors d'un changement
-	 * @param rowIndex
-	 */
-	public void actualiserFournisseurs(int rowIndex) {
+	public void actualiserFournisseurs() {
 		this.fournisseurs = FournisseurController.voirFournisseur();
 		fireTableDataChanged();
 	}
