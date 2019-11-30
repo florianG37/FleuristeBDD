@@ -51,7 +51,7 @@ public class CommandeControllerView
 				
 				CommandeController.supprimerCommande(commande.getId());
 				
-				modele.actualiserCommandes(ligneSelectionee);
+				modele.actualiserCommandes();
 			}
 		}
 	}
