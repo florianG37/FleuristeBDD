@@ -10,7 +10,7 @@ import model.Produit;
 
 public class ProduitTableTemplate extends AbstractTableModel 
 {
-		private String[] entetes = {"Nom", "Categorie", "Espece", "Prix", "Quantite"};
+		private String[] entetes = {"Nom", "Categorie", "Espece", "Prix HT", "Prix TTC", "Quantite"};
 		private ArrayList<Produit> produits = ProduitController.voirProduit();
 		
 		/**
@@ -71,6 +71,9 @@ public class ProduitTableTemplate extends AbstractTableModel
 		        	return produits.get(rowIndex).getPrix();
 		        
 		        case 4:
+		        	return produits.get(rowIndex).getPrix()*1.15;
+		        
+		        case 5:
 		        	return produits.get(rowIndex).getStock();
 		        	
 		        default:

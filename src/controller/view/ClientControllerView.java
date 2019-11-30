@@ -58,8 +58,8 @@ public class ClientControllerView
 								throw new Exception();
 							} 
 						
-						
 						Client client = new Client(nomC,prenomC,adresseC,villeC,bonAchatC);
+						
 						
 						ClientController.ajouterClient(client);
 						

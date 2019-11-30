@@ -14,14 +14,14 @@ import model.Produit;
 public class ClientController {
 	public static void ajouterClient(Client client){
 		Connection con=ConnexionController.connexion();
-		String sql ="INSERT INTO client ( Nom, Prenom, Adresse, Ville, BonAchat) VALUES (?,?,?,?,?)";
+		String sql ="INSERT INTO client ( Nom, Prenom, Adresse, Ville) VALUES (?,?,?,?)";
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, client.getNom());
 			pst.setString(2, client.getPrenom());
 			pst.setString(3, client.getAdresse());
 			pst.setString(4, client.getVille());
-			pst.setInt(5, client.getBonAchat());
+			//pst.setInt(5, client.getBonAchat());
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -43,14 +43,14 @@ public class ClientController {
 	
 	public static void modifierClient(Client client, int IdClientAModifier){
 		Connection con=ConnexionController.connexion();
-		String sql="UPDATE client SET Nom = ?, Prenom = ?, Adresse =? , Ville =?, BonAchat=? WHERE client.IdClient =?";
+		String sql="UPDATE client SET Nom = ?, Prenom = ?, Adresse =? , Ville =? WHERE client.IdClient =?";
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, client.getNom());
 			pst.setString(2, client.getPrenom());
 			pst.setString(3, client.getAdresse());
 			pst.setString(4, client.getVille());
-			pst.setInt(5, client.getBonAchat());
+			//pst.setInt(5, client.getBonAchat());
 			pst.setInt(6, IdClientAModifier);
 			pst.executeUpdate();
 		} catch (SQLException e) {
@@ -74,7 +74,7 @@ public class ClientController {
 				client.setPrenom(resultats.getString("Prenom"));
 				client.setAdresse(resultats.getString("Adresse"));
 				client.setVille(resultats.getString("Ville"));
-				client.setBonAchat(resultats.getInt("BonAchat"));
+				//client.setBonAchat(resultats.getInt("BonAchat"));
 				listeClients.add(client);
 				}
 			
