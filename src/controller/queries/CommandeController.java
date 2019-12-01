@@ -98,7 +98,7 @@ public class CommandeController {
 			client.setPrenom(resultats.getString("Prenom"));
 			client.setAdresse(resultats.getString("Adresse"));
 			client.setVille(resultats.getString("Ville"));
-			client.setBonAchat(resultats.getInt("BonAchat"));
+			//client.setBonAchat(resultats.getInt("BonAchat"));
 			
 		}catch (SQLException e) {
 			e.printStackTrace();

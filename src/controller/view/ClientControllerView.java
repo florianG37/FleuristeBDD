@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import controller.queries.ClientController;
 import controller.queries.ProduitController;
+import controller.queries.ReductionController;
 import controller.view.table.ClientTableTemplate;
 import model.Categorie;
 import model.Client;
@@ -60,8 +61,8 @@ public class ClientControllerView
 						
 						Client client = new Client(nomC,prenomC,adresseC,villeC,bonAchatC);
 						
-						
 						ClientController.ajouterClient(client);
+						//ReductionController.ajouterReduction(bonAchatC);
 						
 						modele.actualiserClients();
 						

@@ -7,27 +7,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.Categorie;
 import model.Client;
-import model.Produit;
 
 public class ClientController {
-	public static void ajouterClient(Client client){
+	/**
+	 * Ajouter un client dans la BDD, et retourne son idClient
+	 * @param client
+	 * @return idClient
+	 */
+	public static int ajouterClient(Client client){
 		Connection con=ConnexionController.connexion();
 		String sql ="INSERT INTO client ( Nom, Prenom, Adresse, Ville) VALUES (?,?,?,?)";
+		int idClient = 0;
 		try {
-			PreparedStatement pst = con.prepareStatement(sql);
+			PreparedStatement pst = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, client.getNom());
 			pst.setString(2, client.getPrenom());
 			pst.setString(3, client.getAdresse());
 			pst.setString(4, client.getVille());
-			//pst.setInt(5, client.getBonAchat());
 			pst.executeUpdate();
+			
+			//Permet de trouver la cle de l'objet, ici l'idClient
+			ResultSet keys = pst.getGeneratedKeys();
+			keys.next();
+			idClient = keys.getInt(1);
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		ConnexionController.Deconnexion(con);
+		return idClient;
 	}
+	
 	public static void supprimerClient(int IdClient){
 		Connection con=ConnexionController.connexion();
 		String sql= "DELETE FROM client WHERE client.IdClient = ?";
@@ -50,8 +61,7 @@ public class ClientController {
 			pst.setString(2, client.getPrenom());
 			pst.setString(3, client.getAdresse());
 			pst.setString(4, client.getVille());
-			//pst.setInt(5, client.getBonAchat());
-			pst.setInt(6, IdClientAModifier);
+			pst.setInt(5, IdClientAModifier);
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,7 +84,6 @@ public class ClientController {
 				client.setPrenom(resultats.getString("Prenom"));
 				client.setAdresse(resultats.getString("Adresse"));
 				client.setVille(resultats.getString("Ville"));
-				//client.setBonAchat(resultats.getInt("BonAchat"));
 				listeClients.add(client);
 				}
 			
