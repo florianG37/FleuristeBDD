@@ -12,6 +12,10 @@ public class AjouterCommandeTableTemplate extends AbstractTableModel
 	private String[] entetes = {"Nom", "Categorie", "Espece", "Prix HT", "Prix TTC", "Quantite"};
 	private ArrayList<Produit> produits = new ArrayList<Produit>(); 
 	
+	public ArrayList<Produit> getProduits()
+	{
+		return produits;
+	}
 	/**
 	 * Obtenir un produit selon l'index d'une ligne
 	 * @param rowIndex l'index de la ligne
@@ -24,9 +28,9 @@ public class AjouterCommandeTableTemplate extends AbstractTableModel
 	
 	/**
 	 * Ajouter un produit au modele
-	 * @param produit le teacher à ajouter
+	 * @param produit le produit à ajouter
 	 */
-	public void addTeacher(Produit produit)
+	public void addProduit(Produit produit)
 	{
 		produits.add(produit);
 		fireTableRowsInserted(produits.size() -1, produits.size() -1);
