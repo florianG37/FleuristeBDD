@@ -98,7 +98,7 @@ public class ProduitControllerView
 		public void actionPerformed(ActionEvent e)
 		{
 			
-			int ligneSelectionee = table.getSelectedRow();
+			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
 			//Si il y a une ligne selectionnee
 			if(ligneSelectionee != -1)
 			{
@@ -160,7 +160,7 @@ public class ProduitControllerView
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			int ligneSelectionee = table.getSelectedRow();
+			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
 			//Si il y a une ligne selectionnee
 			if(ligneSelectionee != -1)
 			{

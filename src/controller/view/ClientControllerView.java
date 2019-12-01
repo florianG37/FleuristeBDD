@@ -97,7 +97,7 @@ public class ClientControllerView
 		private ClientTableTemplate modele = ClientView.getModele();
 		public void actionPerformed(ActionEvent e)
 		{
-			int ligneSelectionee = table.getSelectedRow();
+			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
 			//Si il y a une ligne selectionnee
 			if(ligneSelectionee != -1)
 			{
@@ -168,7 +168,7 @@ public class ClientControllerView
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			int ligneSelectionee = table.getSelectedRow();
+			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
 			//Si il y a une ligne selectionnee
 			if(ligneSelectionee != -1)
 			{
