@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import controller.queries.ClientController;
 import controller.queries.ReductionController;
@@ -21,6 +24,9 @@ public class ClientControllerView
 		ClientView.ajouterClientListener(new AjouterClientListener());  
 		ClientView.supprimerClientListener(new SupprimerClientListener());
 		ClientView.modifierClientListener(new ModifierClientListener());
+		ClientView.filterListener(new FilterListener());
+		ClientView.clearFilterListener(new ClearFilterListener());
+
 	}
 	
 	class AjouterClientListener implements ActionListener
@@ -173,5 +179,29 @@ public class ClientControllerView
 				modele.actualiserClients();
 			}
 		}
+	}
+	class FilterListener implements ActionListener
+	{
+		private TableRowSorter<TableModel> sorter = ClientView.getSorter();
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String regex = JOptionPane.showInputDialog("Filter by : ");
+	        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+regex, 0, 1, 2, 3,4));
+			
+		}
+		
+	}
+	class ClearFilterListener implements ActionListener
+	{
+		private TableRowSorter<TableModel> sorter = ClientView.getSorter();
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if(sorter != null)
+			{
+				sorter.setRowFilter(null);
+			}
+			
+		}
+		
 	}
 }

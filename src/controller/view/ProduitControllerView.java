@@ -7,12 +7,18 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import controller.queries.ProduitController;
+import controller.view.ClientControllerView.ClearFilterListener;
+import controller.view.ClientControllerView.FilterListener;
 import controller.view.table.ProduitTableTemplate;
 import model.Categorie;
 import model.Produit;
 import view.AlerteView;
+import view.ClientView;
 import view.ProduitView;
 
 public class ProduitControllerView 
@@ -23,6 +29,8 @@ public class ProduitControllerView
 		ProduitView.supprimerProduitListener(new SupprimerProduitListener());
 		ProduitView.modifierProduitListener(new ModifierProduitListener());
 		ProduitView.alerteListener(new AlerteListener());
+		ProduitView.filterListener(new FilterListener());
+		ProduitView.clearFilterListener(new ClearFilterListener());
 	}
 	
 	class AjouterProduitListener implements ActionListener
@@ -170,6 +178,30 @@ public class ProduitControllerView
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			new AlerteView();
+			
+		}
+		
+	}
+	class FilterListener implements ActionListener
+	{
+		private TableRowSorter<TableModel> sorter = ProduitView.getSorter();
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String regex = JOptionPane.showInputDialog("Filter by : ");
+	        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+regex, 0, 1, 2, 3,4,5));
+			
+		}
+		
+	}
+	class ClearFilterListener implements ActionListener
+	{
+		private TableRowSorter<TableModel> sorter = ProduitView.getSorter();
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if(sorter != null)
+			{
+				sorter.setRowFilter(null);
+			}
 			
 		}
 		

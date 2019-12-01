@@ -19,10 +19,10 @@ import controller.view.table.FournisseurTableTemplate;
 
 public class FournisseurView extends JPanel
 {
-	private static JButton ajouterFournisseur, supprimerFournisseur, modifierFournisseur;
+	private static JButton ajouterFournisseur, supprimerFournisseur, modifierFournisseur,filter, clearFilter;
 	private static JTable table;
 	private static FournisseurTableTemplate modele = new FournisseurTableTemplate();
-	private TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
+	private static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
 	
 	public FournisseurView()
 	{
@@ -48,6 +48,14 @@ public class FournisseurView extends JPanel
 		//Creation bouton modifier 
 		modifierFournisseur = new JButton ("Modifier");
 		verticalBox.add(modifierFournisseur);
+		
+		//Creation bouton filtre 
+		filter = new JButton ("filtre");
+		verticalBox.add(filter);
+		
+		//Creation bouton clearFilter 
+		clearFilter = new JButton ("Enlever Filtre");
+		verticalBox.add(clearFilter);
 		
 	    JPanel depPanel = new JPanel();
 		depPanel.setLayout(new BorderLayout(0, 0));
@@ -94,6 +102,14 @@ public class FournisseurView extends JPanel
 	{
 		modifierFournisseur.addActionListener(listenModifierFournisseur);
 	}
+	public static void filterListener(ActionListener listenFilter)
+	{
+		filter.addActionListener(listenFilter);
+	}
+	public static void clearFilterListener(ActionListener listenClearFilter)
+	{
+		clearFilter.addActionListener(listenClearFilter);
+	}
 
 	//GETTERS ET SETTERS
 	public static JTable getTable() {
@@ -111,4 +127,13 @@ public class FournisseurView extends JPanel
 	public static void setModele(FournisseurTableTemplate modele) {
 		FournisseurView.modele = modele;
 	}
+
+	public static TableRowSorter<TableModel> getSorter() {
+		return sorter;
+	}
+
+	public static void setSorter(TableRowSorter<TableModel> sorter) {
+		FournisseurView.sorter = sorter;
+	}
+	
 }

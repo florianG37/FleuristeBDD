@@ -19,10 +19,10 @@ import controller.view.table.ProduitTableTemplate;
 
 public class ProduitView extends JPanel 
 {
-	private static JButton ajouterProduit, supprimerProduit, modifierProduit, alerte;
+	private static JButton ajouterProduit, supprimerProduit, modifierProduit, alerte,filter, clearFilter;
 	private static JTable table;
 	private static ProduitTableTemplate modele = new ProduitTableTemplate();
-	private TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
+	private static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
 	
 	public ProduitView()
 	{
@@ -52,6 +52,14 @@ public class ProduitView extends JPanel
 		//Creation bouton alerte
 		alerte = new JButton ("Alerte");
 		verticalBox.add(alerte);
+		
+		//Creation bouton filtre 
+		filter = new JButton ("filtre");
+		verticalBox.add(filter);
+				
+		//Creation bouton clearFilter 
+		clearFilter = new JButton ("Enlever Filtre");
+		verticalBox.add(clearFilter);
 		
 	    JPanel depPanel = new JPanel();
 		depPanel.setLayout(new BorderLayout(0, 0));
@@ -102,6 +110,14 @@ public class ProduitView extends JPanel
 	{
 		alerte.addActionListener(listenAlerte);
 	}
+	public static void filterListener(ActionListener listenFilter)
+	{
+		filter.addActionListener(listenFilter);
+	}
+	public static void clearFilterListener(ActionListener listenClearFilter)
+	{
+		clearFilter.addActionListener(listenClearFilter);
+	}
 
 	//GETTERS ET SETTERS
 	public static JTable getTable() {
@@ -119,4 +135,13 @@ public class ProduitView extends JPanel
 	public static void setModele(ProduitTableTemplate modele) {
 		ProduitView.modele = modele;
 	}
+
+	public static TableRowSorter<TableModel> getSorter() {
+		return sorter;
+	}
+
+	public static void setSorter(TableRowSorter<TableModel> sorter) {
+		ProduitView.sorter = sorter;
+	}
+	
 }

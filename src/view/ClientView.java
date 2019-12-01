@@ -19,10 +19,10 @@ import controller.view.table.ClientTableTemplate;
 
 public class ClientView extends JPanel
 {
-	private static JButton ajouterClient, supprimerClient, modifierClient;
+	private static JButton ajouterClient, supprimerClient, modifierClient, filter, clearFilter;
 	private static JTable table;
 	private static ClientTableTemplate modele = new ClientTableTemplate();
-	private TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
+	private static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
 	
 	public ClientView()
 	{
@@ -48,6 +48,14 @@ public class ClientView extends JPanel
 		//Creation bouton modifier 
 		modifierClient = new JButton ("Modifier");
 		verticalBox.add(modifierClient);
+		
+		//Creation bouton filtre 
+		filter = new JButton ("filtre");
+		verticalBox.add(filter);
+				
+		//Creation bouton clearFilter 
+		clearFilter = new JButton ("Enlever Filtre");
+		verticalBox.add(clearFilter);
 		
 	    JPanel depPanel = new JPanel();
 		depPanel.setLayout(new BorderLayout(0, 0));
@@ -93,6 +101,14 @@ public class ClientView extends JPanel
 	{
 		modifierClient.addActionListener(listenModifierClient);
 	}
+	public static void filterListener(ActionListener listenFilter)
+	{
+		filter.addActionListener(listenFilter);
+	}
+	public static void clearFilterListener(ActionListener listenClearFilter)
+	{
+		clearFilter.addActionListener(listenClearFilter);
+	}
 
 	//GETTERS ET SETTERS
 	public static JTable getTable() {
@@ -110,4 +126,13 @@ public class ClientView extends JPanel
 	public static void setModele(ClientTableTemplate modele) {
 		ClientView.modele = modele;
 	}
+
+	public static TableRowSorter<TableModel> getSorter() {
+		return sorter;
+	}
+
+	public static void setSorter(TableRowSorter<TableModel> sorter) {
+		ClientView.sorter = sorter;
+	}
+	
 }

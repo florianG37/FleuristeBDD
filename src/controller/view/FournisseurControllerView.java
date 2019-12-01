@@ -6,16 +6,22 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import controller.queries.ClientController;
 import controller.queries.FournisseurController;
 import controller.queries.ProduitController;
+import controller.view.ProduitControllerView.ClearFilterListener;
+import controller.view.ProduitControllerView.FilterListener;
 import controller.view.table.ClientTableTemplate;
 import controller.view.table.FournisseurTableTemplate;
 import model.Client;
 import model.Fournisseur;
 import view.ClientView;
 import view.FournisseurView;
+import view.ProduitView;
 
 public class FournisseurControllerView 
 {
@@ -24,6 +30,8 @@ public class FournisseurControllerView
 		FournisseurView.ajouterFournisseurListener(new AjouterFournisseurListener());  
 		FournisseurView.supprimerFournisseurListener(new SupprimerFournisseurListener());
 		FournisseurView.modifierFournisseurListener(new ModifierFournisseurListener());
+		FournisseurView.filterListener(new FilterListener());
+		FournisseurView.clearFilterListener(new ClearFilterListener());
 	}
 	
 	class AjouterFournisseurListener implements ActionListener
@@ -131,5 +139,29 @@ public class FournisseurControllerView
 				modele.actualiserFournisseurs();
 			}
 		}
+	}
+	class FilterListener implements ActionListener
+	{
+		private TableRowSorter<TableModel> sorter = FournisseurView.getSorter();
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String regex = JOptionPane.showInputDialog("Filter by : ");
+	        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+regex, 0, 1, 2, 3));
+			
+		}
+		
+	}
+	class ClearFilterListener implements ActionListener
+	{
+		private TableRowSorter<TableModel> sorter = FournisseurView.getSorter();
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if(sorter != null)
+			{
+				sorter.setRowFilter(null);
+			}
+			
+		}
+		
 	}
 }
