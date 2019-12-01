@@ -17,7 +17,7 @@ import controller.view.table.ProduitTableTemplate;
 
 public class ProduitView extends JPanel 
 {
-	private static JButton ajouterProduit, supprimerProduit, modifierProduit;
+	private static JButton ajouterProduit, supprimerProduit, modifierProduit, alerte;
 	private static JTable table;
 	private static ProduitTableTemplate modele = new ProduitTableTemplate();
 	
@@ -45,6 +45,10 @@ public class ProduitView extends JPanel
 		//Creation bouton modifier 
 		modifierProduit = new JButton ("Modifier");
 		verticalBox.add(modifierProduit);
+		
+		//Creation bouton alerte
+		alerte = new JButton ("Alerte");
+		verticalBox.add(alerte);
 		
 	    JPanel depPanel = new JPanel();
 		depPanel.setLayout(new BorderLayout(0, 0));
@@ -86,6 +90,10 @@ public class ProduitView extends JPanel
 	public static void modifierProduitListener(ActionListener listenModifierProduit)
 	{
 		modifierProduit.addActionListener(listenModifierProduit);
+	}
+	public static void alerteListener(ActionListener listenAlerte)
+	{
+		alerte.addActionListener(listenAlerte);
 	}
 
 	//GETTERS ET SETTERS

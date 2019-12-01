@@ -85,4 +85,28 @@ public class ProduitController {
 		ConnexionController.Deconnexion(con);
 		return listeProduit;
 	}
+	public static ArrayList<Produit> voirProduitSansStock(){
+		Connection con=ConnexionController.connexion();
+		ArrayList<Produit> listeProduit= new ArrayList<Produit>();
+		String sql = "SELECT * FROM produit WHERE produit.Quantite = 0";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			while (resultats.next()) {
+				Produit prod = new Produit();
+				prod.setIdProduit(resultats.getInt("IdProduit"));	
+				prod.setNom(resultats.getString("Nom"));
+				prod.setCategorie(Categorie.valueOf(resultats.getString("Categorie")));
+				prod.setEspece(resultats.getString("Espece"));
+				prod.setPrix(resultats.getDouble("Prix"));
+				prod.setStock(resultats.getInt("Quantite"));
+				listeProduit.add(prod);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return listeProduit;
+		
+	}
 }

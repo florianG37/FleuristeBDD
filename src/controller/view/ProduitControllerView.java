@@ -12,6 +12,7 @@ import controller.queries.ProduitController;
 import controller.view.table.ProduitTableTemplate;
 import model.Categorie;
 import model.Produit;
+import view.AlerteView;
 import view.ProduitView;
 
 public class ProduitControllerView 
@@ -21,6 +22,7 @@ public class ProduitControllerView
 		ProduitView.ajouterProduitListener(new AjouterProduitListener());  
 		ProduitView.supprimerProduitListener(new SupprimerProduitListener());
 		ProduitView.modifierProduitListener(new ModifierProduitListener());
+		ProduitView.alerteListener(new AlerteListener());
 	}
 	
 	class AjouterProduitListener implements ActionListener
@@ -161,5 +163,15 @@ public class ProduitControllerView
 				modele.actualiserProduits();
 			}
 		}
+	}
+	class AlerteListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			new AlerteView();
+			
+		}
+		
 	}
 }
