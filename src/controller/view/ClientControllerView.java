@@ -8,14 +8,11 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controller.queries.ClientController;
-import controller.queries.ProduitController;
 import controller.queries.ReductionController;
 import controller.view.table.ClientTableTemplate;
-import model.Categorie;
 import model.Client;
-import model.Produit;
+import model.Reduction;
 import view.ClientView;
-import view.ProduitView;
 
 public class ClientControllerView 
 {
@@ -54,15 +51,17 @@ public class ClientControllerView
 						String villeC = ville.getText();
 						int bonAchatC = Integer.parseInt(bonAchat.getText());
 					
+						System.out.println(bonAchatC);
 							if(bonAchatC < 0 || bonAchatC >100){
-							
+								System.out.println("dans le if");
 								throw new Exception();
 							} 
 						
 						Client client = new Client(nomC,prenomC,adresseC,villeC,bonAchatC);
 						
-						ClientController.ajouterClient(client);
-						//ReductionController.ajouterReduction(bonAchatC);
+						int idClient = ClientController.ajouterClient(client);
+						Reduction reduction = new Reduction(idClient,bonAchatC);
+						ReductionController.ajouterReduction(reduction);
 						
 						modele.actualiserClients();
 						
@@ -74,6 +73,7 @@ public class ClientControllerView
 						
 				}
 			}catch (Exception e1) {
+					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Nombre Interdit", "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
 			
@@ -118,6 +118,7 @@ public class ClientControllerView
 							String villeC = ville.getText();
 							int bonAchatC = Integer.parseInt(bonAchat.getText());
 						
+							
 								if(bonAchatC < 0 || bonAchatC >100){
 								
 									throw new Exception();
@@ -127,6 +128,14 @@ public class ClientControllerView
 							Client client2 = new Client(nomC,prenomC,adresseC,villeC,bonAchatC);
 							
 							ClientController.modifierClient(client2, idClientAModifier);
+							
+							//Le bon d'achat a ete modifie
+							if(bonAchatC != client.getBonAchat())
+							{
+								ReductionController.finReduction(client.getIdPersonne());
+								Reduction reduction = new Reduction(client.getIdPersonne(),bonAchatC);
+								ReductionController.ajouterReduction(reduction);
+							}
 							
 							modele.actualiserClients();
 							
