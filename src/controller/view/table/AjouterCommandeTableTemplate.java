@@ -32,8 +32,40 @@ public class AjouterCommandeTableTemplate extends AbstractTableModel
 	 */
 	public void addProduit(Produit produit)
 	{
-		produits.add(produit);
-		fireTableRowsInserted(produits.size() -1, produits.size() -1);
+		boolean existe = false;
+		for(Produit prod : produits)
+		{
+			if(prod.getIdProduit() == produit.getIdProduit())
+			{
+				existe = true;
+				prod.setStock(prod.getStock()+produit.getStock());
+				fireTableDataChanged();
+			}
+		}
+		
+		if(!existe)
+		{
+			produits.add(produit);
+			fireTableRowsInserted(produits.size() -1, produits.size() -1);
+		}
+		else
+		{
+			//Ne rien faire, modifier plus faut prod
+		}
+	}
+	
+	/**
+	 * calculer le montant des produits
+	 * @param rowIndex l'indice de ligne
+	 */
+	public double montantDesProduits()
+	{
+		double montant = 0;
+		for(Produit produit : produits)
+		{
+			montant = montant + produit.getStock() * produit.getPrix();
+		}
+		return montant;
 	}
 	
 	/**

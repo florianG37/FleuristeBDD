@@ -9,7 +9,7 @@ import controller.queries.CommandeController;
 import controller.view.table.CommandeTableTemplate;
 import controller.view.table.VoirCommandeTableTemplate;
 import model.Commande;
-import view.AjouterCommandeView;
+import view.AjouterCommandeView1;
 import view.CommandeView;
 import view.VoirCommandeView;
 
@@ -26,7 +26,7 @@ public class CommandeControllerView
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			new AjouterCommandeView();
+			new AjouterCommandeView1();
 		}
 	}
 	

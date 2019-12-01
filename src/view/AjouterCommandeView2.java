@@ -7,41 +7,55 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
-import controller.view.AjouterCommandeControllerView;
+import controller.view.AjouterCommandeControllerView2;
 import controller.view.table.AjouterCommandeTableTemplate;
 import controller.view.table.ProduitTableTemplate;
+import model.Client;
 
-public class AjouterCommandeView extends JFrame
+public class AjouterCommandeView2 extends JFrame
 {
 	private JPanel panelwest = new JPanel();
-	private static JButton supprimer, modifier, ajouter, enregistrer;
+	private static JButton supprimer, ajouter, enregistrer;
 	private static JTable tableListeProduits, tablePanier;
 	private JFrame thisFrame = this;
 	private static ProduitTableTemplate modeleListeProduits = new ProduitTableTemplate();
 	private static AjouterCommandeTableTemplate modelePanier  = new AjouterCommandeTableTemplate();
+	private static JLabel montant, vuMontant, nom, prenom;
+	private static Client client;
 	
-	public AjouterCommandeView() {
+	public AjouterCommandeView2(Client client) {
+		
+		this.client = client;
 		this.setTitle("Creer une commande");
 		this.add(panelwest, BorderLayout.WEST);
 
 		//Creation boite verticale pour inserer les composants du panel de gauche
 		Box verticalBox = Box.createVerticalBox();
+		Box horizontalBox = Box.createHorizontalBox();
 		panelwest.add(verticalBox);
+		prenom = new JLabel(client.getPrenom());
+		nom = new JLabel(" "+client.getNom());
 		supprimer = new JButton("Supprimer");
-		modifier = new JButton("Modifier");
 		ajouter = new JButton("Ajouter");
 		enregistrer = new JButton("Enregistrer");
+		montant = new JLabel("MONTANT HT Ap");
+		vuMontant = new JLabel("0.0 €");
+		verticalBox.add(horizontalBox);
+		horizontalBox.add(prenom);
+		horizontalBox.add(nom);
 		verticalBox.add(supprimer);
-		verticalBox.add(modifier);
 		verticalBox.add(ajouter);
 		verticalBox.add(enregistrer);
-	
+		verticalBox.add(montant);
+		verticalBox.add(vuMontant);
+		
 		tableListeProduits = new JTable(modeleListeProduits);
 		tableListeProduits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
@@ -70,7 +84,7 @@ public class AjouterCommandeView extends JFrame
 		this.setVisible(true);
 		
 		//ACTIVER ACTION LISTENER
-		new AjouterCommandeControllerView(); 
+		new AjouterCommandeControllerView2(); 
 	}
 	
 	////////////////////ACTION LISTENER///////////////////////////////
@@ -84,11 +98,6 @@ public class AjouterCommandeView extends JFrame
 		supprimer.addActionListener(listenSupprimerProduitDansCommande);
 	}
 	
-	public static void modifierProduitDansCommandeListener(ActionListener listenModifierProduitDansCommande)
-	{
-		modifier.addActionListener(listenModifierProduitDansCommande);
-	}
-	
 	public static void enregistrerProduitDansCommandeListener(ActionListener listenEnregistrerProduitDansCommande)
 	{
 		enregistrer.addActionListener(listenEnregistrerProduitDansCommande);
@@ -100,7 +109,7 @@ public class AjouterCommandeView extends JFrame
 	}
 
 	public static void setTableListeProduits(JTable table) {
-		AjouterCommandeView.tableListeProduits = table;
+		AjouterCommandeView2.tableListeProduits = table;
 	}
 
 	public static JTable getTablePanier() {
@@ -108,7 +117,7 @@ public class AjouterCommandeView extends JFrame
 	}
 
 	public static void setTablePanier(JTable tablePanier) {
-		AjouterCommandeView.tablePanier = tablePanier;
+		AjouterCommandeView2.tablePanier = tablePanier;
 	}
 
 	public static ProduitTableTemplate getModeleListeProduits() {
@@ -116,7 +125,7 @@ public class AjouterCommandeView extends JFrame
 	}
 
 	public static void setModeleListeProduits(ProduitTableTemplate modeleListeProduits) {
-		AjouterCommandeView.modeleListeProduits = modeleListeProduits;
+		AjouterCommandeView2.modeleListeProduits = modeleListeProduits;
 	}
 
 	public static AjouterCommandeTableTemplate getModelePanier() {
@@ -124,6 +133,22 @@ public class AjouterCommandeView extends JFrame
 	}
 
 	public static void setModelePanier(AjouterCommandeTableTemplate modelePanier) {
-		AjouterCommandeView.modelePanier = modelePanier;
+		AjouterCommandeView2.modelePanier = modelePanier;
+	}
+
+	public static JLabel getVuMontant() {
+		return vuMontant;
+	}
+
+	public static void setVuMontant(JLabel vuMontant) {
+		AjouterCommandeView2.vuMontant = vuMontant;
+	}
+
+	public static Client getClient() {
+		return client;
+	}
+
+	public static void setClient(Client client) {
+		AjouterCommandeView2.client = client;
 	}
 }

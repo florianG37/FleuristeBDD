@@ -27,6 +27,7 @@ public class CommandeController {
 		}
 		ConnexionController.Deconnexion(con);
 	}
+	
 	public static void supprimerCommande(int idCommande){
 		Connection con=ConnexionController.connexion();
 		String sql= "DELETE FROM commande WHERE commande.IdCommande=?";
@@ -39,6 +40,7 @@ public class CommandeController {
 		}		
 		ConnexionController.Deconnexion(con);
 	}
+	
 	public static void modifierCommande(Commande cmd, int idCommandeAModifier){
 		Connection con=ConnexionController.connexion();
 		String sql="UPDATE commande SET Date= ?, IdClient= ? WHERE commande.IdCommande = ?";
@@ -52,7 +54,6 @@ public class CommandeController {
 			e.printStackTrace();
 		}		
 		ConnexionController.Deconnexion(con);
-		
 	}
 	
 	public static ArrayList<Commande> voirCommande(){
@@ -79,7 +80,7 @@ public class CommandeController {
 	
 	/**
 	 * Afficher les produits de la commande
-	 * @return 
+	 * @return les produits
 	 */
 	public static ArrayList<Produit> voirProduitDeLaCommande(Commande commande){
 		Connection con=ConnexionController.connexion();

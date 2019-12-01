@@ -27,7 +27,7 @@ public class ProduitTableTemplate extends AbstractTableModel
 		 * Ajouter un produit au modele
 		 * @param produit le teacher à ajouter
 		 */
-		public void addTeacher(Produit produit)
+		public void addProduit(Produit produit)
 		{
 			produits.add(produit);
 			fireTableRowsInserted(produits.size() -1, produits.size() -1);
@@ -41,6 +41,22 @@ public class ProduitTableTemplate extends AbstractTableModel
 		{
 			produits.remove(rowIndex);
 			fireTableRowsDeleted(rowIndex, rowIndex);
+		}
+		
+		/**
+		 * Supprimer un produit du modele
+		 * @param rowIndex l'indice de ligne
+		 */
+		public Produit idToProduit(int idProduit)
+		{
+			for(Produit produit : produits)
+			{
+				if(produit.getIdProduit() == idProduit)
+				{
+					return produit;
+				}
+			}
+			return null;
 		}
 		
 		@Override

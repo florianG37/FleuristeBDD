@@ -9,6 +9,9 @@ public class Produit {
 	private double prix;
 	private int stock;
 	
+	/**
+	 * Constructeur par defaut
+	 */
 	public Produit() {
 		this.idProduit = -1;
 		this.nom = "";
@@ -18,6 +21,15 @@ public class Produit {
 		this.stock = 0;
 		
 	}
+	
+	/**
+	 * Constructeur de confort
+	 * @param nom
+	 * @param categorie
+	 * @param espece
+	 * @param prix
+	 * @param stock
+	 */
 	public Produit(String nom, Categorie categorie,String espece, double prix, int stock) {
 		this.idProduit = -1;
 		this.nom = nom;
@@ -25,6 +37,19 @@ public class Produit {
 		this.espece = espece;
 		this.prix = prix;
 		this.stock = stock;
+	}
+	
+	/**
+	 * Contructeur de recopie
+	 * @param produit l'objet a copier
+	 */
+	public Produit(Produit produit) {
+		this.idProduit = produit.idProduit;
+		this.nom = produit.nom;
+		this.categorie = produit.categorie;
+		this.espece = produit.espece;
+		this.prix = produit.prix;
+		this.stock = produit.stock;
 	}
 	
 	@Override
