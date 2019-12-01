@@ -52,7 +52,7 @@ public class ClientTableTemplate extends AbstractTableModel
 	        	return clients.get(rowIndex).getVille();
 	        
 	        case 4:
-	        	//return 
+	        	return clients.get(rowIndex).getBonAchat();
 	        	
 	        default:
 	            return null; //Ne devrait jamais arriver

@@ -84,6 +84,7 @@ public class ClientController {
 				client.setPrenom(resultats.getString("Prenom"));
 				client.setAdresse(resultats.getString("Adresse"));
 				client.setVille(resultats.getString("Ville"));
+				client.setBonAchat(ReductionController.reductionEnCours(client.getIdPersonne()));
 				listeClients.add(client);
 				}
 			
