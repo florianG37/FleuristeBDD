@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTable;
 
-import controller.queries.ClientController;
 import controller.queries.CommandeController;
 import controller.view.table.CommandeTableTemplate;
+import controller.view.table.VoirCommandeTableTemplate;
 import model.Commande;
+import view.AjouterCommandeView;
 import view.CommandeView;
+import view.VoirCommandeView;
 
 public class CommandeControllerView 
 {
@@ -17,22 +19,34 @@ public class CommandeControllerView
 	{
 		CommandeView.ajouterCommandeListener(new AjouterCommandeListener());  
 		CommandeView.supprimerCommandeListener(new SupprimerCommandeListener());
-		CommandeView.modifierCommandeListener(new ModifierCommandeListener());
+		CommandeView.voirCommandeListener(new VoirCommandeListener());
 	}
 	
 	class AjouterCommandeListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("J'ai cliqué sur ajouter une commande");
+			new AjouterCommandeView();
 		}
 	}
 	
-	class ModifierCommandeListener implements ActionListener
+	class VoirCommandeListener implements ActionListener
 	{
+		private JTable table = CommandeView.getTable();
+		private CommandeTableTemplate modele = CommandeView.getModele();
+		
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("J'ai cliqué sur modifier commande");
+			
+			int ligneSelectionnee = table.getSelectedRow();
+			if(ligneSelectionnee != -1)
+			{
+				Commande commande = modele.returnCommande(ligneSelectionnee);
+				
+				//Créé le modele de table a partir de la commande
+				VoirCommandeTableTemplate modeleVoir = new VoirCommandeTableTemplate(commande);
+				new VoirCommandeView(modeleVoir);
+			}
 		}
 	}
 	

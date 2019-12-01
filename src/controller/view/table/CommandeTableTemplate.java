@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import controller.queries.CommandeController;
+import controller.queries.ReductionController;
 import model.Client;
 import model.Commande;
 
 public class CommandeTableTemplate extends AbstractTableModel
 {
-	private String[] entetes = {"Nom", "Prenom", "Nombre de produits", "Montant", "Date"};
+	private String[] entetes = {"Nom", "Prenom", "Nombre de produits", "Bon d'achat (%)", "Montant TTC Av","Montant TTC Ap", "Date"};
 	private ArrayList<Commande> commandes = CommandeController.voirCommande();
 	
 	/**
@@ -39,6 +40,7 @@ public class CommandeTableTemplate extends AbstractTableModel
 	public Object getValueAt(int rowIndex, int columnIndex) 
 	{
 		Commande commande = returnCommande(rowIndex);
+		int reduction = ReductionController.reductionDeLaCommande(commande);
 		Client client =  CommandeController.trouverLeClientDeLaCommande(commande);
 		
 		switch(columnIndex)
@@ -49,11 +51,13 @@ public class CommandeTableTemplate extends AbstractTableModel
 	            return client.getNom();
 	        case 2:
 	        	return CommandeController.calculterNombreProduitsCommande(commande);
-	        
 	        case 3:
-	        	return CommandeController.calculerMontantCommande(commande);
-	        
+	        	return reduction;
 	        case 4:
+	        	return CommandeController.calculerMontantCommande(commande)*1.15;
+	        case 5:
+	        	return CommandeController.calculerMontantCommande(commande)*((100-reduction)/100.0)*1.15;
+	        case 6:
 	        	return commandes.get(rowIndex).getDate();
 	        	
 	        default:

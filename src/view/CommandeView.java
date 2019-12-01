@@ -19,7 +19,7 @@ import controller.view.table.CommandeTableTemplate;
 
 public class CommandeView extends JPanel
 {
-	private static JButton ajouterCommande, supprimerCommande, modifierCommande;
+	private static JButton ajouterCommande, supprimerCommande, voirCommande;
 	private static JTable table;
 	private static CommandeTableTemplate modele = new CommandeTableTemplate();
 	
@@ -45,8 +45,8 @@ public class CommandeView extends JPanel
 		verticalBox.add(supprimerCommande);
 		
 		//Creation bouton modifier 
-		modifierCommande = new JButton ("Modifier");
-		verticalBox.add(modifierCommande);
+		voirCommande = new JButton ("Voir");
+		verticalBox.add(voirCommande);
 		
 	    JPanel depPanel = new JPanel();
 		depPanel.setLayout(new BorderLayout(0, 0));
@@ -85,9 +85,9 @@ public class CommandeView extends JPanel
 		supprimerCommande.addActionListener(listenSupprimerCommande);
 	}
 	
-	public static void modifierCommandeListener(ActionListener listenModifierCommande)
+	public static void voirCommandeListener(ActionListener listenVoirCommande)
 	{
-		modifierCommande.addActionListener(listenModifierCommande);
+		voirCommande.addActionListener(listenVoirCommande);
 	}
 
 	//GETTERS ET SETTERS
