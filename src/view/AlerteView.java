@@ -8,6 +8,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import model.Produit;
 import controller.queries.ProduitController;
@@ -18,6 +20,7 @@ public class AlerteView extends JFrame
 	private JTable table;
 	private ArrayList<Produit> listeProduit = ProduitController.voirProduitSansStock();
 	private AlerteTableTemplate modele = new AlerteTableTemplate();
+	private TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
 	
 	public AlerteView(){
 		this.setTitle("Alerte");
@@ -30,6 +33,10 @@ public class AlerteView extends JFrame
 		table.setBackground(new Color(197, 230, 229 ));
 
 		JScrollPane pane = new JScrollPane(table);
+		
+		table.setAutoCreateRowSorter(true);
+		table.setRowSorter(sorter);
+		table.getRowSorter().toggleSortOrder(0);
 
 		this.add(pane);
 		this.pack();

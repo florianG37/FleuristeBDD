@@ -11,6 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import controller.view.FournisseurControllerView;
 import controller.view.table.FournisseurTableTemplate;
@@ -20,6 +22,7 @@ public class FournisseurView extends JPanel
 	private static JButton ajouterFournisseur, supprimerFournisseur, modifierFournisseur;
 	private static JTable table;
 	private static FournisseurTableTemplate modele = new FournisseurTableTemplate();
+	private TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
 	
 	public FournisseurView()
 	{
@@ -67,6 +70,10 @@ public class FournisseurView extends JPanel
 		
 		scrollPane.getViewport().setBackground(new Color(213, 213, 213));
 		table.setBackground(new Color(197, 230, 229 ));
+		
+		table.setAutoCreateRowSorter(true);
+		table.setRowSorter(sorter);
+		table.getRowSorter().toggleSortOrder(0);
 		
 		//APPEL ACTION LISTENER
 		new FournisseurControllerView(); 

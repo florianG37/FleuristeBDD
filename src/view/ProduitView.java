@@ -11,6 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
+import javax.swing.table.TableModel;
 
 import controller.view.ProduitControllerView;
 import controller.view.table.ProduitTableTemplate;
@@ -20,6 +22,7 @@ public class ProduitView extends JPanel
 	private static JButton ajouterProduit, supprimerProduit, modifierProduit, alerte;
 	private static JTable table;
 	private static ProduitTableTemplate modele = new ProduitTableTemplate();
+	private TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
 	
 	public ProduitView()
 	{
@@ -71,6 +74,10 @@ public class ProduitView extends JPanel
 		
 		scrollPane.getViewport().setBackground(new Color(213, 213, 213));
 		table.setBackground(new Color(197, 230, 229 ));
+		
+		table.setAutoCreateRowSorter(true);
+		table.setRowSorter(sorter);
+		table.getRowSorter().toggleSortOrder(0);
 		
 		//APPEL ACTION LISTENER
 		new ProduitControllerView(); 
