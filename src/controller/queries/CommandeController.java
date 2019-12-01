@@ -8,8 +8,10 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import model.Categorie;
 import model.Client;
 import model.Commande;
+import model.Produit;
 
 public class CommandeController {
 	public static void ajouterCommande(Commande cmd){
@@ -73,6 +75,37 @@ public class CommandeController {
 		}
 		ConnexionController.Deconnexion(con);
 		return listeCommandes;
+	}
+	
+	/**
+	 * Afficher les produits de la commande
+	 * @return 
+	 */
+	public static ArrayList<Produit> voirProduitDeLaCommande(Commande commande){
+		Connection con=ConnexionController.connexion();
+		ArrayList<Produit> listeProduits = new ArrayList<Produit>();
+		String sql = "SELECT * FROM commander INNER JOIN produit ON commander.IdProduit = produit.IdProduit WHERE commander.IdCommande =?";
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1,commande.getId());
+			ResultSet resultats = pst.executeQuery();
+			
+			while (resultats.next()) {
+				Produit produit = new Produit();
+				produit.setIdProduit(resultats.getInt("IdProduit"));	
+				produit.setNom(resultats.getString("Nom"));
+				produit.setCategorie(Categorie.valueOf(resultats.getString("Categorie")));
+				produit.setEspece(resultats.getString("Espece"));
+				produit.setPrix(resultats.getDouble("Prix"));
+				produit.setStock(resultats.getInt("Quantite"));
+				listeProduits.add(produit);
+				}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return listeProduits;
 	}
 	
 	/**
