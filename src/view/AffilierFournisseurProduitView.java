@@ -23,12 +23,12 @@ import controller.view.table.AffilierFournisseurProduitTableTemplate;
 import controller.view.table.FournisseurTableTemplate;
 
 public class AffilierFournisseurProduitView extends JFrame{
-	private JTable table;
+	private static JTable table;
 	private ArrayList<Produit> listeProduit = ProduitController.voirProduit();
 	private static  AffilierFournisseurProduitTableTemplate modele = new AffilierFournisseurProduitTableTemplate();
 	private static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
 	private static int idFournisseur;
-	private static JButton associer, dissocier;
+	private static JButton associer;
 	
 	public AffilierFournisseurProduitView(int idFournisseur){
 		idFournisseur=idFournisseur;
@@ -44,12 +44,9 @@ public class AffilierFournisseurProduitView extends JFrame{
 		panel.add(verticalBox);
 				
 		//Creation bouton ajouter 
-		associer = new JButton ("Associer");
+		associer = new JButton ("Associer/Dissocier");
 		verticalBox.add(associer);
 				
-		//Creation bouton supprimer 
-		dissocier = new JButton ("Dissocier");
-		verticalBox.add(dissocier);
 		JPanel depPanel = new JPanel();
 		depPanel.setLayout(new BorderLayout(0, 0));
 		this.add(depPanel);
@@ -85,21 +82,17 @@ public class AffilierFournisseurProduitView extends JFrame{
 		new AffilierFournisseurProduitControllerView();
 	}
 	////////////////////ACTION LISTENER///////////////////////////////
-	public static void ajouterFournisseurListener(ActionListener listenAjouterFournisseur)
+	public static void affilierFournisseurListener(ActionListener listenAffilierFournisseur)
 	{
-		associer.addActionListener(listenAjouterFournisseur);
+		associer.addActionListener(listenAffilierFournisseur);
 	}
 
-	public static void supprimerFournisseurListener(ActionListener listenSupprimerFournisseur)
-	{
-		dissocier.addActionListener(listenSupprimerFournisseur);
-	}
 	//GETTERS ET SETTERS
-	public JTable getTable() {
+	public static JTable getTable() {
 		return table;
 	}
 	public void setTable(JTable table) {
-		this.table = table;
+		AffilierFournisseurProduitView.table = table;
 	}
 	public ArrayList<Produit> getListeProduit() {
 		return listeProduit;
@@ -125,6 +118,4 @@ public class AffilierFournisseurProduitView extends JFrame{
 	public static void setIdFournisseur(int idFournisseur) {
 		AffilierFournisseurProduitView.idFournisseur = idFournisseur;
 	}
-	
-	
 }

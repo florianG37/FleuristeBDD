@@ -15,7 +15,7 @@ public class AffilierFournisseurProduitTableTemplate extends AbstractTableModel{
 
 	private String[] entetes = {"Nom", "Categorie", "Espece", "Appartenir"};
 	private ArrayList<Produit> produits = ProduitController.voirProduit();
-	private HashMap<Integer,Integer> appartenir = FournirController.voirAssociation();
+	private ArrayList<Integer> appartenir = FournirController.voirAssociation(AffilierFournisseurProduitView.getIdFournisseur());
 	
 	/**
 	 * Obtenir un produit selon l'index d'une ligne
@@ -48,7 +48,7 @@ public class AffilierFournisseurProduitTableTemplate extends AbstractTableModel{
 	        case 2:
 	        	return produits.get(rowIndex).getEspece();
 	        case 3:
-	        	for(Entry<Integer, Integer> entry : appartenir.entrySet()){
+	        	/*for(Entry<Integer, Integer> entry : appartenir.entrySet()){
 	        		int idFournisseur = entry.getKey();
 	        		int idProduit = entry.getValue();
 	        		if(produits.get(rowIndex).getIdProduit()==idProduit && idFournisseur==AffilierFournisseurProduitView.getIdFournisseur()){
@@ -56,7 +56,7 @@ public class AffilierFournisseurProduitTableTemplate extends AbstractTableModel{
 	        		}else{
 	        			return "Non";
 	        		}
-	        	}
+	        	}*/
 	        	return "Non";
 	        default:
 	            return null; //Ne devrait jamais arriver

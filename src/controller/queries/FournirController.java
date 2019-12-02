@@ -22,6 +22,7 @@ public class FournirController {
 		}
 		ConnexionController.Deconnexion(con);
 	}
+	
 	public static void desassocierFournisseurAProduit(int idFournisseur, int idProduit){
 		Connection con=ConnexionController.connexion();
 		String sql= "DELETE FROM fournir WHERE fournir.IdFournisseur=? AND fournir.IdProduit=?";
@@ -36,17 +37,18 @@ public class FournirController {
 		ConnexionController.Deconnexion(con);
 	}
 	
-	public static HashMap<Integer, Integer> voirAssociation(){
+	public static ArrayList<Integer> voirAssociation(int idFournisseur){
 		Connection con=ConnexionController.connexion();
-		HashMap<Integer, Integer> appartenir = new HashMap<Integer, Integer>();
-		String sql = "SELECT * FROM fournir";
+		ArrayList<Integer> appartenir = new ArrayList<Integer>();
+		String sql = "SELECT * FROM fournir WHERE IdFournisseur = ?";
 		try {
-			Statement stmt = con.createStatement();
-			ResultSet resultats = stmt.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, idFournisseur);
+			ResultSet resultats = pst.executeQuery(sql);
+			
 			while (resultats.next()) {
-				int idFournisseur =resultats.getInt("IdFournisseur");
 				int idProduit =resultats.getInt("IdProduit");
-				appartenir.put(idFournisseur, idProduit);
+				appartenir.add(idProduit);
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
