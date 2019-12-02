@@ -44,8 +44,8 @@ public class ProduitTableTemplate extends AbstractTableModel
 		}
 		
 		/**
-		 * Supprimer un produit du modele
-		 * @param rowIndex l'indice de ligne
+		 * Obtenir le produit du modele à partir de son id
+		 * @param idProduit l'id du produit
 		 */
 		public Produit idToProduit(int idProduit)
 		{

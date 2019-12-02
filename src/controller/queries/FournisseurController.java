@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.Client;
+import model.Categorie;
 import model.Fournisseur;
+import model.Produit;
 
 
 
@@ -82,5 +83,32 @@ public class FournisseurController {
 		ConnexionController.Deconnexion(con);
 		return listeFournisseurs;
 	}
-
+	
+	public static ArrayList<Produit> voirProduitsFournisseur(int idFournisseur)
+	{
+		Connection con=ConnexionController.connexion();
+		ArrayList<Produit> listeProduits = new ArrayList<Produit>();
+		String sql = "SELECT * FROM produit p INNER JOIN fournir f on p.IdProduit = f.IdProduit WHERE f.IdFournisseur =?";
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1,idFournisseur);
+			ResultSet resultats = pst.executeQuery();
+			
+			while(resultats.next())
+			{
+				Produit prod = new Produit();
+				prod.setIdProduit(resultats.getInt("IdProduit"));	
+				prod.setNom(resultats.getString("Nom"));
+				prod.setCategorie(Categorie.valueOf(resultats.getString("Categorie")));
+				prod.setEspece(resultats.getString("Espece"));
+				prod.setPrix(resultats.getDouble("Prix"));
+				prod.setStock(resultats.getInt("Quantite"));
+				listeProduits.add(prod);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return listeProduits;
+	}
 }

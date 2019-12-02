@@ -16,17 +16,18 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import controller.view.AjouterCommandeControllerView1;
-import controller.view.table.ClientTableTemplate;
+import controller.view.AjouterFournitureControllerView1;
+import controller.view.table.FournisseurTableTemplate;
 
-public class AjouterCommandeView1 extends JFrame
+public class AjouterFournitureView1 extends JFrame
 {
 	private static JTable table;
-	private static ClientTableTemplate modele = new ClientTableTemplate();
+	private static FournisseurTableTemplate modele = new FournisseurTableTemplate();
 	private static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
 	private static JButton valider, filter, clearFilter;
 	private JFrame thisFrame = this;
 	
-	public AjouterCommandeView1()
+	public AjouterFournitureView1()
 	{
 		//Creation du panel principale
 		this.setLayout(new BorderLayout(0, 0));
@@ -81,13 +82,13 @@ public class AjouterCommandeView1 extends JFrame
 		this.setVisible(true);
 		
 		//APPEL ACTION LISTENER
-		new AjouterCommandeControllerView1(thisFrame); 
+		new AjouterFournitureControllerView1(thisFrame); 
 	}
 
 	//ACTION LISTENER
-	public static void validerClientListener(ActionListener listenValiderClient)
+	public static void validerFournisseurListener(ActionListener listenValiderFournisseur)
 	{
-		valider.addActionListener(listenValiderClient);
+		valider.addActionListener(listenValiderFournisseur);
 	}
 	public static void filterListener(ActionListener listenFilter)
 	{
@@ -104,15 +105,15 @@ public class AjouterCommandeView1 extends JFrame
 	}
 
 	public static void setTable(JTable table) {
-		AjouterCommandeView1.table = table;
+		AjouterFournitureView1.table = table;
 	}
 
-	public static ClientTableTemplate getModele() {
+	public static FournisseurTableTemplate getModele() {
 		return modele;
 	}
 
-	public static void setModele(ClientTableTemplate modele) {
-		AjouterCommandeView1.modele = modele;
+	public static void setModele(FournisseurTableTemplate modele) {
+		AjouterFournitureView1.modele = modele;
 	}
 
 	public static TableRowSorter<TableModel> getSorter() {
@@ -120,6 +121,6 @@ public class AjouterCommandeView1 extends JFrame
 	}
 
 	public static void setSorter(TableRowSorter<TableModel> sorter) {
-		AjouterCommandeView1.sorter = sorter;
+		AjouterFournitureView1.sorter = sorter;
 	}
 }

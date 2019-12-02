@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTable;
 
-import controller.queries.CommandeController;
 import controller.queries.FournitureController;
 import controller.view.table.FournitureTableTemplate;
 import model.Fourniture;
+import view.AjouterFournitureView1;
 import view.FournitureView;
 
 public class FournitureControllerView 
@@ -24,7 +24,7 @@ public class FournitureControllerView
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("J'ai cliqué sur ajouter une fourniture");
+			new AjouterFournitureView1();
 		}
 	}
 	
