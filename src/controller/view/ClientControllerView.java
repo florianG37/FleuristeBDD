@@ -2,6 +2,7 @@ package controller.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -119,6 +120,7 @@ public class ClientControllerView
 				try {
 					if (option == JOptionPane.OK_OPTION) 
 					{
+						
 							String nomC = nom.getText();
 							String prenomC =prenom.getText();
 							String adresseC = adresse.getText();
@@ -139,9 +141,14 @@ public class ClientControllerView
 							//Le bon d'achat a ete modifie
 							if(bonAchatC != client.getBonAchat())
 							{
-								ReductionController.finReduction(client.getIdPersonne());
-								Reduction reduction = new Reduction(client.getIdPersonne(),bonAchatC);
-								ReductionController.ajouterReduction(reduction);
+								if(LocalDate.now().minusDays(1).equals(ReductionController.dateReductionEnCours(client.getIdPersonne()))){
+									JOptionPane.showMessageDialog(null, "Une modification de date par jour", "Erreur", JOptionPane.ERROR_MESSAGE);
+								}else{
+									ReductionController.finReduction(client.getIdPersonne());
+									Reduction reduction = new Reduction(client.getIdPersonne(),bonAchatC);
+									ReductionController.ajouterReduction(reduction);
+								}
+								
 							}
 							
 							modele.actualiserClients();
@@ -151,7 +158,7 @@ public class ClientControllerView
 							adresse.setText(null);
 							ville.setText(null);
 							bonAchat.setText(null);
-							
+						
 					}
 				}catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Nombre Interdit", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -159,6 +166,7 @@ public class ClientControllerView
 			}else{
 				JOptionPane.showMessageDialog(null, "Selectionner une ligne", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
+			
 		}
 	}
 	
