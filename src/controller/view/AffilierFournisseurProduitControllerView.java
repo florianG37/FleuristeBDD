@@ -2,9 +2,11 @@ package controller.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JTable;
 
+import controller.queries.FournirController;
 import controller.view.table.AffilierFournisseurProduitTableTemplate;
 import model.Produit;
 import view.AffilierFournisseurProduitView;
@@ -28,6 +30,18 @@ public class AffilierFournisseurProduitControllerView {
 			{
 				ligneSelectionnee = table.getRowSorter().convertRowIndexToModel(ligneSelectionnee);
 				Produit produit = modele.returnProduit(ligneSelectionnee);
+				ArrayList<Integer> appartenir = FournirController.voirAssociation(AffilierFournisseurProduitView.getIdFournisseur());
+				Boolean appartient = false;
+				for(int idProduit : appartenir){
+					if(idProduit == produit.getIdProduit()){
+						appartient =true;
+						FournirController.desassocierFournisseurAProduit(AffilierFournisseurProduitView.getIdFournisseur(), idProduit);
+					}
+				}
+				if(appartient == false){
+					FournirController.associerFournisseurAProduit(AffilierFournisseurProduitView.getIdFournisseur(), produit.getIdProduit());
+				}
+				modele.actualiserProduits();
 				
 				
 				

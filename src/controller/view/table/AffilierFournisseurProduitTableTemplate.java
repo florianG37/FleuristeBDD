@@ -48,16 +48,11 @@ public class AffilierFournisseurProduitTableTemplate extends AbstractTableModel{
 	        case 2:
 	        	return produits.get(rowIndex).getEspece();
 	        case 3:
-	        	/*for(Entry<Integer, Integer> entry : appartenir.entrySet()){
-	        		int idFournisseur = entry.getKey();
-	        		int idProduit = entry.getValue();
-	        		if(produits.get(rowIndex).getIdProduit()==idProduit && idFournisseur==AffilierFournisseurProduitView.getIdFournisseur()){
-	        			return "Oui";
-	        		}else{
-	        			return "Non";
-	        		}
-	        	}*/
-	        	return "Non";
+	        	if(appartenir.contains(produits.get(rowIndex).getIdProduit())==true){
+	        		return "Oui";
+	        	}else{
+	        		return "Non";	
+	        	}
 	        default:
 	            return null; //Ne devrait jamais arriver
 		}
@@ -68,6 +63,7 @@ public class AffilierFournisseurProduitTableTemplate extends AbstractTableModel{
 	
 	public void actualiserProduits(){
 		this.produits = ProduitController.voirProduit();
+		this.appartenir =FournirController.voirAssociation(AffilierFournisseurProduitView.getIdFournisseur());
 		fireTableDataChanged();
 	}
 
