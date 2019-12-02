@@ -4,13 +4,20 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+import controller.queries.FournisseurController;
 import controller.queries.ProduitController;
+import model.Fournisseur;
 import model.Produit;
 
-public class AjouterCommandeTableTemplate extends AbstractTableModel
+public class AjouterFournitureTableTemplate extends AbstractTableModel
 {
-	private String[] entetes = {"Nom", "Categorie", "Espece", "Prix HT", "Prix TTC", "Quantite"};
-	private ArrayList<Produit> produits = new ArrayList<Produit>(); 
+	private String[] entetes = {"Nom", "Categorie", "Espece", "Prix HT", "Prix TTC"};
+	private ArrayList<Produit> produits; 
+	
+	public AjouterFournitureTableTemplate(Fournisseur fournisseur)
+	{
+		produits = FournisseurController.voirProduitsFournisseur(fournisseur.getIdPersonne());
+	}
 	
 	/**
 	 * Obtenir un produit selon l'index d'une ligne
@@ -23,53 +30,29 @@ public class AjouterCommandeTableTemplate extends AbstractTableModel
 	}
 	
 	/**
+	 * Obtenir le produit du modele à partir de son id
+	 * @param idProduit l'id du produit
+	 */
+	public Produit idToProduit(int idProduit)
+	{
+		for(Produit produit : produits)
+		{
+			if(produit.getIdProduit() == idProduit)
+			{
+				return produit;
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * Ajouter un produit au modele
 	 * @param produit le produit à ajouter
 	 */
 	public void addProduit(Produit produit)
 	{
-		boolean existe = false;
-		for(Produit prod : produits)
-		{
-			if(prod.getIdProduit() == produit.getIdProduit())
-			{
-				existe = true;
-				prod.setStock(prod.getStock()+produit.getStock());
-				fireTableDataChanged();
-			}
-		}
-		
-		if(!existe)
-		{
-			produits.add(produit);
-			fireTableRowsInserted(produits.size() -1, produits.size() -1);
-		}
-		else
-		{
-			//Ne rien faire, modifier plus faut prod
-		}
-	}
-	
-	/**
-	 * Permet de vider le panier
-	 */
-	public void viderLePanier()
-	{
-		produits.clear();
-	}
-	
-	/**
-	 * calculer le montant des produits
-	 * @param rowIndex l'indice de ligne
-	 */
-	public double montantDesProduits()
-	{
-		double montant = 0;
-		for(Produit produit : produits)
-		{
-			montant = montant + produit.getStock() * produit.getPrix();
-		}
-		return montant;
+		produits.add(produit);
+		fireTableRowsInserted(produits.size() -1, produits.size() -1);
 	}
 	
 	/**
@@ -111,9 +94,6 @@ public class AjouterCommandeTableTemplate extends AbstractTableModel
 	        
 	        case 4:
 	        	return produits.get(rowIndex).getPrix()*1.15;
-	        
-	        case 5:
-	        	return produits.get(rowIndex).getStock();
 	        	
 	        default:
 	            return null; //Ne devrait jamais arriver
@@ -123,7 +103,6 @@ public class AjouterCommandeTableTemplate extends AbstractTableModel
 	public String getColumnName(int columnIndex) {
         return entetes[columnIndex];
     }
-	
 	
 	public void actualiserProduits(){
 		this.produits = ProduitController.voirProduit();
