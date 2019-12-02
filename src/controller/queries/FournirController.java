@@ -40,11 +40,11 @@ public class FournirController {
 	public static ArrayList<Integer> voirAssociation(int idFournisseur){
 		Connection con=ConnexionController.connexion();
 		ArrayList<Integer> appartenir = new ArrayList<Integer>();
-		String sql = "SELECT * FROM fournir WHERE IdFournisseur = ?";
+		String sql = "SELECT * FROM fournir WHERE fournir.IdFournisseur=?";
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setInt(1, idFournisseur);
-			ResultSet resultats = pst.executeQuery(sql);
+			ResultSet resultats = pst.executeQuery();
 			
 			while (resultats.next()) {
 				int idProduit =resultats.getInt("IdProduit");

@@ -31,7 +31,7 @@ public class AffilierFournisseurProduitView extends JFrame{
 	private static JButton associer;
 	
 	public AffilierFournisseurProduitView(int idFournisseur){
-		idFournisseur=idFournisseur;
+		this.idFournisseur=idFournisseur;
 		//Creation du panel principale
 		this.setLayout(new BorderLayout(0, 0));
 				
