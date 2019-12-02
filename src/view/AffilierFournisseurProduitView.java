@@ -80,6 +80,7 @@ public class AffilierFournisseurProduitView extends JFrame{
 				
 		//APPEL ACTION LISTENER
 		new AffilierFournisseurProduitControllerView();
+		modele.actualiserProduits();
 	}
 	////////////////////ACTION LISTENER///////////////////////////////
 	public static void affilierFournisseurListener(ActionListener listenAffilierFournisseur)
