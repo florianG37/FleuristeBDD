@@ -51,7 +51,7 @@ public class AjouterFournitureView2 extends JFrame
 		supprimer = new JButton("Supprimer");
 		ajouter = new JButton("Ajouter");
 		enregistrer = new JButton("Enregistrer");
-		montant = new JLabel("MONTANT HT Ap");
+		montant = new JLabel("MONTANT HT");
 		vuMontant = new JLabel("0.0 €");
 		verticalBox.add(horizontalBox);
 		horizontalBox.add(prenom);
@@ -159,5 +159,13 @@ public class AjouterFournitureView2 extends JFrame
 
 	public static void setVuMontant(JLabel vuMontant) {
 		AjouterFournitureView2.vuMontant = vuMontant;
+	}
+
+	public static Fournisseur getFournisseur() {
+		return fournisseur;
+	}
+
+	public static void setFournisseur(Fournisseur fournisseur) {
+		AjouterFournitureView2.fournisseur = fournisseur;
 	}
 }

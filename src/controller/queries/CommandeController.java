@@ -24,7 +24,7 @@ public class CommandeController {
 			pst.setInt(2, cmd.getIdClient());
 			pst.executeUpdate();
 			
-			//Permet de trouver la cle de l'objet, ici l'idClient
+			//Permet de trouver la cle de l'objet, ici l'idCommande
 			ResultSet keys = pst.getGeneratedKeys();
 			keys.next();
 			idCommande = keys.getInt(1);

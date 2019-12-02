@@ -48,7 +48,7 @@ public class AffilierFournisseurProduitTableTemplate extends AbstractTableModel{
 	        case 2:
 	        	return produits.get(rowIndex).getEspece();
 	        case 3:
-	        	if(appartenir.contains(produits.get(rowIndex).getIdProduit())==true){
+	        	if((appartenir.contains(produits.get(rowIndex).getIdProduit()))==true){
 	        		return "Oui";
 	        	}else{
 	        		return "Non";	

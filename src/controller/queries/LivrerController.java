@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class LivrerController {
-	public static void ajouterLivrer(int idFournisseur,int idProduit,int quantite){
+	public static void ajouterLivrer(int idFourniture,int idProduit,int quantite){
 		Connection con=ConnexionController.connexion();
-		String sql ="INSERT INTO livrer ( IdFournisseur, IdProduit,Quantite) VALUES (?,?,?)";
+		String sql ="INSERT INTO livrer ( IdFourniture, IdProduit,Quantite) VALUES (?,?,?)";
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, idFournisseur);
+			pst.setInt(1, idFourniture);
 			pst.setInt(2, idProduit);
 			pst.setInt(3, quantite);
 			pst.executeUpdate();

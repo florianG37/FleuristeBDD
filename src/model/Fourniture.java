@@ -25,11 +25,10 @@ public class Fourniture {
 	 * @param listeProduits
 	 * @param prixTotal
 	 */
-	public Fourniture(int idFournisseur,
-			ArrayList<Produit> listeProduits, double prixTotal,LocalDate date) {
-		this.id = id;
+	public Fourniture(int idFournisseur) {
+		this.id = -1;
 		this.idFournisseur = idFournisseur;
-		this.date = date;
+		this.date = LocalDate.now();
 	}
 	//GETTERS ET SETTERS
 	public int getId() {

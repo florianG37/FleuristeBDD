@@ -13,18 +13,25 @@ import model.Fournisseur;
 import model.Fourniture;
 
 public class FournitureController {
-	public static void ajouterFourniture(Fourniture fourniture){
+	public static int ajouterFourniture(Fourniture fourniture){
 		Connection con=ConnexionController.connexion();
 		String sql = "INSERT INTO fourniture(Date , IdFournisseur) VALUES(?,?)";
+		int idFourniture = 0;
 		try{
-			PreparedStatement pst = con.prepareStatement(sql);
+			PreparedStatement pst = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			pst.setDate(1,java.sql.Date.valueOf(fourniture.getDate().toString()));
 			pst.setInt(2, fourniture.getIdFournisseur());
 			pst.executeUpdate();
+			
+			//Permet de trouver la cle de l'objet, ici l'idFourniture
+			ResultSet keys = pst.getGeneratedKeys();
+			keys.next();
+			idFourniture = keys.getInt(1);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		ConnexionController.Deconnexion(con);
+		return idFourniture;
 	}
 	public static void supprimerFourniture(int idFourniture){
 		Connection con=ConnexionController.connexion();

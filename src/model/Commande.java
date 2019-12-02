@@ -20,6 +20,7 @@ public class Commande
 	 * @param date
 	 */
 	public Commande(int idClient) {
+		this.id = -1;
 		this.idClient = idClient;
 		this.date = LocalDate.now();
 
