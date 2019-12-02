@@ -1,5 +1,6 @@
 package controller.view.table;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -42,6 +43,8 @@ public class CommandeTableTemplate extends AbstractTableModel
 		Commande commande = returnCommande(rowIndex);
 		int reduction = ReductionController.reductionDeLaCommande(commande);
 		Client client =  CommandeController.trouverLeClientDeLaCommande(commande);
+		NumberFormat format=NumberFormat.getInstance(); 
+    	format.setMinimumFractionDigits(2); //nb de chiffres apres la virgule 
 		
 		switch(columnIndex)
 		{
@@ -54,9 +57,11 @@ public class CommandeTableTemplate extends AbstractTableModel
 	        case 3:
 	        	return reduction;
 	        case 4:
-	        	return CommandeController.calculerMontantCommande(commande)*1.15;
+	        	String montantAv = format.format(CommandeController.calculerMontantCommande(commande)*1.15);
+	        	return montantAv;
 	        case 5:
-	        	return CommandeController.calculerMontantCommande(commande)*((100-reduction)/100.0)*1.15;
+	        	String montantAp=format.format(CommandeController.calculerMontantCommande(commande)*((100-reduction)/100.0)*1.15); 
+	        	return montantAp;
 	        case 6:
 	        	return commandes.get(rowIndex).getDate();
 	        	

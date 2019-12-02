@@ -19,9 +19,9 @@ public class Commande
 	 * @param prixTotal
 	 * @param date
 	 */
-	public Commande(int idClient, LocalDate date,int idProduit,int quantite) {
+	public Commande(int idClient) {
 		this.idClient = idClient;
-		this.date = date;
+		this.date = LocalDate.now();
 
 	}
 	/**

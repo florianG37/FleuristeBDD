@@ -42,6 +42,7 @@ public class ProduitController {
 				
 		ConnexionController.Deconnexion(con);
 	}
+	
 	public static void modifierProduit(Produit produit, int IdProduitAModifier){
 		Connection con=ConnexionController.connexion();
 		String sql= "UPDATE produit SET Nom = ?, Categorie = ?, Espece = ?, Prix = ?, Quantite = ? WHERE produit.IdProduit = ?";

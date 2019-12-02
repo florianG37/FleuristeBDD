@@ -54,7 +54,7 @@ public class Produit {
 	
 	@Override
 	public String toString() {
-		return "Produit : "+nom+" Prix : "+prix;
+		return "Produit : "+nom+" Prix : "+prix+" idProduit : "+idProduit+" Stock : "+stock;
 	}
 	
 	//GETTERS ET SETTERS
