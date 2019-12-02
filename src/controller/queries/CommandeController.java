@@ -14,18 +14,26 @@ import model.Commande;
 import model.Produit;
 
 public class CommandeController {
-	public static void ajouterCommande(Commande cmd){
+	public static int ajouterCommande(Commande cmd){
 		Connection con=ConnexionController.connexion();
 		String sql ="INSERT INTO commande (Date, IdClient) VALUES (?,?)";
+		int idCommande = 0;
 		try {
-			PreparedStatement pst = con.prepareStatement(sql);
+			PreparedStatement pst = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			pst.setDate(1,java.sql.Date.valueOf(cmd.getDate().toString()));
 			pst.setInt(2, cmd.getIdClient());
 			pst.executeUpdate();
+			
+			//Permet de trouver la cle de l'objet, ici l'idClient
+			ResultSet keys = pst.getGeneratedKeys();
+			keys.next();
+			idCommande = keys.getInt(1);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		ConnexionController.Deconnexion(con);
+		return idCommande;
 	}
 	
 	public static void supprimerCommande(int idCommande){

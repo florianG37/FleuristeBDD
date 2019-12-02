@@ -55,6 +55,14 @@ public class AjouterCommandeTableTemplate extends AbstractTableModel
 	}
 	
 	/**
+	 * Permet de vider le panier
+	 */
+	public void viderLePanier()
+	{
+		produits.clear();
+	}
+	
+	/**
 	 * calculer le montant des produits
 	 * @param rowIndex l'indice de ligne
 	 */
@@ -120,9 +128,13 @@ public class AjouterCommandeTableTemplate extends AbstractTableModel
         return entetes[columnIndex];
     }
 	
+	//GETTERS ET SETTERS
 	public void actualiserProduits(){
 		this.produits = ProduitController.voirProduit();
 		fireTableDataChanged();
+	}
+	public void setProduits(ArrayList<Produit> produits) {
+		this.produits = produits;
 	}
 
 }

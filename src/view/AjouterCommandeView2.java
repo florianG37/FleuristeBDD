@@ -3,6 +3,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -84,7 +86,18 @@ public class AjouterCommandeView2 extends JFrame
 		this.setVisible(true);
 		
 		//ACTIVER ACTION LISTENER
-		new AjouterCommandeControllerView2(); 
+		new AjouterCommandeControllerView2(thisFrame); 
+		
+		//Action listener quand on exit la fenetre
+		addWindowListener(new WindowAdapter() 
+		{
+	        @Override
+	        public void windowClosing(WindowEvent windowEvent) 
+	        {
+	            modelePanier.viderLePanier();
+	            modeleListeProduits.actualiserProduits();
+	        }
+	    });
 	}
 	
 	////////////////////ACTION LISTENER///////////////////////////////

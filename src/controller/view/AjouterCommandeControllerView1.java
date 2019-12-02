@@ -34,15 +34,22 @@ public class AjouterCommandeControllerView1
 		
 		public void actionPerformed(ActionEvent arg0) 
 		{
-			int ligneSelectionnee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
+			int ligneSelectionnee = table.getSelectedRow();
 			
-			Client client = modele.returnClient(ligneSelectionnee);
-			
-			//Ferme la fenetre
-			frame.dispose();
-			
-			//Nouvelle vue
-			new AjouterCommandeView2(client);
+			if(ligneSelectionnee != -1 )
+			{
+				ligneSelectionnee = table.getRowSorter().convertRowIndexToModel(ligneSelectionnee);
+				Client client = modele.returnClient(ligneSelectionnee);
+				
+				//Ferme la fenetre
+				frame.dispose();
+				//Nouvelle vue
+				new AjouterCommandeView2(client);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null,"Selectionnez une ligne");
+			}
 		}
 	}
 	
@@ -51,7 +58,7 @@ public class AjouterCommandeControllerView1
 		private TableRowSorter<TableModel> sorter = AjouterCommandeView1.getSorter();
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String regex = JOptionPane.showInputDialog("Filter by : ");
+			String regex = JOptionPane.showInputDialog("Recherchez par : ");
 	        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+regex, 0, 1, 2, 3,4));
 		}
 	}

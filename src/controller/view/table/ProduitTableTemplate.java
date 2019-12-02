@@ -105,4 +105,13 @@ public class ProduitTableTemplate extends AbstractTableModel
 			this.produits = ProduitController.voirProduit();
 			fireTableDataChanged();
 		}
+
+		//GETTERS ET SETTERS
+		public ArrayList<Produit> getProduits() {
+			return produits;
+		}
+
+		public void setProduits(ArrayList<Produit> produits) {
+			this.produits = produits;
+		}
 }
