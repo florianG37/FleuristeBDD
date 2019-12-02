@@ -120,4 +120,26 @@ public class ReductionController
 		ConnexionController.Deconnexion(con);
 		return reduction;
 	}
+	/**
+	 * Trouver la date de la reduction en cours du client
+	 * @param idClient
+	 * @return la reduction
+	 */
+	public static LocalDate dateReductionEnCours(int idClient)
+	{
+		Connection con=ConnexionController.connexion();
+		String sql="SELECT * FROM reduction WHERE IdClient ="+idClient+" AND DateFin is null";
+		LocalDate dateDebut = LocalDate.now();
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet resultats = stmt.executeQuery(sql);
+			
+			resultats.next();
+			dateDebut = resultats.getDate("DateDebut").toLocalDate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return dateDebut;
+	}
 }
