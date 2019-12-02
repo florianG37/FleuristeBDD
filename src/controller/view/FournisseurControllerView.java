@@ -84,10 +84,11 @@ public class FournisseurControllerView
 		private JTable table = FournisseurView.getTable();
 		public void actionPerformed(ActionEvent e)
 		{
-			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
-			//Si il y a une ligne selectionnee
+			int ligneSelectionee = table.getSelectedRow();
+			
 			if(ligneSelectionee != -1)
 			{
+				ligneSelectionee = table.getRowSorter().convertRowIndexToModel(ligneSelectionee);
 				Fournisseur fournisseur = modele.returnFournisseur(ligneSelectionee);
 				int idFournisseurAModifier = fournisseur.getIdPersonne();
 				Object[] fieldsAdd = {" Nom :", nom, 
@@ -130,10 +131,10 @@ public class FournisseurControllerView
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
-			//Si il y a une ligne selectionnee
+			int ligneSelectionee = table.getSelectedRow();
 			if(ligneSelectionee != -1)
 			{
+				ligneSelectionee = table.getRowSorter().convertRowIndexToModel(ligneSelectionee);
 				Fournisseur fournisseur = modele.returnFournisseur(ligneSelectionee);
 				
 				FournisseurController.supprimerFournisseur(fournisseur.getIdPersonne());
@@ -174,10 +175,12 @@ public class FournisseurControllerView
 		private FournisseurTableTemplate modele = FournisseurView.getModele();
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			int ligneSelectionee =table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
+			
+			int ligneSelectionee = table.getSelectedRow();
 			
 			if(ligneSelectionee != -1)
 			{
+				ligneSelectionee = table.getRowSorter().convertRowIndexToModel(ligneSelectionee);
 				Fournisseur fournisseur = modele.returnFournisseur(ligneSelectionee);
 				new AffilierFournisseurProduitView(fournisseur.getIdPersonne());
 			}else{

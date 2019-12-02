@@ -97,10 +97,11 @@ public class ClientControllerView
 		private ClientTableTemplate modele = ClientView.getModele();
 		public void actionPerformed(ActionEvent e)
 		{
-			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
-			//Si il y a une ligne selectionnee
+			int ligneSelectionee = table.getSelectedRow();
+			
 			if(ligneSelectionee != -1)
 			{
+				ligneSelectionee = table.getRowSorter().convertRowIndexToModel(ligneSelectionee);
 				Client client = modele.returnClient(ligneSelectionee);
 				int idClientAModifier = client.getIdPersonne();
 				Object[] fieldsAdd = {" Nom :", nom, 
@@ -168,10 +169,10 @@ public class ClientControllerView
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
-			//Si il y a une ligne selectionnee
+			int ligneSelectionee = table.getSelectedRow();
 			if(ligneSelectionee != -1)
 			{
+				ligneSelectionee = table.getRowSorter().convertRowIndexToModel(ligneSelectionee);
 				Client client = modele.returnClient(ligneSelectionee);
 				
 				ClientController.supprimerClient(client.getIdPersonne());

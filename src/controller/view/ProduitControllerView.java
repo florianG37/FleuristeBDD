@@ -98,10 +98,10 @@ public class ProduitControllerView
 		public void actionPerformed(ActionEvent e)
 		{
 			
-			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
-			//Si il y a une ligne selectionnee
+			int ligneSelectionee = table.getSelectedRow();
 			if(ligneSelectionee != -1)
 			{
+				ligneSelectionee = table.getRowSorter().convertRowIndexToModel(ligneSelectionee);
 				Produit produit = modele.returnProduit(ligneSelectionee);
 				int idProduitAModifier= produit.getIdProduit();
 				Object[] fieldsAdd = {" Nom :", nom, 
@@ -160,10 +160,10 @@ public class ProduitControllerView
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			int ligneSelectionee = table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
-			//Si il y a une ligne selectionnee
+			int ligneSelectionee = table.getSelectedRow();
 			if(ligneSelectionee != -1)
 			{
+				ligneSelectionee = table.getRowSorter().convertRowIndexToModel(ligneSelectionee);
 				Produit produit = modele.returnProduit(ligneSelectionee);
 				
 				ProduitController.supprimerProduit(produit.getIdProduit());
