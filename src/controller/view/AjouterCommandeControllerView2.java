@@ -51,24 +51,30 @@ public class AjouterCommandeControllerView2
 				Produit produitCopy = modeleListeProduits.returnProduit(ligneSelectionnee);
 				Produit produit = new Produit(modeleListeProduits.returnProduit(ligneSelectionnee));
 				
-				int quantite = Integer.parseInt(JOptionPane.showInputDialog(null, "Entrez la quantite")) ;
+				try
+				{
+					int quantite = Integer.parseInt(JOptionPane.showInputDialog(null, "Entrez la quantite")) ;
 				
-				if(quantite >= 0 && quantite <= produit.getStock())
-				{
-					produit.setStock(quantite);
-					modelePanier.addProduit(produit);
-					produitCopy.setStock(produitCopy.getStock()-quantite);
-					
-					//Afficher le montant total avec deux chiffres apres la virgules
-					double reduction = (100-AjouterCommandeView2.getClient().getBonAchat())/100.0;
-					double total = modelePanier.montantDesProduits()*reduction*1.15;
-					format.setMinimumFractionDigits(2); //nb de chiffres apres la virgule 
-					String totalF = format.format(total);
-					AjouterCommandeView2.getVuMontant().setText(totalF+" €");
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, "Erreur sur la quantite");
+					if(quantite >= 0 && quantite <= produit.getStock())
+					{
+						produit.setStock(quantite);
+						modelePanier.addProduit(produit);
+						produitCopy.setStock(produitCopy.getStock()-quantite);
+						
+						//Afficher le montant total avec deux chiffres apres la virgules
+						double reduction = (100-AjouterCommandeView2.getClient().getBonAchat())/100.0;
+						double total = modelePanier.montantDesProduits()*reduction*1.15;
+						format.setMinimumFractionDigits(2); //nb de chiffres apres la virgule 
+						String totalF = format.format(total);
+						AjouterCommandeView2.getVuMontant().setText(totalF+" €");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Erreur sur la quantite");
+					}
+				}catch (Exception e1) {
+					//e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Erreur valeur impossible", "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
