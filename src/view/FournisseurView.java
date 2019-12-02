@@ -19,7 +19,7 @@ import controller.view.table.FournisseurTableTemplate;
 
 public class FournisseurView extends JPanel
 {
-	private static JButton ajouterFournisseur, supprimerFournisseur, modifierFournisseur,filter, clearFilter;
+	private static JButton ajouterFournisseur, supprimerFournisseur, modifierFournisseur,affilier,filter, clearFilter;
 	private static JTable table;
 	private static FournisseurTableTemplate modele = new FournisseurTableTemplate();
 	private static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modele);
@@ -48,6 +48,9 @@ public class FournisseurView extends JPanel
 		//Creation bouton modifier 
 		modifierFournisseur = new JButton ("Modifier");
 		verticalBox.add(modifierFournisseur);
+		//Creation bouton Affilier 
+		affilier = new JButton ("Affilier");
+		verticalBox.add(affilier);
 		
 		//Creation bouton filtre 
 		filter = new JButton ("filtre");
@@ -101,6 +104,9 @@ public class FournisseurView extends JPanel
 	public static void modifierFournisseurListener(ActionListener listenModifierFournisseur)
 	{
 		modifierFournisseur.addActionListener(listenModifierFournisseur);
+	}
+	public static void affilierListener(ActionListener listenAffilier){
+		affilier.addActionListener(listenAffilier);
 	}
 	public static void filterListener(ActionListener listenFilter)
 	{

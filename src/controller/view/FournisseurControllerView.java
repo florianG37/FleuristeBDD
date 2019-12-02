@@ -19,6 +19,7 @@ import controller.view.table.ClientTableTemplate;
 import controller.view.table.FournisseurTableTemplate;
 import model.Client;
 import model.Fournisseur;
+import view.AffilierFournisseurProduitView;
 import view.ClientView;
 import view.FournisseurView;
 import view.ProduitView;
@@ -30,6 +31,7 @@ public class FournisseurControllerView
 		FournisseurView.ajouterFournisseurListener(new AjouterFournisseurListener());  
 		FournisseurView.supprimerFournisseurListener(new SupprimerFournisseurListener());
 		FournisseurView.modifierFournisseurListener(new ModifierFournisseurListener());
+		FournisseurView.affilierListener(new AffilierListener());
 		FournisseurView.filterListener(new FilterListener());
 		FournisseurView.clearFilterListener(new ClearFilterListener());
 	}
@@ -137,6 +139,8 @@ public class FournisseurControllerView
 				FournisseurController.supprimerFournisseur(fournisseur.getIdPersonne());
 				
 				modele.actualiserFournisseurs();
+			}else{
+				JOptionPane.showMessageDialog(null, "Selectionner une ligne", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -161,6 +165,24 @@ public class FournisseurControllerView
 				sorter.setRowFilter(null);
 			}
 			
+		}
+		
+	}
+	class AffilierListener implements ActionListener
+	{
+		private JTable table = FournisseurView.getTable();
+		private FournisseurTableTemplate modele = FournisseurView.getModele();
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			int ligneSelectionee =table.getRowSorter().convertRowIndexToModel(table.getSelectedRow());
+			
+			if(ligneSelectionee != -1)
+			{
+				Fournisseur fournisseur = modele.returnFournisseur(ligneSelectionee);
+				new AffilierFournisseurProduitView(fournisseur.getIdPersonne());
+			}else{
+				JOptionPane.showMessageDialog(null, "Selectionner une ligne", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		
 	}
