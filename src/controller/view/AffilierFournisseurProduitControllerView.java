@@ -20,7 +20,7 @@ public class AffilierFournisseurProduitControllerView {
 	
 	class AffilierFournisseurListener implements ActionListener
 	{
-		private AffilierFournisseurProduitTableTemplate modele = new AffilierFournisseurProduitTableTemplate();
+		private AffilierFournisseurProduitTableTemplate modele = AffilierFournisseurProduitView.getModele();
 		private JTable table = AffilierFournisseurProduitView.getTable();
 		public void actionPerformed(ActionEvent arg0) 
 		{
