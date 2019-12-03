@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import model.Categorie;
-import model.Commande;
 import model.Fournisseur;
 import model.Fourniture;
 import model.Produit;

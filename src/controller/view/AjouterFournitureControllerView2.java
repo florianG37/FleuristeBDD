@@ -18,7 +18,6 @@ import controller.view.table.FournitureTableTemplate;
 import model.Fournisseur;
 import model.Fourniture;
 import model.Produit;
-import view.AjouterCommandeView2;
 import view.AjouterFournitureView2;
 import view.FournitureView;
 

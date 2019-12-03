@@ -10,19 +10,11 @@ import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import controller.queries.ClientController;
 import controller.queries.FournisseurController;
-import controller.queries.ProduitController;
-import controller.view.ProduitControllerView.ClearFilterListener;
-import controller.view.ProduitControllerView.FilterListener;
-import controller.view.table.ClientTableTemplate;
 import controller.view.table.FournisseurTableTemplate;
-import model.Client;
 import model.Fournisseur;
 import view.AffilierFournisseurProduitView;
-import view.ClientView;
 import view.FournisseurView;
-import view.ProduitView;
 
 public class FournisseurControllerView 
 {

@@ -7,7 +7,6 @@ import javax.swing.JTable;
 
 import controller.queries.FournitureController;
 import controller.view.table.FournitureTableTemplate;
-import controller.view.table.VoirCommandeTableTemplate;
 import controller.view.table.VoirFournitureTableTemplate;
 import model.Fourniture;
 import view.AjouterFournitureView1;

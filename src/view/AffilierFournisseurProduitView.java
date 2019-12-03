@@ -22,7 +22,6 @@ import model.Produit;
 import controller.queries.ProduitController;
 import controller.view.AffilierFournisseurProduitControllerView;
 import controller.view.table.AffilierFournisseurProduitTableTemplate;
-import controller.view.table.FournisseurTableTemplate;
 
 public class AffilierFournisseurProduitView extends JFrame{
 	private static JTable table;

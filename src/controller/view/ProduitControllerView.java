@@ -12,13 +12,10 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import controller.queries.ProduitController;
-import controller.view.ClientControllerView.ClearFilterListener;
-import controller.view.ClientControllerView.FilterListener;
 import controller.view.table.ProduitTableTemplate;
 import model.Categorie;
 import model.Produit;
 import view.AlerteView;
-import view.ClientView;
 import view.ProduitView;
 
 public class ProduitControllerView 
