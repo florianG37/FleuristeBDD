@@ -3,8 +3,10 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -37,15 +39,15 @@ public class CommandeView extends JPanel
 		panel.add(verticalBox);
 		
 		//Creation bouton ajouter 
-		ajouterCommande = new JButton ("Ajouter");
+		ajouterCommande = new JButton ("Ajouter",new ImageIcon("images"+File.separator+"add.png"));
 		verticalBox.add(ajouterCommande);
 		
 		//Creation bouton supprimer 
-		supprimerCommande = new JButton ("Supprimer");
+		supprimerCommande = new JButton ("Supprimer",new ImageIcon("images"+File.separator+"delete.png"));
 		verticalBox.add(supprimerCommande);
 		
 		//Creation bouton modifier 
-		voirCommande = new JButton ("Voir");
+		voirCommande = new JButton ("Voir",new ImageIcon("images"+File.separator+"search.png"));
 		verticalBox.add(voirCommande);
 		
 	    JPanel depPanel = new JPanel();

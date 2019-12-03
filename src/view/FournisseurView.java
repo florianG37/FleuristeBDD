@@ -3,8 +3,10 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -38,26 +40,26 @@ public class FournisseurView extends JPanel
 		panel.add(verticalBox);
 		
 		//Creation bouton ajouter 
-		ajouterFournisseur = new JButton ("Ajouter");
+		ajouterFournisseur = new JButton ("Ajouter",new ImageIcon("images"+File.separator+"add.png"));
 		verticalBox.add(ajouterFournisseur);
 		
 		//Creation bouton supprimer 
-		supprimerFournisseur = new JButton ("Supprimer");
+		supprimerFournisseur = new JButton ("Supprimer",new ImageIcon("images"+File.separator+"delete.png"));
 		verticalBox.add(supprimerFournisseur);
 		
 		//Creation bouton modifier 
-		modifierFournisseur = new JButton ("Modifier");
+		modifierFournisseur = new JButton ("Modifier",new ImageIcon("images"+File.separator+"modifier.png"));
 		verticalBox.add(modifierFournisseur);
 		//Creation bouton Affilier 
-		affilier = new JButton ("Affilier");
+		affilier = new JButton ("Affilier",new ImageIcon("images"+File.separator+"link.png"));
 		verticalBox.add(affilier);
 		
 		//Creation bouton filtre 
-		filter = new JButton ("filtre");
+		filter = new JButton ("filtre",new ImageIcon("images"+File.separator+"filtre.png"));
 		verticalBox.add(filter);
 		
 		//Creation bouton clearFilter 
-		clearFilter = new JButton ("Enlever Filtre");
+		clearFilter = new JButton ("Enlever Filtre",new ImageIcon("images"+File.separator+"clear.png"));
 		verticalBox.add(clearFilter);
 		
 	    JPanel depPanel = new JPanel();

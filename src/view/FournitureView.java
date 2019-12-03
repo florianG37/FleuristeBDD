@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,7 +22,7 @@ import controller.view.table.FournitureTableTemplate;
 
 public class FournitureView extends JPanel 
 {
-	private static JButton ajouterFourniture, supprimerFourniture, modifierFourniture;
+	private static JButton ajouterFourniture, supprimerFourniture, voirFourniture;
 	private static JTable table;
 	private static FournitureTableTemplate modele = new FournitureTableTemplate();
 	
@@ -38,16 +40,16 @@ public class FournitureView extends JPanel
 		panel.add(verticalBox);
 		
 		//Creation bouton ajouter 
-		ajouterFourniture = new JButton ("Ajouter");
+		ajouterFourniture = new JButton ("Ajouter",new ImageIcon("images"+File.separator+"add.png"));
 		verticalBox.add(ajouterFourniture);
 		
 		//Creation bouton supprimer 
-		supprimerFourniture = new JButton ("Supprimer");
+		supprimerFourniture = new JButton ("Supprimer",new ImageIcon("images"+File.separator+"delete.png"));
 		verticalBox.add(supprimerFourniture);
 		
 		//Creation bouton modifier 
-		modifierFourniture = new JButton ("Modifier");
-		verticalBox.add(modifierFourniture);
+		voirFourniture = new JButton ("Voir",new ImageIcon("images"+File.separator+"search.png"));
+		verticalBox.add(voirFourniture);
 		
 	    JPanel depPanel = new JPanel();
 		depPanel.setLayout(new BorderLayout(0, 0));
@@ -86,9 +88,9 @@ public class FournitureView extends JPanel
 		supprimerFourniture.addActionListener(listenSupprimerFourniture);
 	}
 	
-	public static void modifierFournitureListener(ActionListener listenModifierFourniture)
+	public static void voirFournitureListener(ActionListener listenVoirFourniture)
 	{
-		modifierFourniture.addActionListener(listenModifierFourniture);
+		voirFourniture.addActionListener(listenVoirFourniture);
 	}
 
 	//GETTERS ET SETTERS

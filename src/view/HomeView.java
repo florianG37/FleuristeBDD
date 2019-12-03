@@ -2,19 +2,16 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.File;
 
-import javax.swing.Box;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import controller.view.HomeControllerView;
 
 public class HomeView extends JFrame{
 	
@@ -40,27 +37,35 @@ public class HomeView extends JFrame{
 		
 		//Ajout du panel produit dans le tabbedPane
 		produitPanel = new ProduitView();
-		tabbedPane.addTab("Produit", null, produitPanel, null);
+		tabbedPane.addTab("Produit",new ImageIcon("images"+File.separator+"item.png"), produitPanel, null);
 		
 		//Ajout du panel client dans le tabbedPane
 		clientPanel = new ClientView();
-		tabbedPane.addTab("Client", null, clientPanel, null);
+		tabbedPane.addTab("Client", new ImageIcon("images"+File.separator+"client.png"), clientPanel, null);
 		
 		//Ajout du panel fournisseur dans le tabbedPane
 		fournisseurPanel = new FournisseurView();
-		tabbedPane.addTab("Fournisseur", null, fournisseurPanel, null);
+		tabbedPane.addTab("Fournisseur",new ImageIcon("images"+File.separator+"fournisseur.png"), fournisseurPanel, null);
 		
 		//Ajout du panel commande dans le tabbedPane
 		commandePanel = new CommandeView();
-		tabbedPane.addTab("Commande", null, commandePanel, null);
+		tabbedPane.addTab("Commande",new ImageIcon("images"+File.separator+"commande.png"), commandePanel, null);
 		
 		//Ajout du panel fourniture dans le tabbedPane
 		fourniturePanel = new FournitureView();
-		tabbedPane.addTab("Fourniture", null, fourniturePanel, null);
+		tabbedPane.addTab("Fourniture",new ImageIcon("images"+File.separator+"fourniture.png"), fourniturePanel, null);
 		
 		//Centrer la fenetre
 		this.setLocationRelativeTo(null);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setVisible(true);
-		}
+	
+		//Activer listener
+		new HomeControllerView();
+	}
+	
+	public static void actualiserTable(ChangeListener listenC)
+	{
+		tabbedPane.addChangeListener(listenC);
+	}
 }

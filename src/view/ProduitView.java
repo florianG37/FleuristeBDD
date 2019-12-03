@@ -3,8 +3,10 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -38,27 +40,27 @@ public class ProduitView extends JPanel
 		panel.add(verticalBox);
 		
 		//Creation bouton ajouter 
-		ajouterProduit = new JButton ("Ajouter");
+		ajouterProduit = new JButton ("Ajouter",new ImageIcon("images"+File.separator+"add.png"));
 		verticalBox.add(ajouterProduit);
 		
 		//Creation bouton supprimer 
-		supprimerProduit = new JButton ("Supprimer");
+		supprimerProduit = new JButton ("Supprimer",new ImageIcon("images"+File.separator+"delete.png"));
 		verticalBox.add(supprimerProduit);
 		
 		//Creation bouton modifier 
-		modifierProduit = new JButton ("Modifier");
+		modifierProduit = new JButton ("Modifier",new ImageIcon("images"+File.separator+"modifier.png"));
 		verticalBox.add(modifierProduit);
 		
 		//Creation bouton alerte
-		alerte = new JButton ("Alerte");
+		alerte = new JButton ("Alerte",new ImageIcon("images"+File.separator+"add.png"));
 		verticalBox.add(alerte);
 		
 		//Creation bouton filtre 
-		filter = new JButton ("filtre");
+		filter = new JButton ("filtre",new ImageIcon("images"+File.separator+"filtre.png"));
 		verticalBox.add(filter);
 				
 		//Creation bouton clearFilter 
-		clearFilter = new JButton ("Enlever Filtre");
+		clearFilter = new JButton ("Enlever Filtre",new ImageIcon("images"+File.separator+"clear.png"));
 		verticalBox.add(clearFilter);
 		
 	    JPanel depPanel = new JPanel();

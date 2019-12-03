@@ -3,8 +3,10 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -41,15 +43,15 @@ public class AjouterFournitureView1 extends JFrame
 		panel.add(verticalBox);
 		
 		//Creation bouton ajouter 
-		valider = new JButton ("Valider");
+		valider = new JButton ("Valider", new ImageIcon("images"+File.separator+"valider.png"));
 		verticalBox.add(valider);
 		
 		//Creation bouton filtre 
-		filter = new JButton ("Filtre");
+		filter = new JButton ("Filtre",new ImageIcon("images"+File.separator+"filtre.png"));
 		verticalBox.add(filter);
 				
 		//Creation bouton clearFilter 
-		clearFilter = new JButton ("Enlever Filtre");
+		clearFilter = new JButton ("Enlever Filtre",new ImageIcon("images"+File.separator+"clear.png"));
 		verticalBox.add(clearFilter);
 		
 	    JPanel depPanel = new JPanel();

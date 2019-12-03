@@ -5,8 +5,10 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,9 +50,9 @@ public class AjouterFournitureView2 extends JFrame
 		panelwest.add(verticalBox);
 		prenom = new JLabel(fournisseur.getPrenom());
 		nom = new JLabel(" "+fournisseur.getNom());
-		supprimer = new JButton("Supprimer");
-		ajouter = new JButton("Ajouter");
-		enregistrer = new JButton("Enregistrer");
+		supprimer = new JButton("Supprimer",new ImageIcon("images"+File.separator+"delete.png"));
+		ajouter = new JButton("Ajouter",new ImageIcon("images"+File.separator+"add.png"));
+		enregistrer = new JButton("Enregistrer",new ImageIcon("images"+File.separator+"panier.png"));
 		montant = new JLabel("MONTANT HT");
 		vuMontant = new JLabel("0.0 €");
 		verticalBox.add(horizontalBox);

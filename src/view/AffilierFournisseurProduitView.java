@@ -3,9 +3,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -44,7 +46,7 @@ public class AffilierFournisseurProduitView extends JFrame{
 		panel.add(verticalBox);
 				
 		//Creation bouton ajouter 
-		associer = new JButton ("Associer/Dissocier");
+		associer = new JButton ("Associer/Dissocier",new ImageIcon("images"+File.separator+"link.png"));
 		verticalBox.add(associer);
 				
 		JPanel depPanel = new JPanel();

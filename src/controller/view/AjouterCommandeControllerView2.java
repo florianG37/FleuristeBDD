@@ -86,28 +86,32 @@ public class AjouterCommandeControllerView2
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			Client client = AjouterCommandeView2.getClient();
-			Commande commande = new Commande(client.getIdPersonne());
-			//Creer la commande dans la BDD et recuperer l'id de la commande
-			int idCommande = CommandeController.ajouterCommande(commande);
-			
-			//Parcourir le panier du client et ajouter dans commander
-			for(Produit produit : modelePanier.getProduits())
-			{
-				CommanderController.ajouterCommander(idCommande, produit.getIdProduit(), produit.getStock());
-			}
-			//Actualiser la vue de toute les commandes
-			modele.actualiserCommandes();
-			//Vider panier
-			modelePanier.viderLePanier();
-			
-			//Mettre à jour les stocks dans la BDD
-			for(Produit produit : modeleListeProduits.getProduits())
-			{
-				ProduitController.modifierProduit(produit, produit.getIdProduit());
-			}
-			
-			modeleListeProduits.actualiserProduits();
+			if(!modelePanier.getProduits().isEmpty())
+			{	
+				System.out.println(modelePanier.getProduits());
+				Client client = AjouterCommandeView2.getClient();
+				Commande commande = new Commande(client.getIdPersonne());
+				//Creer la commande dans la BDD et recuperer l'id de la commande
+				int idCommande = CommandeController.ajouterCommande(commande);
+				
+				//Parcourir le panier du client et ajouter dans commander
+				for(Produit produit : modelePanier.getProduits())
+				{
+					CommanderController.ajouterCommander(idCommande, produit.getIdProduit(), produit.getStock());
+				}
+				//Actualiser la vue de toute les commandes
+				modele.actualiserCommandes();
+				//Vider panier
+				modelePanier.viderLePanier();
+				
+				//Mettre à jour les stocks dans la BDD
+				for(Produit produit : modeleListeProduits.getProduits())
+				{
+					ProduitController.modifierProduit(produit, produit.getIdProduit());
+				}
+				
+				modeleListeProduits.actualiserProduits();
+			}	
 			frame.dispose();
 		}
 	}

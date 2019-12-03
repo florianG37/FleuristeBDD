@@ -3,8 +3,10 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -38,23 +40,23 @@ public class ClientView extends JPanel
 		panel.add(verticalBox);
 		
 		//Creation bouton ajouter 
-		ajouterClient = new JButton ("Ajouter");
+		ajouterClient = new JButton ("Ajouter",new ImageIcon("images"+File.separator+"add.png"));
 		verticalBox.add(ajouterClient);
 		
 		//Creation bouton supprimer 
-		supprimerClient = new JButton ("Supprimer");
+		supprimerClient = new JButton ("Supprimer",new ImageIcon("images"+File.separator+"delete.png"));
 		verticalBox.add(supprimerClient);
 		
 		//Creation bouton modifier 
-		modifierClient = new JButton ("Modifier");
+		modifierClient = new JButton ("Modifier",new ImageIcon("images"+File.separator+"modifier.png"));
 		verticalBox.add(modifierClient);
 		
 		//Creation bouton filtre 
-		filter = new JButton ("filtre");
+		filter = new JButton ("filtre",new ImageIcon("images"+File.separator+"filtre.png"));
 		verticalBox.add(filter);
 				
 		//Creation bouton clearFilter 
-		clearFilter = new JButton ("Enlever Filtre");
+		clearFilter = new JButton ("Enlever Filtre",new ImageIcon("images"+File.separator+"clear.png"));
 		verticalBox.add(clearFilter);
 		
 	    JPanel depPanel = new JPanel();

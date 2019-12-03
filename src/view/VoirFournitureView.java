@@ -2,25 +2,31 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dialog;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
-import controller.view.table.VoirCommandeTableTemplate;
+import controller.view.table.VoirFournitureTableTemplate;
 
-public class VoirCommandeView extends JFrame
+public class VoirFournitureView extends JFrame
 {
 	private JPanel panelwest = new JPanel();
+	private JButton supprimer;
 	private JTable table;
 	
-	public VoirCommandeView(VoirCommandeTableTemplate modele) {
-		this.setTitle("Vu de la commande");
-	
+	public VoirFournitureView(VoirFournitureTableTemplate modele) {
+		this.setTitle("Vu de la fourniture");
+		
 		table = new JTable(modele);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		

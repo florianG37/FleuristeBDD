@@ -8,9 +8,11 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import model.Categorie;
 import model.Commande;
 import model.Fournisseur;
 import model.Fourniture;
+import model.Produit;
 
 public class FournitureController {
 	public static int ajouterFourniture(Fourniture fourniture){
@@ -168,5 +170,36 @@ public class FournitureController {
 			}
 		ConnexionController.Deconnexion(con);
 		return montant;
+	}
+	
+	/**
+	 * Afficher les produits de la fourniture
+	 * @return les produits
+	 */
+	public static ArrayList<Produit> voirProduitDeLaFourniture(Fourniture fourniture){
+		Connection con=ConnexionController.connexion();
+		ArrayList<Produit> listeProduits = new ArrayList<Produit>();
+		String sql = "SELECT * FROM livrer INNER JOIN produit ON livrer.IdProduit = produit.IdProduit WHERE livrer.IdFourniture =?";
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1,fourniture.getId());
+			ResultSet resultats = pst.executeQuery();
+			
+			while (resultats.next()) {
+				Produit produit = new Produit();
+				produit.setIdProduit(resultats.getInt("IdProduit"));	
+				produit.setNom(resultats.getString("Nom"));
+				produit.setCategorie(Categorie.valueOf(resultats.getString("Categorie")));
+				produit.setEspece(resultats.getString("Espece"));
+				produit.setPrix(resultats.getDouble("Prix"));
+				produit.setStock(resultats.getInt("Quantite"));
+				listeProduits.add(produit);
+				}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionController.Deconnexion(con);
+		return listeProduits;
 	}
 }

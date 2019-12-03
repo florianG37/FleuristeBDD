@@ -84,37 +84,40 @@ public class AjouterFournitureControllerView2
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			Fournisseur fournisseur = AjouterFournitureView2.getFournisseur();
-			Fourniture fourniture = new Fourniture(fournisseur.getIdPersonne());
-			//Creer la commande dans la BDD et recuperer l'id de la commande
-			int idFourniture = FournitureController.ajouterFourniture(fourniture);
-			
-			//Parcourir le panier du fournisseur et ajouter dans fournir
-			for(Produit produit : modelePanier.getProduits())
+			if(!modelePanier.getProduits().isEmpty())
 			{
-				LivrerController.ajouterLivrer(idFourniture, produit.getIdProduit(), produit.getStock());
-			}
-			//Actualiser la vue de toute les fournitures
-			modele.actualiserFournitures();
-			//Mettre à jour les stocks dans la BDD
-			for(Produit produit : modelePanier.getProduits())
-			{
-				ArrayList<Produit> listeProduit = modeleListeProduits.getProduits();
+				Fournisseur fournisseur = AjouterFournitureView2.getFournisseur();
+				Fourniture fourniture = new Fourniture(fournisseur.getIdPersonne());
+				//Creer la commande dans la BDD et recuperer l'id de la commande
+				int idFourniture = FournitureController.ajouterFourniture(fourniture);
 				
-				for(Produit prod : listeProduit)
+				//Parcourir le panier du fournisseur et ajouter dans fournir
+				for(Produit produit : modelePanier.getProduits())
 				{
-					if(produit.getIdProduit() == prod.getIdProduit())
-					{
-						produit.setStock(produit.getStock() + prod.getStock());
+					LivrerController.ajouterLivrer(idFourniture, produit.getIdProduit(), produit.getStock());
+				}
+				//Actualiser la vue de toute les fournitures
+				modele.actualiserFournitures();
+				//Mettre à jour les stocks dans la BDD
+				for(Produit produit : modelePanier.getProduits())
+				{
+					ArrayList<Produit> listeProduit = modeleListeProduits.getProduits();
 					
-						ProduitController.modifierProduit(produit, produit.getIdProduit());
+					for(Produit prod : listeProduit)
+					{
+						if(produit.getIdProduit() == prod.getIdProduit())
+						{
+							produit.setStock(produit.getStock() + prod.getStock());
+						
+							ProduitController.modifierProduit(produit, produit.getIdProduit());
+						}
 					}
 				}
+				//Vider panier
+				modelePanier.viderLePanier();
+				
+				modeleListeProduits.actualiserProduits();
 			}
-			//Vider panier
-			modelePanier.viderLePanier();
-			
-			modeleListeProduits.actualiserProduits();
 			frame.dispose();
 		}
 	}
@@ -129,9 +132,6 @@ public class AjouterFournitureControllerView2
 			//Si une ligne est selectionnee
 			if(ligneSelectionnee != -1)
 			{
-				/*Produit produitASupprimer = modelePanier.returnProduit(ligneSelectionnee);
-				Produit produit = modeleListeProduits.idToProduit(produitASupprimer.getIdProduit());
-				produit.setStock(produit.getStock() + produitASupprimer.getStock());*/
 				modelePanier.removeProduit(ligneSelectionnee);
 				modeleListeProduits.fireTableDataChanged();
 				
