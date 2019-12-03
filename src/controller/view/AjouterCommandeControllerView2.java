@@ -69,7 +69,7 @@ public class AjouterCommandeControllerView2
 						
 						//Afficher le montant total avec deux chiffres apres la virgules
 						double reduction = (100-AjouterCommandeView2.getClient().getBonAchat())/100.0;
-						double total = modelePanier.montantDesProduits()*reduction*1.15;
+						double total = modelePanier.montantDesProduits()*reduction;
 						format.setMinimumFractionDigits(2); //nb de chiffres apres la virgule 
 						String totalF = format.format(total);
 						AjouterCommandeView2.getVuMontant().setText(totalF+" €");

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  ven. 29 nov. 2019 à 15:46
+-- Généré le :  mar. 03 déc. 2019 à 23:06
 -- Version du serveur :  10.4.8-MariaDB
 -- Version de PHP :  7.3.10
 
@@ -33,16 +33,18 @@ CREATE TABLE `client` (
   `Nom` varchar(254) NOT NULL,
   `Prenom` varchar(254) NOT NULL,
   `Adresse` varchar(254) NOT NULL,
-  `Ville` varchar(254) NOT NULL,
-  `BonAchat` int(11) NOT NULL
+  `Ville` varchar(254) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`IdClient`, `Nom`, `Prenom`, `Adresse`, `Ville`, `BonAchat`) VALUES
-(1, 'nom', 'prenom', 'Adresse', 'Ville', 50);
+INSERT INTO `client` (`IdClient`, `Nom`, `Prenom`, `Adresse`, `Ville`) VALUES
+(22, 'Gibeau', 'Yannick', '29 rue chemin bleu', 'Kervignac'),
+(23, 'Marec', 'François', '5 rue des lavandes', 'Hennebont'),
+(24, 'Denis', 'Michel', '3 avenue Jules George', 'Nostang'),
+(25, 'Brual', 'Yann', '3 rue Saint Michel', 'Lorient');
 
 -- --------------------------------------------------------
 
@@ -61,9 +63,12 @@ CREATE TABLE `commande` (
 --
 
 INSERT INTO `commande` (`IdCommande`, `Date`, `IdClient`) VALUES
-(2, '1905-02-26', 1),
-(3, '3920-10-26', 1),
-(4, '2019-11-27', 1);
+(24, '2019-12-02', 25),
+(25, '2019-12-02', 23),
+(26, '2019-12-02', 22),
+(27, '2019-12-02', 25),
+(28, '2019-12-02', 22),
+(29, '2019-12-02', 23);
 
 -- --------------------------------------------------------
 
@@ -77,6 +82,23 @@ CREATE TABLE `commander` (
   `Quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `commander`
+--
+
+INSERT INTO `commander` (`IdCommande`, `IdProduit`, `Quantite`) VALUES
+(24, 15, 2),
+(24, 18, 1),
+(25, 16, 2),
+(26, 17, 3),
+(26, 18, 1),
+(27, 15, 1),
+(27, 16, 1),
+(27, 19, 1),
+(28, 15, 5),
+(29, 15, 3),
+(29, 16, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -87,6 +109,18 @@ CREATE TABLE `fournir` (
   `IdFournisseur` int(11) NOT NULL,
   `IdProduit` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `fournir`
+--
+
+INSERT INTO `fournir` (`IdFournisseur`, `IdProduit`) VALUES
+(7, 15),
+(7, 16),
+(7, 19),
+(8, 15),
+(8, 16),
+(8, 17);
 
 -- --------------------------------------------------------
 
@@ -107,8 +141,8 @@ CREATE TABLE `fournisseur` (
 --
 
 INSERT INTO `fournisseur` (`IdFournisseur`, `Nom`, `Prenom`, `Adresse`, `Ville`) VALUES
-(2, 'nom2', 'prenom', 'Adresse', 'Ville'),
-(3, 'nom2', 'prenom', 'Adresse', 'Ville');
+(7, 'Fernandez', 'Leonard', '101 avenue St Michel', 'Hennebont'),
+(8, 'Michard', 'Jerome', '1 rue de la mairie', 'Ploemeur');
 
 -- --------------------------------------------------------
 
@@ -122,6 +156,14 @@ CREATE TABLE `fourniture` (
   `IdFournisseur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `fourniture`
+--
+
+INSERT INTO `fourniture` (`IdFourniture`, `Date`, `IdFournisseur`) VALUES
+(15, '2019-12-02', 8),
+(16, '2019-12-02', 8);
+
 -- --------------------------------------------------------
 
 --
@@ -129,10 +171,21 @@ CREATE TABLE `fourniture` (
 --
 
 CREATE TABLE `livrer` (
-  `IdFournisseur` int(11) NOT NULL,
+  `IdFourniture` int(11) NOT NULL,
   `IdProduit` int(11) NOT NULL,
   `Quantite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `livrer`
+--
+
+INSERT INTO `livrer` (`IdFourniture`, `IdProduit`, `Quantite`) VALUES
+(15, 15, 10),
+(15, 16, 10),
+(16, 15, 5),
+(16, 16, 15),
+(16, 17, 10);
 
 -- --------------------------------------------------------
 
@@ -154,8 +207,35 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`IdProduit`, `Nom`, `Categorie`, `Espece`, `Prix`, `Quantite`) VALUES
-(4, 'nom', 'Plante', 'espece', 14.199999809265137, 12),
-(5, 'nom', 'Plante', 'espece', 14.199999809265137, 12);
+(15, 'Eucalyptus', 'Plante', 'Ibisca', 7, 44),
+(16, 'Bonzai', 'Plante', 'Zekova', 12, 56),
+(17, 'Rose', 'Fleur', 'Epinea', 3, 57),
+(18, 'Calamondin', 'Plante', 'Agrume', 45, 17),
+(19, 'Candide', 'Plante', 'Orchidée', 15, 28);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reduction`
+--
+
+CREATE TABLE `reduction` (
+  `IdReduction` int(11) NOT NULL,
+  `IdClient` int(11) NOT NULL,
+  `DateDebut` date NOT NULL,
+  `DateFin` date DEFAULT NULL,
+  `BonAchat` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `reduction`
+--
+
+INSERT INTO `reduction` (`IdReduction`, `IdClient`, `DateDebut`, `DateFin`, `BonAchat`) VALUES
+(13, 22, '2019-12-02', NULL, 15),
+(14, 23, '2019-12-02', NULL, 10),
+(15, 24, '2019-12-02', NULL, 15),
+(16, 25, '2019-12-02', NULL, 20);
 
 --
 -- Index pour les tables déchargées
@@ -205,7 +285,7 @@ ALTER TABLE `fourniture`
 -- Index pour la table `livrer`
 --
 ALTER TABLE `livrer`
-  ADD PRIMARY KEY (`IdFournisseur`,`IdProduit`),
+  ADD PRIMARY KEY (`IdFourniture`,`IdProduit`),
   ADD KEY `IdProduit` (`IdProduit`);
 
 --
@@ -215,6 +295,13 @@ ALTER TABLE `produit`
   ADD PRIMARY KEY (`IdProduit`);
 
 --
+-- Index pour la table `reduction`
+--
+ALTER TABLE `reduction`
+  ADD PRIMARY KEY (`IdReduction`),
+  ADD KEY `IdClient` (`IdClient`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -222,31 +309,37 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `IdClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IdClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `IdCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT pour la table `fournisseur`
 --
 ALTER TABLE `fournisseur`
-  MODIFY `IdFournisseur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IdFournisseur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `fourniture`
 --
 ALTER TABLE `fourniture`
-  MODIFY `IdFourniture` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdFourniture` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `IdProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT pour la table `reduction`
+--
+ALTER TABLE `reduction`
+  MODIFY `IdReduction` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Contraintes pour les tables déchargées
@@ -282,8 +375,14 @@ ALTER TABLE `fourniture`
 -- Contraintes pour la table `livrer`
 --
 ALTER TABLE `livrer`
-  ADD CONSTRAINT `livrer_ibfk_1` FOREIGN KEY (`IdFournisseur`) REFERENCES `fournisseur` (`IdFournisseur`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `livrer_ibfk_2` FOREIGN KEY (`IdProduit`) REFERENCES `produit` (`IdProduit`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `livrer_ibfk_2` FOREIGN KEY (`IdProduit`) REFERENCES `produit` (`IdProduit`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `livrer_ibfk_3` FOREIGN KEY (`IdFourniture`) REFERENCES `fourniture` (`IdFourniture`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `reduction`
+--
+ALTER TABLE `reduction`
+  ADD CONSTRAINT `reduction_ibfk_1` FOREIGN KEY (`IdClient`) REFERENCES `client` (`IdClient`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

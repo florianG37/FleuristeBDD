@@ -1,5 +1,6 @@
 package controller.view.table;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -64,6 +65,8 @@ public class VoirFournitureTableTemplate extends AbstractTableModel
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) 
 	{
+		NumberFormat format=NumberFormat.getInstance(); 
+    	format.setMinimumFractionDigits(2); //nb de chiffres apres la virgule 
 		switch(columnIndex)
 		{
 	        case 0:
@@ -77,7 +80,7 @@ public class VoirFournitureTableTemplate extends AbstractTableModel
 	        	return produits.get(rowIndex).getPrix();
 	        
 	        case 4:
-	        	return produits.get(rowIndex).getPrix()*1.15;
+	        	return format.format(produits.get(rowIndex).getPrix()*1.15);
 	        
 	        case 5:
 	        	return produits.get(rowIndex).getStock();
