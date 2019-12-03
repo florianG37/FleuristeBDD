@@ -15,13 +15,20 @@ import view.VoirCommandeView;
 
 public class CommandeControllerView 
 {
+	/**
+	 * Constructeur
+	 */
 	public CommandeControllerView()
 	{
 		CommandeView.ajouterCommandeListener(new AjouterCommandeListener());  
 		CommandeView.supprimerCommandeListener(new SupprimerCommandeListener());
 		CommandeView.voirCommandeListener(new VoirCommandeListener());
 	}
-	
+	/**
+	 * 
+	 * ajouter Commande
+	 *
+	 */
 	class AjouterCommandeListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -29,7 +36,11 @@ public class CommandeControllerView
 			new AjouterCommandeView1();
 		}
 	}
-	
+	/**
+	 * 
+	 * voir Commande
+	 *
+	 */
 	class VoirCommandeListener implements ActionListener
 	{
 		private JTable table = CommandeView.getTable();
@@ -49,7 +60,11 @@ public class CommandeControllerView
 			}
 		}
 	}
-	
+	/**
+	 *  
+	 * supprimer Commande
+	 *
+	 */
 	class SupprimerCommandeListener implements ActionListener
 	{
 		private JTable table = CommandeView.getTable();

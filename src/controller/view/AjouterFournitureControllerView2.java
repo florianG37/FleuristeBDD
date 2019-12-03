@@ -28,7 +28,9 @@ public class AjouterFournitureControllerView2
 	private AjouterFournitureTableTemplate modeleListeProduits = AjouterFournitureView2.getModeleListeProduits();
 	private AjouterCommandeTableTemplate modelePanier = AjouterFournitureView2.getModelePanier();
 	private NumberFormat format=NumberFormat.getInstance(); 
-	
+	/**
+	 * Constructeur
+	 */
 	public AjouterFournitureControllerView2(JFrame frame)
 	{
 		//Recuperer la fenetre de la vue
@@ -38,7 +40,11 @@ public class AjouterFournitureControllerView2
 		AjouterFournitureView2.supprimerProduitDansFournitureListener(new SupprimerAjouterFournitureListener());
 		AjouterFournitureView2.enregistrerProduitDansFournitureListener(new EnregistrerAjouterFournitureListener());
 	}
-	
+	/**
+	 * 
+	 * ajouter Produit dans Fourniture
+	 *
+	 */
 	class AjouterAjouterFournitureListener implements ActionListener
 	{
 		private JTable table = AjouterFournitureView2.getTableListeProduits();
@@ -77,7 +83,11 @@ public class AjouterFournitureControllerView2
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * enregistrer Produit dans Fourniture
+	 *
+	 */
 	class EnregistrerAjouterFournitureListener implements ActionListener
 	{
 		private FournitureTableTemplate modele = FournitureView.getModele();
@@ -121,7 +131,11 @@ public class AjouterFournitureControllerView2
 			frame.dispose();
 		}
 	}
-	
+	/**
+	 * 
+	 * supprimer Produit dans Fourniture
+	 *
+	 */
 	class SupprimerAjouterFournitureListener implements ActionListener
 	{
 		private JTable tablePanier = AjouterFournitureView2.getTablePanier();

@@ -29,11 +29,18 @@ public class HomeControllerView
 	private FournisseurTableTemplate modeleAjouterFourniture = AjouterFournitureView1.getModele();
 	private ProduitTableTemplate modeleAjouterCommande2 = AjouterCommandeView2.getModeleListeProduits();
 	
+	/**
+	 * Constructeur
+	 */
 	public HomeControllerView()
 	{
 		HomeView.actualiserTable(new ActualiserTableListener());
 	}
-	
+	/**
+	 * 
+	 * Actualisation des onglets
+	 *
+	 */
 	class ActualiserTableListener implements ChangeListener
 	{
 		@Override

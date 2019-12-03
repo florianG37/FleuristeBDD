@@ -19,7 +19,9 @@ import view.AjouterFournitureView2;
 public class AjouterFournitureControllerView1 
 {
 	private JFrame frame;
-	
+	/**
+	 * Constructeur
+	 */
 	public AjouterFournitureControllerView1(JFrame frame)
 	{
 		this.frame = frame;
@@ -28,7 +30,11 @@ public class AjouterFournitureControllerView1
 		AjouterFournitureView1.clearFilterListener(new ClearFilterListener());
 
 	}
-	
+	/**
+	 * 
+	 *valider Fournisseur
+	 *
+	 */
 	class ValiderFournitureListener implements ActionListener
 	{
 		private JTable table = AjouterFournitureView1.getTable();
@@ -54,7 +60,11 @@ public class AjouterFournitureControllerView1
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * Activer filtre
+	 *
+	 */
 	class FilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = AjouterCommandeView1.getSorter();
@@ -64,7 +74,11 @@ public class AjouterFournitureControllerView1
 	        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+regex, 0, 1, 2, 3,4));
 		}
 	}
-	
+	/**
+	 * 
+	 *Enlever filtre
+	 *
+	 */
 	class ClearFilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = AjouterCommandeView1.getSorter();

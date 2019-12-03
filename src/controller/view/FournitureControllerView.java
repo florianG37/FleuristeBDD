@@ -16,13 +16,20 @@ import view.VoirFournitureView;
 
 public class FournitureControllerView 
 {
+	/**
+	 * Constructeur
+	 */
 	public FournitureControllerView()
 	{
 		FournitureView.ajouterFournitureListener(new AjouterFournitureListener());  
 		FournitureView.supprimerFournitureListener(new SupprimerFournitureListener());
 		FournitureView.voirFournitureListener(new VoirFournitureListener());
 	}
-	
+	/**
+	 * 
+	 * ajouter Fourniture
+	 *
+	 */
 	class AjouterFournitureListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -30,7 +37,11 @@ public class FournitureControllerView
 			new AjouterFournitureView1();
 		}
 	}
-	
+	/**
+	 * 
+	 * voir Fourniture
+	 *
+	 */
 	class VoirFournitureListener implements ActionListener
 	{
 			private JTable table = FournitureView.getTable();
@@ -49,7 +60,11 @@ public class FournitureControllerView
 				}
 			}
 	}
-	
+	/**
+	 * 
+	 * supprimer Fourniture
+	 *
+	 */
 	class SupprimerFournitureListener implements ActionListener
 	{
 		private JTable table = FournitureView.getTable();

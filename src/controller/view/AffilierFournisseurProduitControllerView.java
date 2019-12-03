@@ -11,13 +11,20 @@ import controller.view.table.AffilierFournisseurProduitTableTemplate;
 import model.Produit;
 import view.AffilierFournisseurProduitView;
 
+
 public class AffilierFournisseurProduitControllerView {
-	
+	/**
+	 * Constructeur
+	 */
 	public AffilierFournisseurProduitControllerView() 
 	{
 		AffilierFournisseurProduitView.affilierFournisseurListener(new AffilierFournisseurListener());
 	}
-	
+	/**
+	 * 
+	 * Action associer ou dissocier un fournisseur dun produit
+	 *
+	 */
 	class AffilierFournisseurListener implements ActionListener
 	{
 		private AffilierFournisseurProduitTableTemplate modele = AffilierFournisseurProduitView.getModele();

@@ -23,6 +23,9 @@ import view.ProduitView;
 
 public class ProduitControllerView 
 {
+	/**
+	 * Constructeur
+	 */
 	public ProduitControllerView()
 	{
 		ProduitView.ajouterProduitListener(new AjouterProduitListener());  
@@ -32,7 +35,11 @@ public class ProduitControllerView
 		ProduitView.filterListener(new FilterListener());
 		ProduitView.clearFilterListener(new ClearFilterListener());
 	}
-	
+	/**
+	 * 
+	 * ajouter Produit
+	 *
+	 */
 	class AjouterProduitListener implements ActionListener
 	{
 		private JTextField nom = new JTextField();
@@ -85,7 +92,11 @@ public class ProduitControllerView
 			}
 			
 	}
-	
+	/**
+	 * 
+	 * modifier Produit
+	 *
+	 */
 	class ModifierProduitListener implements ActionListener
 	{
 		private JTextField nom = new JTextField();
@@ -152,7 +163,11 @@ public class ProduitControllerView
 	
 			}
 		}
-	
+	/**
+	 * 
+	 * supprimer Produit
+	 *
+	 */
 	class SupprimerProduitListener implements ActionListener
 	{
 		private JTable table = ProduitView.getTable();
@@ -172,6 +187,11 @@ public class ProduitControllerView
 			}
 		}
 	}
+	/**
+	 * 
+	 * alerte
+	 *
+	 */
 	class AlerteListener implements ActionListener
 	{
 
@@ -182,6 +202,11 @@ public class ProduitControllerView
 		}
 		
 	}
+	/**
+	 * 
+	 * Activer filtre
+	 *
+	 */
 	class FilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = ProduitView.getSorter();
@@ -193,6 +218,11 @@ public class ProduitControllerView
 		}
 		
 	}
+	/**
+	 * 
+	 * Enlever filtre
+	 *
+	 */
 	class ClearFilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = ProduitView.getSorter();

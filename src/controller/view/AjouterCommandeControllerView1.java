@@ -17,7 +17,11 @@ import view.AjouterCommandeView2;
 
 public class AjouterCommandeControllerView1 
 {
+	
 	private JFrame frame;
+	/**
+	 * Constructeur
+	 */
 	public AjouterCommandeControllerView1(JFrame frame)
 	{
 		this.frame = frame;
@@ -26,7 +30,11 @@ public class AjouterCommandeControllerView1
 		AjouterCommandeView1.clearFilterListener(new ClearFilterListener());
 
 	}
-	
+	/**
+	 * 
+	 * valider une commande
+	 *
+	 */
 	class ValiderClientListener implements ActionListener
 	{
 		private JTable table = AjouterCommandeView1.getTable();
@@ -52,7 +60,11 @@ public class AjouterCommandeControllerView1
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * Lancer un filtre
+	 *
+	 */
 	class FilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = AjouterCommandeView1.getSorter();
@@ -62,7 +74,11 @@ public class AjouterCommandeControllerView1
 	        sorter.setRowFilter(RowFilter.regexFilter("(?i)"+regex, 0, 1, 2, 3,4));
 		}
 	}
-	
+	/**
+	 * 
+	 * Enlever un filtre
+	 *
+	 */
 	class ClearFilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = AjouterCommandeView1.getSorter();

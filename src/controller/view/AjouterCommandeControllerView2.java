@@ -26,7 +26,9 @@ public class AjouterCommandeControllerView2
 	private ProduitTableTemplate modeleListeProduits = AjouterCommandeView2.getModeleListeProduits();
 	private AjouterCommandeTableTemplate modelePanier = AjouterCommandeView2.getModelePanier();
 	private NumberFormat format=NumberFormat.getInstance(); 
-	
+	/**
+	 * Constructeur
+	 */
 	public AjouterCommandeControllerView2(JFrame frame)
 	{
 		//Recuperer la fenetre de la vue
@@ -37,7 +39,11 @@ public class AjouterCommandeControllerView2
 		AjouterCommandeView2.supprimerProduitDansCommandeListener(new SupprimerAjouterCommandeListener());
 		AjouterCommandeView2.enregistrerProduitDansCommandeListener(new EnregistrerAjouterCommandeListener());
 	}
-	
+	/**
+	 * 
+	 * ajouter Produit Dans Commande
+	 *
+	 */
 	class AjouterAjouterCommandeListener implements ActionListener
 	{
 		private JTable table = AjouterCommandeView2.getTableListeProduits();
@@ -79,7 +85,11 @@ public class AjouterCommandeControllerView2
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * enregistrer Produit Dans Commande
+	 *
+	 */
 	class EnregistrerAjouterCommandeListener implements ActionListener
 	{
 		private CommandeTableTemplate modele = CommandeView.getModele();
@@ -115,7 +125,11 @@ public class AjouterCommandeControllerView2
 			frame.dispose();
 		}
 	}
-	
+	/**
+	 * 
+	 * supprimer Produit Dans Commande
+	 *
+	 */
 	class SupprimerAjouterCommandeListener implements ActionListener
 	{
 		private JTable tablePanier = AjouterCommandeView2.getTablePanier();

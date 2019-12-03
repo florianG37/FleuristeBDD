@@ -20,6 +20,9 @@ import view.ClientView;
 
 public class ClientControllerView 
 {
+	/**
+	 * Constructeur
+	 */
 	public ClientControllerView()
 	{
 		ClientView.ajouterClientListener(new AjouterClientListener());  
@@ -29,7 +32,11 @@ public class ClientControllerView
 		ClientView.clearFilterListener(new ClearFilterListener());
 
 	}
-	
+	/**
+	 * 
+	 * ajouter Client
+	 *
+	 */
 	class AjouterClientListener implements ActionListener
 	{
 		private JTextField nom = new JTextField();
@@ -86,7 +93,11 @@ public class ClientControllerView
 			
 		}
 	}
-	
+	/**
+	 * 
+	 * modifier Client
+	 *
+	 */
 	class ModifierClientListener implements ActionListener
 	{
 		private JTextField nom = new JTextField();
@@ -169,7 +180,11 @@ public class ClientControllerView
 			
 		}
 	}
-	
+	/**
+	 * 
+	 * supprimer Client
+	 *
+	 */
 	class SupprimerClientListener implements ActionListener
 	{
 		private JTable table = ClientView.getTable();
@@ -189,6 +204,11 @@ public class ClientControllerView
 			}
 		}
 	}
+	/**
+	 * 
+	 * Activer filtre
+	 *
+	 */
 	class FilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = ClientView.getSorter();
@@ -200,6 +220,11 @@ public class ClientControllerView
 		}
 		
 	}
+	/**
+	 * 
+	 * Eblever filtre
+	 *
+	 */
 	class ClearFilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = ClientView.getSorter();

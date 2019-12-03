@@ -57,7 +57,6 @@ public class VoirCommandeTableTemplate extends AbstractTableModel
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return entetes.length;
 	}
 

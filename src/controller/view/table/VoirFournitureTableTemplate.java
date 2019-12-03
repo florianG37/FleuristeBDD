@@ -58,7 +58,6 @@ public class VoirFournitureTableTemplate extends AbstractTableModel
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return entetes.length;
 	}
 

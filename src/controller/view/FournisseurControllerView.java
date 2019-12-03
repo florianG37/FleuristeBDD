@@ -26,6 +26,9 @@ import view.ProduitView;
 
 public class FournisseurControllerView 
 {
+	/**
+	 * Constructeur
+	 */
 	public FournisseurControllerView()
 	{
 		FournisseurView.ajouterFournisseurListener(new AjouterFournisseurListener());  
@@ -35,7 +38,11 @@ public class FournisseurControllerView
 		FournisseurView.filterListener(new FilterListener());
 		FournisseurView.clearFilterListener(new ClearFilterListener());
 	}
-	
+	/**
+	 * 
+	 * ajouter Fournisseur
+	 *
+	 */
 	class AjouterFournisseurListener implements ActionListener
 	{
 		private JTextField nom = new JTextField();
@@ -73,7 +80,11 @@ public class FournisseurControllerView
 				}
 		}
 	}
-	
+	/**
+	 * 
+	 * modifier Fournisseur
+	 *
+	 */
 	class ModifierFournisseurListener implements ActionListener
 	{
 		private JTextField nom = new JTextField();
@@ -123,7 +134,11 @@ public class FournisseurControllerView
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * supprimer Fournisseur
+	 *
+	 */
 	class SupprimerFournisseurListener implements ActionListener
 	{
 		private JTable table = FournisseurView.getTable();
@@ -145,6 +160,11 @@ public class FournisseurControllerView
 			}
 		}
 	}
+	/**
+	 * 
+	 * Activer filtre
+	 *
+	 */
 	class FilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = FournisseurView.getSorter();
@@ -156,6 +176,11 @@ public class FournisseurControllerView
 		}
 		
 	}
+	/**
+	 * 
+	 * Enlever filtre
+	 *
+	 */
 	class ClearFilterListener implements ActionListener
 	{
 		private TableRowSorter<TableModel> sorter = FournisseurView.getSorter();
@@ -169,6 +194,11 @@ public class FournisseurControllerView
 		}
 		
 	}
+	/**
+	 * 
+	 * affilier fournisseur /produit
+	 *
+	 */
 	class AffilierListener implements ActionListener
 	{
 		private JTable table = FournisseurView.getTable();
