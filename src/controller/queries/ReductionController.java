@@ -12,9 +12,17 @@ import java.util.ArrayList;
 import model.Client;
 import model.Commande;
 import model.Reduction;
-
+/**
+ * 
+ * Requetes Reduction
+ *
+ */
 public class ReductionController 
 {
+	/**
+	 * Ajouter reduction
+	 * @param reduction
+	 */
 	public static void ajouterReduction(Reduction reduction){
 		Connection con=ConnexionController.connexion();
 		String sql = "INSERT INTO reduction(IdClient, DateDebut,BonAchat) VALUES(?,?,?)";
@@ -29,7 +37,10 @@ public class ReductionController
 		}		
 		ConnexionController.Deconnexion(con);
 	}
-	
+	/**
+	 * Finir une reduction
+	 * @param idClient client
+	 */
 	public static void finReduction(int idClient)
 	{
 		Connection con=ConnexionController.connexion();
@@ -47,7 +58,7 @@ public class ReductionController
 	}
 	
 	/**
-	 * Trouver la reduction appliqué à une commande
+	 * Trouver la reduction applique a  une commande
 	 * @param commande
 	 * @return la reduction
 	 */

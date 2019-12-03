@@ -13,8 +13,17 @@ import model.Commande;
 import model.Fournisseur;
 import model.Fourniture;
 import model.Produit;
-
+/**
+ * 
+ * Requetes Fourniture
+ *
+ */
 public class FournitureController {
+	/**
+	 * Ajouter une fourniture
+	 * @param fourniture fourniture
+	 * @return Id fourniture
+	 */
 	public static int ajouterFourniture(Fourniture fourniture){
 		Connection con=ConnexionController.connexion();
 		String sql = "INSERT INTO fourniture(Date , IdFournisseur) VALUES(?,?)";
@@ -35,6 +44,10 @@ public class FournitureController {
 		ConnexionController.Deconnexion(con);
 		return idFourniture;
 	}
+	/**
+	 * Supprimer une fourniture
+	 * @param idFourniture fourniture
+	 */
 	public static void supprimerFourniture(int idFourniture){
 		Connection con=ConnexionController.connexion();
 		String sql= "DELETE FROM fourniture WHERE fourniture.IdFourniture=?";
@@ -47,6 +60,11 @@ public class FournitureController {
 		}
 		ConnexionController.Deconnexion(con);
 	}
+	/**
+	 * Modifier fourniture
+	 * @param fourniture nouvelle fourniture
+	 * @param idFournitureAModifier fourniture a modifier
+	 */
 	public static void modifierFourniture(Fourniture fourniture, int idFournitureAModifier){
 		Connection con=ConnexionController.connexion();
 		String sql="UPDATE fourniture SET Date= ?, IdFournisseur =? WHERE fourniture.IdFourniture =?";
@@ -61,7 +79,10 @@ public class FournitureController {
 		}
 		ConnexionController.Deconnexion(con);
 	}
-	
+	/**
+	 * Voir toutes  les fournitures
+	 * @return liste de fourniture
+	 */
 	public static ArrayList<Fourniture> voirFourniture(){
 		Connection con=ConnexionController.connexion();
 		ArrayList<Fourniture> listeFournitures = new ArrayList<Fourniture>();

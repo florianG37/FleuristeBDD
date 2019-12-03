@@ -3,8 +3,16 @@ package controller.queries;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/**
+ * 
+ * Gestion de la connection a la BDD
+ *
+ */
 public class ConnexionController {
+	/** 
+	 * Ouvrir une connexion
+	 * @return une connexion ouverte
+	 */
 	public static Connection connexion(){
 		try 
 		{
@@ -27,6 +35,10 @@ public class ConnexionController {
 		return null;
 		
 	}
+	/**
+	 * Fermer une connexion
+	 * @param con une connexion ouverte
+	 */
 	public static void Deconnexion(Connection con){
 		try {
 			con.close();

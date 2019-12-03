@@ -12,8 +12,17 @@ import model.Categorie;
 import model.Client;
 import model.Commande;
 import model.Produit;
-
+/**
+ * 
+ * Requetes pour commande
+ *
+ */
 public class CommandeController {
+	/**
+	 * ajouter une commande
+	 * @param cmd commande a ajouter
+	 * @return commande
+	 */
 	public static int ajouterCommande(Commande cmd){
 		Connection con=ConnexionController.connexion();
 		String sql ="INSERT INTO commande (Date, IdClient) VALUES (?,?)";
@@ -35,7 +44,10 @@ public class CommandeController {
 		ConnexionController.Deconnexion(con);
 		return idCommande;
 	}
-	
+	/**
+	 * Supprimer une commande
+	 * @param idCommande commande a supprime
+	 */
 	public static void supprimerCommande(int idCommande){
 		Connection con=ConnexionController.connexion();
 		String sql= "DELETE FROM commande WHERE commande.IdCommande=?";
@@ -48,7 +60,11 @@ public class CommandeController {
 		}		
 		ConnexionController.Deconnexion(con);
 	}
-	
+	/**
+	 * Modifier une commande
+	 * @param cmd nouvelle commande 
+	 * @param idCommandeAModifier commande a modifier
+	 */
 	public static void modifierCommande(Commande cmd, int idCommandeAModifier){
 		Connection con=ConnexionController.connexion();
 		String sql="UPDATE commande SET Date= ?, IdClient= ? WHERE commande.IdCommande = ?";
@@ -63,7 +79,10 @@ public class CommandeController {
 		}		
 		ConnexionController.Deconnexion(con);
 	}
-	
+	/**
+	 * Recuperer tous les commandes de la table
+	 * @return liste de commande
+	 */
 	public static ArrayList<Commande> voirCommande(){
 		Connection con=ConnexionController.connexion();
 		ArrayList<Commande> listeCommandes = new ArrayList<Commande>();

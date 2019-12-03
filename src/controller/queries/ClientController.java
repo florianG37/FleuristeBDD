@@ -8,7 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import model.Client;
-
+/**
+ * 
+ * Requetes pour le client
+ *
+ */
 public class ClientController {
 	/**
 	 * Ajouter un client dans la BDD, et retourne son idClient
@@ -38,7 +42,10 @@ public class ClientController {
 		ConnexionController.Deconnexion(con);
 		return idClient;
 	}
-	
+	/**
+	 * Supprimer client dans la BDD
+	 * @param IdClient client a supprimer
+	 */
 	public static void supprimerClient(int IdClient){
 		Connection con=ConnexionController.connexion();
 		String sql= "DELETE FROM client WHERE client.IdClient = ?";
@@ -51,7 +58,11 @@ public class ClientController {
 		}		
 		ConnexionController.Deconnexion(con);
 	}
-	
+	/**
+	 * Modifier client
+	 * @param client nouveau client
+	 * @param IdClientAModifier client a modifier
+	 */
 	public static void modifierClient(Client client, int IdClientAModifier){
 		Connection con=ConnexionController.connexion();
 		String sql="UPDATE client SET Nom = ?, Prenom = ?, Adresse =? , Ville =? WHERE client.IdClient =?";
@@ -69,7 +80,9 @@ public class ClientController {
 				
 		ConnexionController.Deconnexion(con);	
 	}
-	
+	/**
+	 * Recuperer tous les clients de la table
+	 */
 	public static ArrayList<Client> voirClient(){
 		Connection con=ConnexionController.connexion();
 		ArrayList<Client> listeClients = new ArrayList<Client>();

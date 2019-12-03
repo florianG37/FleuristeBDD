@@ -9,9 +9,16 @@ import java.util.ArrayList;
 
 import model.Categorie;
 import model.Produit;
-
+/**
+ * 
+ * Requetes produit
+ *
+ */
 public class ProduitController {
-	
+	/**
+	 * 
+	 * Ajouter produit
+	 */
 	public static void ajouterProduit(Produit produit){
 		Connection con=ConnexionController.connexion();
 		String sql = "INSERT INTO produit(Nom, Categorie, Espece,Prix, Quantite) VALUES(?,?,?,?,?)";
@@ -29,6 +36,10 @@ public class ProduitController {
 				
 		ConnexionController.Deconnexion(con);
 	}
+	/**
+	 * Supprimer produit 
+	 * @param IdProduit le produit
+	 */
 	public static void supprimerProduit(int IdProduit){
 		Connection con=ConnexionController.connexion();
 		String sql= "DELETE FROM produit WHERE produit.IdProduit = ?";
@@ -42,7 +53,11 @@ public class ProduitController {
 				
 		ConnexionController.Deconnexion(con);
 	}
-	
+	/**
+	 * Produit a modifier
+	 * @param produit nouveau produit
+	 * @param IdProduitAModifier produit a modifier
+	 */
 	public static void modifierProduit(Produit produit, int IdProduitAModifier){
 		Connection con=ConnexionController.connexion();
 		String sql= "UPDATE produit SET Nom = ?, Categorie = ?, Espece = ?, Prix = ?, Quantite = ? WHERE produit.IdProduit = ?";
@@ -61,7 +76,10 @@ public class ProduitController {
 				
 		ConnexionController.Deconnexion(con);
 	}
-	
+	/**
+	 * Voir tous les produits
+	 * @return liste produit
+	 */
 	public static ArrayList<Produit> voirProduit(){
 		Connection con=ConnexionController.connexion();
 		ArrayList<Produit> listeProduit = new ArrayList<Produit>();
@@ -86,6 +104,10 @@ public class ProduitController {
 		ConnexionController.Deconnexion(con);
 		return listeProduit;
 	}
+	/**
+	 * Voir produits sans stocke
+	 * @return liste produit
+	 */
 	public static ArrayList<Produit> voirProduitSansStock(){
 		Connection con=ConnexionController.connexion();
 		ArrayList<Produit> listeProduit= new ArrayList<Produit>();

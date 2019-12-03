@@ -12,8 +12,16 @@ import model.Fournisseur;
 import model.Produit;
 
 
-
+/**
+ * 
+ * Requetes Fournisseur
+ *
+ */
 public class FournisseurController {
+	/**
+	 * Ajouter un fournisseur
+	 * @param fournisseur fournisseur
+	 */
 	public static void ajouterFournisseur(Fournisseur fournisseur){
 		Connection con=ConnexionController.connexion();
 		String sql ="INSERT INTO fournisseur ( Nom, Prenom, Adresse, Ville) VALUES (?,?,?,?)";
@@ -42,6 +50,11 @@ public class FournisseurController {
 		}		
 		ConnexionController.Deconnexion(con);
 	}
+	/**
+	 * Modifier un fournisseur
+	 * @param fournisseur un fournisseur
+	 * @param IdFournisseurAModifier fournisseur a modifier
+	 */
 	public static void modifierFournisseur(Fournisseur fournisseur, int IdFournisseurAModifier){
 		Connection con=ConnexionController.connexion();
 		String sql="UPDATE fournisseur SET Nom = ?, Prenom = ?, Adresse =? , Ville =? WHERE fournisseur.IdFournisseur =?";
@@ -59,7 +72,10 @@ public class FournisseurController {
 				
 		ConnexionController.Deconnexion(con);	
 	}
-	
+	/**
+	 * Voir tous les fournisseurs
+	 * @return liste de fournisseur
+	 */
 	public static ArrayList<Fournisseur> voirFournisseur(){
 		Connection con=ConnexionController.connexion();
 		ArrayList<Fournisseur> listeFournisseurs = new ArrayList<Fournisseur>();
@@ -83,7 +99,11 @@ public class FournisseurController {
 		ConnexionController.Deconnexion(con);
 		return listeFournisseurs;
 	}
-	
+	/**
+	 * Voir produit dun fournisseur
+	 * @param idFournisseur un fournisseur
+	 * @return liste produit
+	 */
 	public static ArrayList<Produit> voirProduitsFournisseur(int idFournisseur)
 	{
 		Connection con=ConnexionController.connexion();
