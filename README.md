@@ -6,3 +6,4 @@ Déployer la base de données (fleuriste.sql)
 Ajouter le pilote au projet (mysql-connector-java-8.0.18.jar)   
 Pour exécuter le projet : dans Package Main se trouve main.java  
 
+<a href="https://imgflip.com/gif/3j7j25"><img src="https://i.imgflip.com/3j7j25.gif" title="made at imgflip.com"/></a>
