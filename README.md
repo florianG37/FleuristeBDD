@@ -1,15 +1,21 @@
 
 <h1>Application de gestion d'une boutique de fleuriste</h1>
 <h2>Introduction</h2>
-Réalisation d'une application permettant de gérer la gestion de stock d'un fleuriste. Intégrant la gestion des clients et des fournisseurs. Temps pour développer le projet : 1 semaine  
-Langage : JAVA (avec librairie JDBC) 
-Interface : SWING
+<p>
+Réalisation d'une application permettant de gérer la gestion de stock d'un fleuriste. Intégrant la gestion des clients et des fournisseurs.<br /> 
+Temps pour développer le projet : 1 semaine <br />
+Langage : JAVA (avec librairie JDBC) <br />
+Interface : SWING <br />
+</p>
 
 <h2>Informations pour lancer le projet</h2>
-Déployer la base de données (fleuriste.sql)     
-Ajouter le pilote au projet (mysql-connector-java-8.0.18.jar)   
+<p>
+<ul>
+<li>Déployer la base de données (fleuriste.sql)</li>     
+<li>Ajouter le pilote au projet (mysql-connector-java-8.0.18.jar)</li>
+</ul>
 Pour exécuter le projet : dans Package Main se trouve main.java 
-
+</p>
 <h2>Visuel de l'application</h2>
 Video : Comment créer un client et passer une commande : 
 
