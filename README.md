@@ -1,5 +1,5 @@
 # FleuristeBDD
-
+<h1>Application de gestion d'une boutique de fleuriste</h1>
 Réalisation d'une application permettant de gérer la gestion de stock d'un fleuriste. Intégrant la gestion des clients et des fournisseurs. Dans un temps limité (1 semaine)
 
 Déployer la base de données (fleuriste.sql)     
