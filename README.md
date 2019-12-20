@@ -3,10 +3,11 @@
 <p><em> <strong>Auteurs : </strong>Florian GIGOT & Quentin LEVIEUX</em></p>
 <h2>Introduction</h2>
 <p>
-Réalisation d'une application permettant de gérer la gestion de stock d'un fleuriste. Intégrant la gestion des clients et des fournisseurs.<br /> 
+Réalisation d'une application permettant à un fleuriste de gérer sa boutique.<br />  Via cette application, un fleuriste peut gérer facilement ses articles, ses clients, ses fournisseurs, ses commandes et ses livraisons.<br /> 
 <strong>Temps pour développer le projet :</strong> 1 semaine <br />
 <strong>Langage :</strong> JAVA (avec librairie JDBC) <br />
 <strong>Interface :</strong> SWING <br />
+<strong>Base de données :</strong> mySQL <br />
 </p>
 
 <h2>Informations pour lancer le projet</h2>
