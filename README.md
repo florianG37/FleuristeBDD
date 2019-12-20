@@ -1,5 +1,6 @@
 
 <h1>Application de gestion d'une boutique de fleuriste</h1>
+<p><em> <strong>Auteurs :</strong>Florian GIGOT & Quentin LEVIEUX</em></p>
 <h2>Introduction</h2>
 <p>
 Réalisation d'une application permettant de gérer la gestion de stock d'un fleuriste. Intégrant la gestion des clients et des fournisseurs.<br /> 
@@ -47,3 +48,38 @@ Video : Comment créer un client et passer une commande :
 
 
 <h2>Informations complémentaires</h2>
+<p>
+  L’application permet de gérer les stocks de fleurs et de plantes d’une boutique d’un fleuriste. Cette gestion passe par 5 onglets : Produit, Client, Fournisseur, Commande, Fourniture. </br></br>
+<em><strong>Pour utiliser les boutons Modifier et Supprimer veuillez cliquer sur un item avant de cliquer sur le bouton.</strong></em></br>
+</p>
+<h3>Produit</h3>
+<ul>
+  <li>Dans cette onglet, le propriétaire du magasin peut créer, modifier et supprimer un produit. Il dispose également d’un bouton Alerte, lui permettant de voir tous les produits en rupture de stock. Enfin, un bouton filtre et enlever filtre lui permettent de cibler des produits pour pouvoir les visualiser plus facilement.</li>
+  <li>Une liste de produit est disponible pour la visualisation des produits</li>
+</ul>
+<h3>Client</h3>
+<ul>
+  <li>Dans cette onglet, le propriétaire du magasin peut créer, modifier et supprimer un client. Enfin, un bouton filtre et enlever filtre lui permettent de cibler des clients pour pouvoir les visualiser plus facilement.</li>
+  <li>Une liste de client est disponible pour la visualisation des clients.</li>
+  <li>Par ailleurs, un seul changement de pourcentage de réduction pour un client est disponible par jour.</li>
+</ul>
+<h3>Fournisseur</h3>
+<ul>
+  <li>Dans cette onglet, le propriétaire du magasin peut créer, modifier et supprimer un fournisseur.Un bouton affilier permet d’associer un produit à un fournisseur. Cette opération permet d’indiquer au logiciel qu’un fournisseur peut fournir un produit. Enfin, un bouton filtre et enlever filtre lui permettent de cibler des fournisseurs pour pouvoir les visualiser plus facilement.
+</li>
+  <li>Une liste de fournisseur est disponible pour la visualisation des fournisseurs.</li>
+</ul>
+<h3>Commande</h3>
+<ul>
+  <li>Dans cette onglet, le propriétaire du magasin peut créer et supprimer une commande. Par ailleurs en cliquant sur une commande on peut voir le détail d’une commande.</li>
+  <li>Une liste de commande est disponible pour la visualisation des informations importantes liés à une commande.</li>
+  <li>Une commande enlève automatiquement les produits (associés) du stocks.</li>
+  <li>Une commande possède une date, ce qui permet de ce faire un historique de ces dernières. </li>
+</ul>
+<h3>Fourniture</h3>
+<ul>
+  <li>Dans cette onglet, le propriétaire du magasin peut créer et supprimer une fourniture. Par ailleurs en cliquant sur une fourniture on peut voir le détail d’une fourniture.</li>
+  <li>Une liste de fourniture est disponible pour la visualisation des informations importantes liés à une fourniture.</li>
+  <li>Une fourniture ajoute automatiquement les produits (associés) au stocks.</li>
+  <li>Une fourniture possède une date et est associée à un fournisseur. Elle contient uniquement les produits que le fournisseur pouvait fournir à cette même date.</li>
+</ul>
