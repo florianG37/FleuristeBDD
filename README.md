@@ -22,7 +22,9 @@ Video : Comment créer un client et passer une commande :
 ![ezgif com-video-to-gif-2](https://user-images.githubusercontent.com/57462792/70751951-e624dd00-1d31-11ea-9c67-1090d614b537.gif) 
 
 <h2>Spécification technique</h2>
-<h3>MCD de la base de données</h3>
+<h3>MCD de la base de données</h3> 
+
+![mcd projet bdd](https://user-images.githubusercontent.com/45074223/71258937-9a78c180-2337-11ea-8fdb-9855ae5d1c02.JPG)
 <h3>MLD de la base de données</h3>
 <h3>Modèle Général de l’architecture MVC du logiciel</h3>
 <h3>Modèle UML du logiciel</h3>
