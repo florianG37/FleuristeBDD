@@ -21,7 +21,7 @@ Video : Comment créer un client et passer une commande :
 
 ![ezgif com-video-to-gif-2](https://user-images.githubusercontent.com/57462792/70751951-e624dd00-1d31-11ea-9c67-1090d614b537.gif) 
 
-<h2>Spécification technique</h2>
+<h2>Spécifications techniques</h2>
 <h3>MCD de la base de données</h3> 
 
 ![mcd projet bdd](https://user-images.githubusercontent.com/45074223/71258937-9a78c180-2337-11ea-8fdb-9855ae5d1c02.JPG)
@@ -31,10 +31,19 @@ Video : Comment créer un client et passer une commande :
 
 <h3>Modèle Général de l’architecture MVC du logiciel</h3>
 
+![Structure](https://user-images.githubusercontent.com/45074223/71260011-1ffd7100-233a-11ea-971a-1105599de22e.JPG)
 
+<ul>
+  <li><strong>X</strong> représente le nom d’une classe dans le modèle</li>
+  <li><strong>XController</strong> représente la classe qui fera l’interaction entre l’application et la BDD</li>
+  <li><strong>XControllerView</strong> représente la classe qui gérera les boutons de la vue</li>
+  <li><strong>XTableTemplate</strong> représente la classe qui gérera les JTables de la vue</li>
+  <li><strong>XView</strong> représente la classe qui définira la vue</li>
+</ul>
 
 <h3>Modèle UML du logiciel</h3>
 
 ![uml model projet bdd](https://user-images.githubusercontent.com/45074223/71259201-2985d980-2338-11ea-82f5-70222022db29.JPG)
+
 
 <h2>Informations complémentaires</h2>
