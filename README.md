@@ -19,7 +19,7 @@ Réalisation d'une application permettant à un fleuriste de gérer sa boutique.
 <strong>Pour exécuter le projet : dans Package Main se trouve main.java </strong>
 </em></p>
 <h2>Visuel de l'application</h2>
-Video : Comment créer un client et passer une commande : 
+<em><strong>Video :</strong> Comment créer un client et passer une commande </em>
 
 ![ezgif com-video-to-gif-2](https://user-images.githubusercontent.com/57462792/70751951-e624dd00-1d31-11ea-9c67-1090d614b537.gif) 
 
