@@ -1,6 +1,6 @@
 
 <h1>Application de gestion d'une boutique de fleuriste</h1>
-<p><em> <strong>Auteurs :</strong>Florian GIGOT & Quentin LEVIEUX</em></p>
+<p><em> <strong>Auteurs : </strong>Florian GIGOT & Quentin LEVIEUX</em></p>
 <h2>Introduction</h2>
 <p>
 Réalisation d'une application permettant de gérer la gestion de stock d'un fleuriste. Intégrant la gestion des clients et des fournisseurs.<br /> 
