@@ -19,4 +19,11 @@ Réalisation d'une application permettant de gérer la gestion de stock d'un fle
 <h2>Visuel de l'application</h2>
 Video : Comment créer un client et passer une commande : 
 
-![ezgif com-video-to-gif-2](https://user-images.githubusercontent.com/57462792/70751951-e624dd00-1d31-11ea-9c67-1090d614b537.gif)
+![ezgif com-video-to-gif-2](https://user-images.githubusercontent.com/57462792/70751951-e624dd00-1d31-11ea-9c67-1090d614b537.gif) 
+
+<h2>Spécification technique</h2>
+<h3>MCD de la base de données</h3>
+<h3>MLD de la base de données</h3>
+<h3>Modèle Général de l’architecture MVC du logiciel</h3>
+<h3>Modèle UML du logiciel</h3>
+<h2>Informations complémentaires</h2>
